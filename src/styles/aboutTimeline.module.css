@@ -1,0 +1,200 @@
+.section {
+  padding: 8rem 0;
+  background-color: var(--color-bg);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.15;
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+/* --- TIMELINE --- */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-border) 5%,
+    var(--color-border) 95%,
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+/* --- TIMELINE ITEM --- */
+.item {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  padding-right: 4rem;
+  margin-bottom: 3rem;
+}
+
+.item.itemRight {
+  justify-content: flex-end;
+  margin-left: 50%;
+  padding-right: 0;
+  padding-left: 4rem;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+/* --- MARKER --- */
+.marker {
+  position: absolute;
+  right: -11px;
+  top: 1.5rem;
+  z-index: 2;
+}
+
+.item.itemRight .marker {
+  right: auto;
+  left: -11px;
+}
+
+.markerDot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 3px solid var(--color-accent);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.item:hover .markerDot {
+  background: var(--color-accent);
+  transform: scale(1.2);
+}
+
+/* --- CARD --- */
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+}
+
+.item:hover .card {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(10, 30, 59, 0.1);
+  border-color: var(--color-accent);
+}
+
+.year {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  background: var(--color-primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.cardText {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-accent);
+}
+
+.locationIcon {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+  
+  .timeline {
+    padding-left: 2rem;
+  }
+  
+  .line {
+    left: 0;
+  }
+  
+  .item,
+  .item.itemRight {
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 3rem;
+    justify-content: flex-start;
+  }
+  
+  .marker,
+  .item.itemRight .marker {
+    left: -11px;
+    right: auto;
+  }
+}

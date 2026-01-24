@@ -1,0 +1,644 @@
+.section {
+  background-color: var(--color-bg);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  padding: calc(var(--header-height) + 5rem) 0 5rem 0;
+  background-image: url("/avr.avif");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Dark overlay for accessibility - WCAG AA compliant contrast */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 30, 59, 0.88) 0%,
+    rgba(10, 30, 59, 0.85) 50%,
+    rgba(10, 30, 59, 0.92) 100%
+  );
+}
+
+/* Subtle gold accent layer */
+.heroOverlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 20%,
+    rgba(197, 160, 89, 0.12) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+}
+
+/* Hero Stats */
+.heroStats {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+}
+
+.heroStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroStatNumber {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.heroStatLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 0.35rem;
+}
+
+.heroStatDivider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   FILTERS
+   ============================================ */
+.filters {
+  background: var(--color-bg-subtle);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.5rem 0;
+  position: sticky;
+  top: var(--header-height);
+  z-index: 10;
+}
+
+.filtersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Category Tabs */
+.categoryTabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.categoryTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-light);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categoryTab:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.categoryTabActive {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.categoryTabActive .categoryCount {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.categoryCount {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  background: var(--color-bg);
+  border-radius: 2px;
+  color: var(--color-text-light);
+  transition: all 0.3s ease;
+}
+
+/* Status Filter */
+.statusFilters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statusLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-light);
+}
+
+.statusTags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.statusTag {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.statusTag:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.statusTagActive {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+/* ============================================
+   PORTFOLIO GRID
+   ============================================ */
+.portfolio {
+  padding: 4rem 0 6rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Featured Card (First item) */
+.cardFeatured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.cardFeatured .cardImageWrapper {
+  height: 100%;
+  min-height: 500px;
+}
+
+.cardFeatured .cardTitle {
+  font-size: 2rem;
+}
+
+.cardFeatured .cardTagline {
+  font-size: 1rem;
+}
+
+/* Card Base */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(10, 30, 59, 0.15);
+}
+
+.card:hover .cardImage {
+  transform: scale(1.08);
+}
+
+.card:hover .cardLink {
+  color: var(--color-accent);
+  gap: 1rem;
+}
+
+/* Card Image */
+.cardImageWrapper {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 30, 59, 0.6) 0%,
+    transparent 50%
+  );
+}
+
+/* Badges */
+.cardBadges {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 2px;
+}
+
+/* Construction Status Colors */
+.statusCompleted {
+  background: #10b981;
+  color: white;
+}
+
+.statusInProgress {
+  background: #f59e0b;
+  color: white;
+}
+
+.statusPlanned {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Market Status Colors */
+.marketAvailable {
+  background: var(--color-accent);
+  color: white;
+}
+
+.marketSold {
+  background: #ef4444;
+  color: white;
+}
+
+.marketLeased {
+  background: #8b5cf6;
+  color: white;
+}
+
+.marketNA {
+  display: none;
+}
+
+/* Category Tag */
+.cardCategory {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  opacity: 0.8;
+}
+
+/* Card Content */
+.cardContent {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardHeader {
+  margin-bottom: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.cardLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.locationIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.cardTagline {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* Card Stats */
+.cardStats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.25rem;
+}
+
+.cardStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardStatValue {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.cardStatKey {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-light);
+  margin-top: 0.25rem;
+}
+
+/* Card Link */
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.emptyState {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.emptyIcon {
+  display: inline-block;
+  font-size: 3rem;
+  color: var(--color-border);
+  margin-bottom: 1.5rem;
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.emptyText {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-bottom: 2rem;
+}
+
+.emptyButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-accent);
+  background: transparent;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.emptyButton:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* ============================================
+   CTA
+   ============================================ */
+.cta {
+  padding: 5rem 0;
+  background: var(--color-primary);
+}
+
+.ctaContainer {
+  text-align: center;
+}
+
+.ctaContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.ctaText {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+.ctaBtn {
+  min-width: 220px;
+  height: 60px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cardFeatured {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .cardFeatured .cardImageWrapper {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: calc(var(--header-height) + 3rem) 0 3rem 0;
+  }
+
+  .heroStats {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .heroStatDivider {
+    width: 60px;
+    height: 1px;
+  }
+
+  .filters {
+    position: static;
+  }
+
+  .filtersContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .categoryTabs {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .categoryTab {
+    white-space: nowrap;
+  }
+
+  .statusFilters {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .statusTags {
+    flex-wrap: wrap;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardFeatured {
+    grid-column: span 1;
+  }
+
+  .cardFeatured .cardImageWrapper {
+    min-height: 250px;
+  }
+
+  .cardFeatured .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .portfolio {
+    padding: 3rem 0 4rem 0;
+  }
+
+  .cta {
+    padding: 4rem 0;
+  }
+}

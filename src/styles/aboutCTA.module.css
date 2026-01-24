@@ -1,0 +1,140 @@
+.section {
+  padding: 8rem 0;
+  background-color: #FDF9F0; /* Warm Sand - differentiating background */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- CONTENT --- */
+.content {
+  text-align: center;
+  max-width: 750px;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.accent {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+  margin-bottom: 2.5rem;
+}
+
+/* --- BUTTONS --- */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  min-width: 220px;
+  height: 60px; /* Thumb-friendly on mobile */
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btnOutline:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btnOutline:hover .btnIcon {
+  transform: translateX(4px);
+}
+
+.btnIcon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* --- DECORATION --- */
+.decoration {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 5rem;
+  padding-top: 3rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.decorLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-border),
+    transparent
+  );
+}
+
+.decorText {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  opacity: 0.15;
+  letter-spacing: 8px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btnPrimary {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .decoration {
+    margin-top: 3rem;
+  }
+}

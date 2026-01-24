@@ -1,0 +1,172 @@
+.section {
+  padding: 8rem 0;
+  background-color: white; /* Blends with Identity and Philosophy */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.header {
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent); /* Gold */
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-primary); /* Deep Blue */
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+/* --- GRID --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 8rem;
+}
+
+.leaderCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+}
+
+.imageWrapper {
+  width: 75%;
+  aspect-ratio: 4 / 5; 
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background-color: #f4f4f4;
+  position: relative;
+  border-radius: var(--radius);
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%); /* Corporate standard */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1);
+}
+
+/* HOVER EFFECTS: Image goes to color and zooms slightly */
+.leaderCard:hover .portrait {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.leaderCard:hover .name {
+  color: var(--color-accent);
+}
+
+.info {
+  text-align: center;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.role {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  letter-spacing: 2px;
+}
+
+/* --- FOOTER TAGLINE --- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: 5rem;
+}
+
+.tagline {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  max-width: 900px;
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.divider {
+  width: 100px;
+  height: 4px;
+  background-color: var(--color-accent);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .grid {
+    gap: 2rem;
+  }
+  .tagline {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .tagline {
+    font-size: 1.5rem;
+  }
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35%;
+  backdrop-filter: blur(6px);
+  mask-image: linear-gradient(
+    to top,
+    black 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.name {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.role {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.leaderCard:hover .imageWrapper::before {
+  backdrop-filter: blur(3px);
+}

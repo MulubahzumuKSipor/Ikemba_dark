@@ -1,0 +1,86 @@
+:root {
+  /* BRAND IDENTITY: "Deep Blue & Gold" */
+  --color-primary: #0A1E3B; /* The Deep Corporate Blue */
+  --color-accent: #C5A059;  /* The Gold/Bronze */
+  --color-accent-hover: #b08d4b;
+  
+  /* NEUTRALS */
+  
+  --color-text: #1a1a1a;
+  --color-text-light: #666666;
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f8f9fa;
+  --color-border: #e5e5e5;
+
+  /* SPACING & LAYOUT */
+  --container-width: 1280px; /* Wide modern view */
+  --header-height: 80px;
+  --radius: 4px; /* Sharp, professional corners */
+}
+
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: Arial, Helvetica, sans-serif; /* We will swap for a Google Font later */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+/* UTILITIES */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+.btn-outline:hover {
+  background: white;
+  color: var(--color-primary);
+}

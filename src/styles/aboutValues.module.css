@@ -1,0 +1,138 @@
+.section {
+  padding: 8rem 0;
+  background-color: var(--color-bg-subtle);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.15;
+}
+
+.accent {
+  display: block;
+  color: var(--color-accent);
+}
+
+/* --- VALUES GRID --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+/* --- VALUE CARD --- */
+.card {
+  position: relative;
+  background: white;
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(10, 30, 59, 0.1);
+}
+
+.card:hover .cardAccent {
+  transform: scaleX(1);
+}
+
+.card:hover .cardNumber {
+  color: var(--color-accent);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cardNumber {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-border);
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+}
+
+.cardIcon {
+  font-size: 1.25rem;
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.cardText {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text-light);
+}
+
+/* Gold accent bar on hover */
+.cardAccent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .card {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+  
+  .header {
+    margin-bottom: 3rem;
+  }
+}

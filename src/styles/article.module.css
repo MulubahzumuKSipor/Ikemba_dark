@@ -1,0 +1,135 @@
+/* --- VARIABLES --- */
+.main {
+  /* CHANGED: Grayish White for comfortable reading */
+  --color-bg: #F8F9FA;
+  
+  --color-dark: #0A1E3B;
+  --color-gold: #C5A059;
+  --color-text: #2D3748; /* Slightly softer black for text */
+  --font-serif: "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  padding-top: 8rem; 
+  padding-bottom: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.articleContainer {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 1.5rem;
+}
+
+/* --- HEADER --- */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(10, 30, 59, 0.6);
+  font-weight: 700;
+}
+
+.category { color: var(--color-gold); }
+.separator { opacity: 0.5; }
+
+.headline {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1.1;
+  color: var(--color-dark);
+  font-weight: 400; 
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+.leadParagraph {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(10, 30, 59, 0.85); /* Increased contrast slightly */
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- HERO IMAGE --- */
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  margin-bottom: 4rem;
+  overflow: hidden;
+  border-radius: 2px;
+  /* Added subtle shadow to lift image off the gray bg */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.heroImage { object-fit: cover; }
+
+/* --- CONTENT BODY --- */
+.contentBody {
+  max-width: 680px;
+  margin: 0 auto;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.contentBody p { margin-bottom: 2rem; }
+
+/* Drop Cap Styling */
+.contentBody p:first-of-type::first-letter {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  color: var(--color-gold);
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+/* --- FOOTER --- */
+.footer {
+  max-width: 680px;
+  margin: 4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(10, 30, 59, 0.08); /* Lighter border */
+}
+
+.backLink {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  margin-top: 1rem;
+}
+
+.backLink:hover { opacity: 0.7; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .headline { font-size: 2.5rem; }
+  .leadParagraph { font-size: 1.1rem; }
+  .heroImageWrapper { height: 300px; margin-bottom: 3rem; }
+}

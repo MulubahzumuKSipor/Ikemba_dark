@@ -1,0 +1,180 @@
+.hero {
+  position: relative;
+  height: 92vh; /* Slightly taller for cinematic feel */
+  min-height: 650px;
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: flex-start; /* Align text to left */
+  color: white;
+  overflow: hidden;
+}
+
+/* BACKGROUND IMAGE */
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Ensure you have this file in public/images/ */
+  background-image: url('/ghana_ins_campus.avif'); 
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  /* Subtle zoom effect to bring the building to life */
+  animation: slowZoom 20s infinite alternate; 
+}
+
+/* THE "MAGIC" OVERLAY */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* Gradient: Transparent at top (shows building) -> Dark Blue at bottom (readability) */
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 30, 59, 0.2) 0%,   /* 20% opacity - See the sky */
+    rgba(10, 30, 59, 0.5) 50%,  /* 50% opacity - Middle */
+    rgba(10, 30, 59, 0.95) 100% /* 95% opacity - Bottom text area */
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+/* TYPOGRAPHY */
+.tagline {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent); /* Gold */
+  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.4); /* Small backing for readability */
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(4px);
+  border-left: 3px solid var(--color-accent);
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5rem); /* Responsive font sizing */
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Lift text off image */
+  color: var(--color-accent);
+}
+
+.highlight {
+  color: transparent;
+  -webkit-text-stroke: 2px white; /* Outline style */
+  opacity: 0.9;
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  color: #f0f0f0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* BUTTONS */
+.buttonGroup {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.primaryBtn {
+  background: var(--color-accent);
+  color: white;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-accent);
+}
+
+.primaryBtn:hover {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.secondaryBtn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background: white;
+  color: var(--color-primary);
+}
+
+/* ANIMATIONS */
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+/* SCROLL MOUSE ICON */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  opacity: 0.7;
+}
+
+.mouse {
+  width: 26px;
+  height: 42px;
+  border: 2px solid white;
+  border-radius: 20px;
+  position: relative;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: white;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translate(-50%, 0); opacity: 1; }
+  100% { transform: translate(-50%, 15px); opacity: 0; }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero { align-items: flex-end; padding-bottom: 6rem; }
+  .content { margin-top: 0; }
+  .title { font-size: 2.5rem; }
+  .buttonGroup { flex-direction: column; width: 100%; }
+  .primaryBtn, .secondaryBtn { width: 100%; text-align: center; }
+  .description{display: none;}
+}
+

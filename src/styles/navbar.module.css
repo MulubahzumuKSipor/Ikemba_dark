@@ -1,0 +1,170 @@
+/* --- BASE VARIABLES --- */
+.header {
+  height: var(--header-height);
+  background: white;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.navContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* Needed for absolute positioning of mobile menu */
+}
+
+/* --- LOGO --- */
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-shrink: 0;
+  z-index: 1001; /* Ensure logo stays above mobile menu */
+}
+
+/* --- DESKTOP NAVIGATION --- */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: var(--color-accent);
+}
+
+/* Underline animation */
+.link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/* --- CTA BUTTON (Desktop) --- */
+.ctaButton {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  transition: background 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: #152d52;
+}
+
+/* --- HAMBURGER ICON (Initially Hidden) --- */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* Above mobile menu */
+  padding: 0;
+}
+
+.hamburgerLine {
+  width: 30px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- MOBILE MENU OVERLAY --- */
+.mobileMenu {
+  position: absolute; /* Drops down from header */
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 2rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 2px solid var(--color-accent);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  
+  /* Animation State: Hidden by default */
+  display: none; 
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobileMenu.open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Links are larger */
+.mobileLink {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* --- RESPONSIVE BREAKPOINT (Tablet & Mobile) --- */
+@media (max-width: 1024px) {
+  /* Hide Desktop Elements */
+  .nav {
+    display: none; 
+  }
+  .ctaButton {
+    display: none; /* Hide button in header, move to menu if needed */
+  }
+
+  /* Show Hamburger */
+  .hamburger {
+    display: flex;
+  }
+  
+  /* Hamburger Animation when Open */
+  .hamburger.open .hamburgerLine:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  
+  .hamburger.open .hamburgerLine:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.open .hamburgerLine:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
