@@ -1,0 +1,301 @@
+/* --- VARIABLES --- */
+.main {
+  --color-dark: #0A1E3B;
+  --color-gold: #C5A059;
+  --color-light: #F8F9FA;
+  --color-border: #E2E8F0;
+  --font-serif: "Times New Roman", serif;
+  
+  background-color: #FFFFFF;
+  min-height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 6rem);
+}
+
+/* --- LEFT SIDE (Info) --- */
+.infoSide {
+  flex: 0 0 40%;
+  background-color: var(--color-dark);
+  color: #FFFFFF;
+  padding: 4rem;
+  position: relative;
+}
+
+.stickyContent {
+  position: sticky;
+  top: 8rem;
+}
+
+.brandLabel {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.heading {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-family: var(--font-serif);
+  margin-bottom: 2rem;
+}
+
+.gold {
+  color: var(--color-gold);
+  font-style: italic;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 4rem;
+}
+
+/* Office Grid */
+.officeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.officeCard {
+  border-left: 2px solid rgba(197, 160, 89, 0.3); /* Dim gold border */
+  padding-left: 1.5rem;
+}
+
+.officeCity {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.officeAddress {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.5rem;
+}
+
+.liveTime {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* --- RIGHT SIDE (Form) --- */
+.formSide {
+  flex: 1;
+  background-color: #FFFFFF;
+  padding: 4rem 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.sectionBlock {
+  margin-bottom: 2.5rem;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+}
+
+/* --- RADIO CARDS (The UX Upgrade) --- */
+.radioGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.radioCard {
+  position: relative;
+  cursor: pointer;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+}
+
+.radioContent {
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.radioIcon {
+  font-size: 1.2rem;
+  filter: grayscale(1); /* Serious look until selected */
+}
+
+.radioLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Selected State */
+.radioInput:checked + .radioContent {
+  border-color: var(--color-dark);
+  background-color: #F8FAFC;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.radioInput:checked + .radioContent .radioLabel {
+  color: var(--color-dark);
+}
+
+.radioInput:checked + .radioContent .radioIcon {
+  filter: none;
+}
+
+/* --- INPUTS --- */
+.row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 1rem 0; /* Minimalist Underline Style or Box? Let's go Box for 'Advanced' feel */
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
+  background-color: #FAFAFA;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  background-color: #FFFFFF;
+}
+
+.textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* --- ALERTS --- */
+.alert {
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.success {
+  background-color: var(--color-dark);
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+}
+
+.error {
+  background-color: #FFF5F5;
+  color: #C53030;
+  border: 1px solid #FC8181;
+}
+
+/* --- ACTION ROW --- */
+.actionRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.submitBtn {
+  background-color: var(--color-dark);
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 1.25rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitBtn:hover {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  
+  .infoSide {
+    padding: 3rem 1.5rem;
+    flex: auto;
+  }
+
+  .formSide {
+    padding: 3rem 1.5rem;
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .radioGrid {
+    grid-template-columns: 1fr; /* Stack radio cards on mobile */
+  }
+  
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .input {
+    margin-bottom: 1rem;
+  }
+}

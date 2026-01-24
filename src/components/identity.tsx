@@ -110,7 +110,7 @@ export default function Identity() {
         <div className={styles.cards}>
           
           <Link href="/portfolio?filter=Living" className={styles.card}>
-            <div className={styles.cardBg} style={{ backgroundImage: "url('/images/atlantic-view.jpg')" }} />
+            <div className={styles.cardBg} style={{ backgroundImage: "url('/images/projects/atlantic.png')" }} />
             <div className={styles.cardContent}>
               <span className={styles.cardTag}>For Homeowners</span>
               <h3 className={styles.cardTitle}>Ikemba Living</h3>
@@ -121,7 +121,7 @@ export default function Identity() {
           </Link>
 
           <Link href="/portfolio?filter=Landmarks" className={styles.card}>
-            <div className={styles.cardBg} style={{ backgroundImage: "url('/images/7th-tubman.jpg')" }} />
+            <div className={styles.cardBg} style={{ backgroundImage: "url('/tower.avif')" }} />
             <div className={styles.cardContent}>
               <span className={styles.cardTag}>For Investors</span>
               <h3 className={styles.cardTitle}>Major Landmarks</h3>

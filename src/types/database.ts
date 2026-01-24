@@ -5,12 +5,13 @@ export type MarketStatus = 'Available' | 'Sold' | 'Leased' | 'Not Applicable';
 export type ProjectCategory = 'Living' | 'Landmarks';
 export type ClientType = 'Investor' | 'Homeowner' | 'Institution' | 'General Inquiry';
 export type NewsCategory = 'Press Release' | 'Project Update' | 'Milestone' | 'Industry Insight';
+export type JobType = 'Full-time' | 'Part-time' | 'Contract' | 'Internship';
 
 export interface ProjectStats {
-  area?: string;   // e.g. "1.5 Acres" or "1,500 sqm"
-  value?: string;  // e.g. "$6 Million"
-  units?: string;  // e.g. "15 Units"
-  floors?: string; // e.g. "7 Stories"
+  area?: string;
+  value?: string;
+  units?: string;
+  floors?: string;
 }
 
 export interface Project {
@@ -21,18 +22,11 @@ export interface Project {
   tagline: string | null;
   description: string | null;
   location: string | null;
-  
-  // The Split Statuses
   construction_status: ConstructionStatus;
   market_status: MarketStatus;
-  
   category: ProjectCategory;
-  
-  // Arrays
   image_urls: string[];
   features: string[];
-  
-  // JSONB Data
   stats: ProjectStats; 
 }
 
@@ -59,6 +53,20 @@ export interface Article {
   published_at: string | null;
   is_published: boolean;
   is_featured: boolean;
+}
+
+export interface Job {
+  id: string;
+  created_at: string;
+  title: string;
+  slug: string;
+  location: string;
+  department: string;
+  type: JobType;
+  description: string;
+  requirements: string[];
+  application_email: string | null;
+  is_active: boolean;
 }
 
 
@@ -195,6 +203,48 @@ export type Database = {
           published_at?: string | null
           is_published?: boolean
           is_featured?: boolean
+        }
+        Relationships: []
+      }
+      careers: {
+        Row: {
+          id: string
+          created_at: string
+          title: string
+          slug: string
+          location: string
+          department: string
+          type: JobType
+          description: string
+          requirements: string[]
+          application_email: string | null
+          is_active: boolean
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          title: string
+          slug: string
+          location: string
+          department: string
+          type: JobType
+          description: string
+          requirements?: string[]
+          application_email?: string | null
+          is_active?: boolean
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          title?: string
+          slug?: string
+          location?: string
+          department?: string
+          type?: JobType
+          description?: string
+          requirements?: string[]
+          application_email?: string | null
+          is_active?: boolean
         }
         Relationships: []
       }
