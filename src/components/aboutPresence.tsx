@@ -7,7 +7,7 @@ const offices = [
     role: "Headquarters",
     description:
       "Our founding office and operational hub for all West African development projects.",
-    image: "/images/office-monrovia.jpg",
+    image: "/avr.avif",
   },
   {
     city: "Accra",
@@ -15,7 +15,7 @@ const offices = [
     role: "Regional Office",
     description:
       "Leading our expansion across Anglophone West Africa, including the Ghana Insurance College project.",
-    image: "/images/office-accra.jpg",
+    image: "/construct.avif",
   },
   {
     city: "Philadelphia",
@@ -23,7 +23,7 @@ const offices = [
     role: "Investment Office",
     description:
       "Connecting diaspora investors with African opportunities. Financial operations and investor relations.",
-    image: "/images/office-philadelphia.jpg",
+    image: "/workers.avif",
   },
 ];
 

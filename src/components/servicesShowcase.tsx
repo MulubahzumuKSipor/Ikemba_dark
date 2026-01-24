@@ -109,7 +109,7 @@ const services: Service[] = [
     project: {
       title: "7th & Tubman Tower",
       location: "Monrovia, Liberia",
-      image: "/images/project-7th-tubman.jpg",
+      image: "/tower.avif",
       stat: "12",
       statLabel: "Stories",
     },
@@ -185,7 +185,7 @@ const services: Service[] = [
     project: {
       title: "SG Residence",
       location: "Monrovia, Liberia",
-      image: "/images/project-sg-residence.jpg",
+      image: "/images/projects/sg_residence.png",
       stat: "$2.5M",
       statLabel: "Value",
     },
@@ -261,7 +261,7 @@ const services: Service[] = [
     project: {
       title: "Ghana Insurance College",
       location: "Accra, Ghana",
-      image: "/images/project-ghana-college.jpg",
+      image: "/ghana_ins_campus.avif",
       stat: "61",
       statLabel: "Acres",
     },

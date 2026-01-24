@@ -10,7 +10,7 @@ export default function AboutStory() {
           <div className={styles.imageWrapper}>
             <div 
               className={styles.image}
-              style={{ backgroundImage: "url('/images/story-founding.jpg')" }}
+              style={{ backgroundImage: "url('/avr.avif')" }}
             />
             <span className={styles.imageTag}>Monrovia, 2011</span>
           </div>
@@ -38,7 +38,7 @@ export default function AboutStory() {
           <div className={styles.imageWrapper}>
             <div 
               className={styles.image}
-              style={{ backgroundImage: "url('/images/story-growth.jpg')" }}
+              style={{ backgroundImage: "url('/construct.avif')" }}
             />
             <span className={styles.imageTag}>Accra Expansion, 2018</span>
           </div>
