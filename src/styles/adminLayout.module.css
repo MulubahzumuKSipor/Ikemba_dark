@@ -1,39 +1,151 @@
-/* THE OUTER SHELL */
+/* CONTAINER - Full Height */
 .layoutContainer {
   display: flex;
-  height: 100vh; /* Takes full screen height */
-  background-color: #0F172A; /* Deep Background */
-  color: #FFFFFF;
-  overflow: hidden; /* Prevent double scrollbars */
+  height: 100vh;
+  width: 100vw;
+  background-color: #0F172A;
+  overflow: hidden; /* Prevent body scroll */
 }
 
-/* SIDEBAR AREA (Fixed Width) */
+/* SIDEBAR AREA */
 .sidebarArea {
   width: 260px;
   background-color: #151B25;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
   flex-shrink: 0;
-}
-
-/* MAIN AREA (The rest of the screen) */
-.mainArea {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0; /* Prevents flexbox overflow issues */
+  height: 100%;
+  z-index: 50;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* SCROLLABLE ZONE */
+.sidebarContent {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* MAIN AREA */
+.mainArea {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0; /* Prevents flex overflow */
+  position: relative;
+}
+
 .contentScrollable {
-  flex: 1;
-  overflow-y: auto; /* Only this part scrolls */
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
 
 .contentWrapper {
-  flex: 1; /* Pushes footer down if content is short */
   padding: 2rem;
+  flex-grow: 1; /* Ensures footer pushes down */
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* MOBILE HEADER & ELEMENTS (Hidden by default) */
+.mobileHeaderBar, .mobileOverlay {
+  display: none;
+}
+
+.desktopHeaderWrapper {
+  display: block;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (Max-width: 1024px)
+   ========================================= */
+
+@media (max-width: 1024px) {
+
+  /* 1. SIDEBAR TRANSFORMATION */
+  .sidebarArea {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px; /* Slightly wider for touch */
+    transform: translateX(-100%); /* Hide off-screen */
+    box-shadow: 4px 0 25px rgba(0,0,0,0.5);
+  }
+
+  .sidebarOpen {
+    transform: translateX(0); /* Slide in */
+  }
+
+  /* 2. OVERLAY (Backdrop) */
+  .mobileOverlay {
+    display: block;
+    position: fixed;
+    inset: 0; /* top, left, right, bottom: 0 */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .overlayVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* 3. MOBILE HEADER BAR */
+  .mobileHeaderBar {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #151B25;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .hamburgerBtn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .hamburgerBtn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hamburgerBtn:active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobileBrand {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .gold { color: #D4AF37; }
+
+  /* 4. CONTENT ADJUSTMENTS */
+  .contentWrapper {
+    padding: 1rem; /* Smaller padding on mobile */
+  }
+
+  /* Optionally hide the desktop header if it duplicates info */
+  /* .desktopHeaderWrapper { display: none; } */
 }

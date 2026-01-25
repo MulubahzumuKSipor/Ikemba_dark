@@ -17,50 +17,16 @@ export default function Identity() {
             <div className={styles.partnerItem}>
               <div className={styles.logoWrapper}>
                 <Image 
-                  src="/tri_buchanan.webp" 
-                  alt="Tri Buchanan Development Logo" 
+                  src="/sa.png"
+                  alt="S + A Logo"
                   fill
                   sizes="(max-width: 768px) 100vw, 200px"
                   className={styles.logoImage}
                 />
               </div>
               <div className={styles.partnerText}>
-                <span className={styles.partnerName}>Tri Buchanan Development</span>
-                <span className={styles.partnerRole}>General Contractor</span>
-              </div>
-            </div>
-
-            {/* PARTNER 2: SALES */}
-            <div className={styles.partnerItem}>
-              <div className={styles.logoWrapper}>
-                <Image 
-                  src="/KG.webp" 
-                  alt="Gateway Realty Logo" 
-                  fill 
-                  sizes="(max-width: 768px) 100vw, 200px"
-                  className={styles.logoImage}
-                />
-              </div>
-              <div className={styles.partnerText}>
-                <span className={styles.partnerName}>Gateway Realty</span>
-                <span className={styles.partnerRole}>Sales & Management</span>
-              </div>
-            </div>
-
-            {/* PARTNER 3: MARKETING */}
-            <div className={styles.partnerItem}>
-              <div className={styles.logoWrapper}>
-                <Image 
-                  src="/KG.avif" 
-                  alt="Kanree Global Logo" 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 200px"
-                  className={styles.logoImage}
-                />
-              </div>
-              <div className={styles.partnerText}>
-                <span className={styles.partnerName}>Kanree Global</span>
-                <span className={styles.partnerRole}>Branding & Marketing</span>
+                <span className={styles.partnerName}>Saraiva + Associados</span>
+                <span className={styles.partnerRole}>Partner</span>
               </div>
             </div>
 
