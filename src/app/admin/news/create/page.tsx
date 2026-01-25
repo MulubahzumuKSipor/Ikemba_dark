@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { createArticle } from '@/lib/news';
 import styles from '@/styles/adminNewsForm.module.css';
-import RichEditor from '@/components/admin/quillEditor'; // <--- Import the Editor
+import RichEditor from '@/components/admin/quillEditor';
+import ImageUpload from '@/components/admin/imageUpload';
 
-// Icons
 const Icons = {
   Back: () => <path d="M19 12H5m7 7-7-7 7-7" />,
   Save: () => <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
@@ -58,7 +58,7 @@ export default function CreateNewsPage() {
             <span className={styles.hint}>Leave blank to auto-generate from headline.</span>
           </div>
 
-          {/* Excerpt (Keep as plain text for SEO/Previews) */}
+          {/* Excerpt */}
           <div className={styles.fieldGroup}>
             <label htmlFor="excerpt" className={styles.label}>Summary / Excerpt</label>
             <textarea 
@@ -70,16 +70,13 @@ export default function CreateNewsPage() {
             />
           </div>
 
-          {/* Main Content (RICH TEXT EDITOR) */}
+          {/* Main Content (Rich Text) */}
           <div className={styles.fieldGroup}>
             <label htmlFor="content" className={styles.label}>Article Content</label>
-
-            {/* The RichEditor handles the "content" field via a hidden input */}
             <RichEditor
               name="content" 
-              placeholder="Write your article here using the rich text tools..."
+              placeholder="Write your article here..."
             />
-
           </div>
 
         </div>
@@ -126,15 +123,12 @@ export default function CreateNewsPage() {
               </label>
             </div>
 
-            {/* Image URL */}
+            {/* Image Upload */}
             <div className={styles.fieldGroup}>
-              <label htmlFor="image_url" className={styles.label}>Cover Image URL</label>
-              <input 
-                type="url" 
-                id="image_url" 
+              <label className={styles.label}>Cover Image</label>
+              <ImageUpload
                 name="image_url" 
-                className={styles.input} 
-                placeholder="https://..." 
+                bucket="news"
               />
             </div>
 

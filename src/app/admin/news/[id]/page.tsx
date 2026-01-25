@@ -4,6 +4,7 @@ import { createClient } from '@/lib/server';
 import { updateArticle } from '@/lib/news';
 import styles from '@/styles/adminNewsForm.module.css';
 import RichEditor from '@/components/admin/quillEditor';
+import ImageUpload from '@/components/admin/imageUpload';
 import DeleteArticleButton from '@/components/admin/deleteArticle';
 import { Article } from '@/types/database';
 
@@ -16,16 +17,20 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
   const { id } = await params;
   const supabase = await createClient();
 
+  // 1. Fetch Article
   const { data: articleData, error } = await supabase
     .from('news')
     .select('*')
     .eq('id', id)
     .single();
 
-  if (error || !articleData) notFound();
+  if (error || !articleData) {
+    notFound();
+  }
 
   const article = articleData as Article;
   
+  // Format date for the input field (YYYY-MM-DD)
   const dateValue = article.published_at 
     ? new Date(article.published_at).toISOString().split('T')[0] 
     : '';
@@ -45,7 +50,7 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
           <h1 className={styles.title}>Edit Article</h1>
         </div>
         
-        {/* REPLACED THE OLD FORM WITH THIS COMPONENT */}
+        {/* DELETE BUTTON (Client Component) */}
         <DeleteArticleButton id={article.id} />
       </div>
 
@@ -53,7 +58,7 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
       <form action={updateArticle} className={styles.formGrid}>
         <input type="hidden" name="id" value={article.id} />
 
-        {/* LEFT COLUMN */}
+        {/* LEFT COLUMN: Content */}
         <div className={styles.mainColumn}>
           
           <div className={styles.fieldGroup}>
@@ -89,6 +94,7 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
 
           <div className={styles.fieldGroup}>
             <label className={styles.label}>Article Content</label>
+            {/* Pass existing content to Editor */}
             <RichEditor 
               name="content" 
               initialValue={article.content || ''} 
@@ -97,7 +103,7 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
           </div>
         </div>
 
-        {/* RIGHT COLUMN */}
+        {/* RIGHT COLUMN: Settings */}
         <div className={styles.sidebarColumn}>
           <div className={styles.sidebarCard}>
             <h3 className={styles.cardTitle}>Publishing Settings</h3>
@@ -135,13 +141,13 @@ export default async function EditNewsPage({ params }: { params: Promise<{ id: s
               </label>
             </div>
 
+            {/* IMAGE UPLOAD (Connected to Bucket) */}
             <div className={styles.fieldGroup}>
-              <label className={styles.label}>Cover Image URL</label>
-              <input 
-                type="url" 
+              <label className={styles.label}>Cover Image</label>
+              <ImageUpload
                 name="image_url" 
-                className={styles.input} 
-                defaultValue={article.image_url || ''}
+                bucket="news"
+                defaultValue={article.image_url}
               />
             </div>
 
