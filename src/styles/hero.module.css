@@ -1,152 +1,152 @@
+/* --- HERO CONTAINER --- */
 .hero {
   position: relative;
-  height: 92vh; /* Slightly taller for cinematic feel */
-  min-height: 650px;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
   display: flex;
-  align-items: center; /* Center text vertically */
-  justify-content: flex-start; /* Align text to left */
-  color: white;
+  align-items: center; /* Vertically center the content */
+  justify-content: flex-start;
   overflow: hidden;
+  background-color: var(--color-bg); /* Fallback color */
+  color: var(--color-text-main);
 }
 
-/* BACKGROUND IMAGE */
-.bgImage {
+/* --- BACKGROUND VIDEO LAYER --- */
+.bgVideo {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Ensure you have this file in public/images/ */
-  background-image: url('/ghana_ins_campus.avif'); 
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-  /* Subtle zoom effect to bring the building to life */
-  animation: slowZoom 20s infinite alternate; 
+  object-fit: cover; /* Ensures video fills screen without stretching */
+  z-index: 0;
 }
 
-/* THE "MAGIC" OVERLAY */
+/* --- CINEMATIC OVERLAY --- */
+/* This is crucial. It creates the contrast needed to read text over a video. */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  /* Gradient: Transparent at top (shows building) -> Dark Blue at bottom (readability) */
+  z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(10, 30, 59, 0.2) 0%,   /* 20% opacity - See the sky */
-    rgba(10, 30, 59, 0.5) 50%,  /* 50% opacity - Middle */
-    rgba(10, 30, 59, 0.95) 100% /* 95% opacity - Bottom text area */
+    rgba(21, 27, 37, 0.3) 0%,   /* Top: Clearer to see sky/details */
+    rgba(21, 27, 37, 0.7) 50%,  /* Middle: Darkening for text legibility */
+    rgba(21, 27, 37, 1) 100%    /* Bottom: Full fade into page background */
   );
 }
 
+/* --- CONTENT WRAPPER --- */
 .content {
   position: relative;
-  z-index: 3;
+  z-index: 2; /* Sits above overlay */
   width: 100%;
+  padding-top: 8rem; /* Offset for visual balance */
 }
 
-/* TYPOGRAPHY */
+.textWrapper {
+  max-width: 900px;
+  /* subtle animation on load */
+  animation: fadeInUp 1s ease-out forwards; 
+}
+
+/* --- TYPOGRAPHY --- */
 .tagline {
-  display: inline-block;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  display: block;
+  font-size: 0.85rem;
   letter-spacing: 3px;
-  color: var(--color-accent); /* Gold */
+  text-transform: uppercase;
+  color: var(--color-gold);
   margin-bottom: 1.5rem;
-  background: rgba(0, 0, 0, 0.4); /* Small backing for readability */
-  padding: 0.5rem 1rem;
-  backdrop-filter: blur(4px);
-  border-left: 3px solid var(--color-accent);
+  font-weight: 700;
+  padding-left: 2px;
 }
 
 .title {
-  font-size: clamp(3rem, 6vw, 5rem); /* Responsive font sizing */
-  font-weight: 800;
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Lift text off image */
-  color: var(--color-accent);
+  font-family: var(--font-serif); /* Times New Roman */
+  font-size: 5rem;
+  line-height: 0.95;
+  color: var(--color-text-main);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: 400; /* Let the size provide the weight */
 }
 
 .highlight {
-  color: transparent;
-  -webkit-text-stroke: 2px white; /* Outline style */
-  opacity: 0.9;
+  color: var(--color-gold);
+  font-style: italic;
+  font-weight: 400;
 }
 
 .description {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   line-height: 1.6;
+  color: var(--color-text-muted); /* Silver/Gray */
   max-width: 600px;
-  margin-bottom: 2.5rem;
-  color: #f0f0f0;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 3rem;
+  font-weight: 300;
 }
 
-/* BUTTONS */
+/* --- BUTTONS --- */
 .buttonGroup {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .primaryBtn {
-  background: var(--color-accent);
-  color: white;
-  padding: 1rem 2.5rem;
-  font-weight: 700;
+  background-color: var(--color-gold);
+  color: #0F172A; /* Dark text for contrast against Gold */
+  padding: 1.25rem 2.5rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: var(--radius);
-  transition: all 0.3s ease;
-  border: 2px solid var(--color-accent);
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid var(--color-gold);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .primaryBtn:hover {
-  background: transparent;
-  color: var(--color-accent);
+  background-color: transparent;
+  color: var(--color-gold);
 }
 
 .secondaryBtn {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 1rem 2.5rem;
-  font-weight: 700;
+  background-color: transparent;
+  color: var(--color-text-main);
+  padding: 1.25rem 2.5rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Glassy border */
   transition: all 0.3s ease;
 }
 
 .secondaryBtn:hover {
-  background: white;
-  color: var(--color-primary);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
 }
 
-/* ANIMATIONS */
-@keyframes slowZoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
-}
-
-/* SCROLL MOUSE ICON */
+/* --- SCROLL INDICATOR (Mouse Animation) --- */
 .scrollIndicator {
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 2;
   opacity: 0.7;
 }
 
 .mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid white;
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   position: relative;
 }
@@ -154,27 +154,107 @@
 .wheel {
   width: 4px;
   height: 8px;
-  background: white;
+  background-color: var(--color-gold);
+  border-radius: 2px;
   position: absolute;
-  top: 6px;
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 2px;
   animation: scroll 2s infinite;
 }
 
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes scroll {
-  0% { transform: translate(-50%, 0); opacity: 1; }
-  100% { transform: translate(-50%, 15px); opacity: 0; }
+  0% {
+    top: 8px;
+    opacity: 1;
+  }
+  100% {
+    top: 24px;
+    opacity: 0;
+  }
 }
 
-/* MOBILE */
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Laptop */
+@media (max-width: 1200px) {
+  .title {
+    font-size: 4rem;
+  }
+}
+
+
+/* --- MOBILE OPTIMIZATION (The "Name on the Line" Standard) --- */
 @media (max-width: 768px) {
-  .hero { align-items: flex-end; padding-bottom: 6rem; }
-  .content { margin-top: 0; }
-  .title { font-size: 2.5rem; }
-  .buttonGroup { flex-direction: column; width: 100%; }
-  .primaryBtn, .secondaryBtn { width: 100%; text-align: center; }
-  .description{display: none;}
-}
+  
+  .hero {
+    /* Use SVH (Small Viewport Height) to stop iOS bar jumping */
+    height: 100svh;
+    align-items: center; /* Center vertically */
+  }
 
+  .content {
+    padding-top: 45%;
+    padding-left: 1.5rem; /* Ensure standard container padding */
+    padding-right: 1.5rem;
+  }
+
+  /* Typography Scaling */
+  .tagline {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .title {
+    font-size: 3rem; /* Scaled down from 5rem */
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    /* Prevent text from hitting the edge too hard */
+    max-width: 100%; 
+    display: none;
+  }
+
+  /* Button Stack */
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .primaryBtn, 
+  .secondaryBtn {
+    width: 100%;
+    text-align: center;
+    padding: 1.1rem; /* Slightly smaller padding for mobile */
+    font-size: 0.85rem;
+  }
+  
+  /* Hide the mouse scroll indicator to save vertical space */
+  .scrollIndicator {
+    display: none;
+  }
+  
+  /* Ensure video covers portrait mode properly */
+  .bgVideo {
+    object-position: center;
+  }
+}

@@ -1,6 +1,7 @@
+/* --- SECTION --- */
 .section {
   position: relative;
-  min-height: 85vh;
+  min-height: 100vh; /* Keep it cinematic */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,17 +9,20 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  overflow: hidden;
 }
 
+/* --- OVERLAY (The Midnight Fade) --- */
 .overlay {
   position: absolute;
   inset: 0;
+  /* Darker, richer gradient: From dark blue to pure black at bottom */
   background: linear-gradient(
-    135deg,
-    rgba(10, 30, 59, 0.92) 0%,
-    rgba(10, 30, 59, 0.85) 50%,
-    rgba(10, 30, 59, 0.78) 100%
+    to bottom,
+    rgba(10, 30, 59, 0.8) 0%,
+    rgba(21, 27, 37, 0.95) 100%
   );
+  z-index: 1;
 }
 
 .container {
@@ -26,7 +30,8 @@
   z-index: 2;
   display: flex;
   justify-content: center;
-  padding-top: var(--header-height);
+  /* Ensure header doesn't cover text */
+  padding-top: 9.5rem;
 }
 
 .content {
@@ -34,39 +39,47 @@
   text-align: center;
 }
 
+/* --- TAGLINE (The Stamp) --- */
 .established {
   display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: var(--color-accent);
-  padding: 0.75rem 1.5rem;
-  border: 1px solid var(--color-accent);
-  margin-bottom: 2rem;
+  color: #D4AF37; /* Gold */
+  padding: 0.75rem 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.5); /* Subtle Gold Border */
+  margin-bottom: 2.5rem;
+  backdrop-filter: blur(5px);
 }
 
+/* --- HEADLINE (The Statement) --- */
 .title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  color: white;
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
+  font-family: var(--font-serif); /* Serif for elegance */
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400; /* Let the size carry the weight */
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 2rem;
   text-transform: uppercase;
-  letter-spacing: -1px;
 }
 
 .accent {
-  color: var(--color-accent);
+  /* Metallic Gradient Text */
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-style: italic;
+  font-weight: 700;
 }
 
 .subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.85);
+  color: #94A3B8; /* Silver Text */
   line-height: 1.8;
   max-width: 700px;
-  margin: 0 auto 3.5rem auto;
+  margin: 0 auto 4rem auto;
 }
 
 /* --- STATS ROW --- */
@@ -74,9 +87,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 4rem;
   padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle divider */
 }
 
 .stat {
@@ -86,9 +99,10 @@
 }
 
 .statNumber {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: white;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 400;
+  color: #FFFFFF;
   line-height: 1;
 }
 
@@ -96,58 +110,21 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 0.5rem;
+  color: #D4AF37; /* Gold Label */
+  margin-top: 0.75rem;
+  font-weight: 700;
 }
 
 .divider {
   width: 1px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* --- SCROLL INDICATOR --- */
-.scrollIndicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  z-index: 2;
-}
-
-.scrollText {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.scrollLine {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--color-accent), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scaleY(0.6);
-  }
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
   .section {
-    background-attachment: scroll;
+    background-attachment: scroll; /* Fix scrolling on mobile */
   }
   
   .stats {
@@ -155,27 +132,41 @@
   }
   
   .statNumber {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .section {
-    min-height: 100vh;
-    padding-bottom: 5rem;
+    min-height: 100svh; /* Small viewport height for iOS */
   }
   
+  .content {
+    padding: 0 1.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
   .stats {
-    flex-direction: column;
-    gap: 2rem;
+    flex-direction: column; /* Stack stats */
+    gap: 2.5rem;
+    padding-top: 2rem;
+    border-top: none; /* Remove line on mobile */
   }
   
   .divider {
-    width: 60px;
-    height: 1px;
+    display: none; /* Remove dividers on mobile */
   }
   
-  .established {
-    font-size: 0.7rem;
+  .stat {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .stat:last-child {
+    border-bottom: none;
   }
 }

@@ -7,59 +7,38 @@ import styles from '@/styles/services.module.css';
 const services = [
   {
     id: '01',
-    title: 'Real Estate Development',
-    subtitle: 'Sustainable Growth',
+    title: 'Development',
+    fullTitle: 'Real Estate Development',
     description: 'High-quality, sustainable projects that drive economic growth. We handle land acquisition, site prep, and joint venture partnerships.',
-    features: [
-      'Mixed-Use Developments',
-      'Residential Communities',
-      'Commercial Projects',
-      'Land Acquisition',
-      'Public-Private Partnerships'
-    ],
-    link: '/services#development',
-    bgClass: styles.bgDevelopment
+    features: ['Mixed-Use Developments', 'Residential Communities', 'Public-Private Partnerships'],
+    bgImage: '/construct.avif', // Ensure you have these images or placeholders
   },
   {
     id: '02',
     title: 'Architecture',
-    subtitle: 'Design & Innovation',
+    fullTitle: 'Architecture & Design',
     description: 'Innovative, functional designs shaping Africa’s urban future. From concept schematics to 3D visualization and smart building solutions.',
-    features: [
-      'Concept & Schematic Design',
-      'Architectural Planning',
-      '3D Rendering & VR',
-      'Sustainable Design',
-      'Regulatory Compliance'
-    ],
-    link: '/services#architecture',
-    bgClass: styles.bgArchitecture
+    features: ['Concept & Schematic Design', '3D Rendering & VR', 'Sustainable Planning'],
+    bgImage: '/architect.avif',
   },
   {
     id: '03',
     title: 'Consulting',
-    subtitle: 'Expert Advisory',
+    fullTitle: 'Advisory & Analytics',
     description: 'Data-driven advisory services helping clients make informed decisions. We provide market analytics, valuation, and project supervision.',
-    features: [
-      'Market Data & Analytics',
-      'Feasibility Studies',
-      'Construction Supervision',
-      'Property Valuation',
-      'Risk Assessment'
-    ],
-    link: '/services#consulting',
-    bgClass: styles.bgConsulting
+    features: ['Market Data & Analytics', 'Feasibility Studies', 'Risk Assessment'],
+    bgImage: '/workers.avif',
   }
 ];
 
 export default function Services() {
-  const [activeId, setActiveId] = useState('01');
+  const [activeId, setActiveId] = useState('02'); // Start with middle open for balance
 
   return (
     <section className={styles.section}>
       <div className={`container ${styles.container}`}>
         
-        {/* HEADER: Now Dark Text on Light Background */}
+        {/* HEADER */}
         <div className={styles.header}>
           <span className={styles.label}>Our Expertise</span>
           <h2 className={styles.heading}>
@@ -68,25 +47,31 @@ export default function Services() {
           </h2>
         </div>
 
-        {/* INTERACTIVE ACCORDION */}
+        {/* THE CINEMATIC ACCORDION */}
         <div className={styles.accordion}>
           {services.map((service) => (
             <div 
               key={service.id} 
-              className={`${styles.card} ${activeId === service.id ? styles.active : ''} ${service.bgClass}`}
+              className={`${styles.card} ${activeId === service.id ? styles.active : ''}`}
               onMouseEnter={() => setActiveId(service.id)}
+              // Inline style for dynamic background images
+              style={{ backgroundImage: `url(${service.bgImage})` }} 
             >
-              {/* Overlay: Makes text readable but keeps image visible */}
+              {/* Dark Gradient Overlay */}
               <div className={styles.overlay} />
               
-              <div className={styles.content}>
-                <div className={styles.topInfo}>
-                  <span className={styles.number}>{service.id}</span>
-                  <h3 className={styles.title}>{service.title}</h3>
-                  <span className={styles.subtitle}>{service.subtitle}</span>
-                </div>
+              {/* STATE A: COLLAPSED (Vertical Text) */}
+              <div className={styles.collapsedContent}>
+                <span className={styles.verticalNumber}>{service.id}</span>
+                <span className={styles.verticalTitle}>{service.title}</span>
+              </div>
 
-                <div className={styles.hiddenContent}>
+              {/* STATE B: EXPANDED (Rich Content) */}
+              <div className={styles.expandedContent}>
+                <div className={styles.contentInner}>
+                  <span className={styles.bigNumber}>{service.id}</span>
+                  <h3 className={styles.fullTitle}>{service.fullTitle}</h3>
+                  <div className={styles.divider} />
                   <p className={styles.description}>{service.description}</p>
                   
                   <ul className={styles.featureList}>
@@ -95,15 +80,10 @@ export default function Services() {
                     ))}
                   </ul>
 
-                  <Link href="/portfolio" className={styles.link}>
-                    View Details &rarr;
+                  <Link href="/services" className={styles.link}>
+                    Explore Service &rarr;
                   </Link>
                 </div>
-              </div>
-
-              {/* Vertical Title for Collapsed State */}
-              <div className={styles.verticalTitle}>
-                {service.title}
               </div>
 
             </div>

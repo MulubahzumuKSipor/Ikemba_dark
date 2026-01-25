@@ -14,26 +14,26 @@ const initialState: ActionState = {
 
 const Icons = {
   Chart: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5">
       <path d="M3 3v18h18" />
       <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
     </svg>
   ),
   House: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   ),
   Pillar: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5">
       <path d="M6 4h12M6 20h12" />
       <path d="M8 4v16M16 4v16" />
       <path d="M4 2h16M4 22h16" />
     </svg>
   ),
   Handshake: () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5">
       <path d="M20 12l-4-4-6 6-4-4" />
       <path d="M4 12l4 4 6-6 4 4" />
       <circle cx="12" cy="12" r="10" />

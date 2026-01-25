@@ -1,0 +1,156 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: #FFF;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle { color: #94A3B8; font-size: 0.9rem; }
+
+.createButton {
+  background: #D4AF37;
+  color: #0F172A;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+
+.createButton:hover { transform: translateY(-2px); }
+
+/* GRID LAYOUT */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+/* JOB CARD */
+.card {
+  background: #151B25;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.jobTitle {
+  font-size: 1.1rem;
+  color: #FFF;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  display: block;
+  color: #64748B;
+  font-size: 0.8rem;
+}
+
+/* STATUS TOGGLE */
+.statusBadge {
+  background: transparent;
+  border: 1px solid;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dot { width: 6px; height: 6px; border-radius: 50%; }
+
+.active {
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10B981;
+}
+.active .dot { background: #10B981; box-shadow: 0 0 6px #10B981; }
+
+.closed {
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #94A3B8;
+}
+.closed .dot { background: #94A3B8; }
+
+/* FOOTER & ACTIONS */
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.date {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.editLink {
+  color: #D4AF37;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  color: #EF4444;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 600;
+  opacity: 0.7;
+}
+.deleteBtn:hover { opacity: 1; }
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem;
+  color: #64748B;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+}

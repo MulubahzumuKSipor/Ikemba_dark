@@ -1,14 +1,18 @@
+/* --- SECTION --- */
 .section {
-  background-color: var(--color-bg);
+  background-color: #151B25; /* Deep Dark Background */
   padding-bottom: 8rem;
+  color: #FFFFFF;
 }
 
 /* --- HERO HEADER WITH CAROUSEL --- */
 .heroHeader {
   position: relative;
-  padding: calc(var(--header-height) + 5rem) 0 6rem 0;
-  margin-bottom: 4rem;
+  /* Extra padding for cinematic spacing */
+  padding: 10rem 0 8rem 0;
+  margin-bottom: 6rem;
   overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Carousel Container */
@@ -24,23 +28,25 @@
   background-size: cover;
   background-position: center top;
   opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 1.2s ease, transform 6s ease;
+  transform: scale(1.1); /* Slow zoom effect */
+  transition: opacity 1.5s ease, transform 8s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: grayscale(100%); /* Black and white background for mood */
 }
 
 .carouselSlide.carouselActive {
-  opacity: 1;
+  opacity: 0.4; /* Keep it subtle so text pops */
   transform: scale(1);
 }
 
 .carouselOverlay {
   position: absolute;
   inset: 0;
+  /* Heavy gradient to fade image into black at bottom */
   background: linear-gradient(
-    135deg,
-    rgba(10, 30, 59, 0.92) 0%,
-    rgba(10, 30, 59, 0.88) 50%,
-    rgba(10, 30, 59, 0.85) 100%
+    to bottom,
+    rgba(21, 27, 37, 0.8) 0%,
+    rgba(21, 27, 37, 0.95) 50%,
+    #151B25 100%
   );
   z-index: 1;
 }
@@ -52,28 +58,23 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   z-index: 3;
 }
 
 .carouselDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  width: 50px; /* Long dashes instead of dots */
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   padding: 0;
-}
-
-.carouselDot:hover {
-  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
 }
 
 .carouselDotActive {
-  background: var(--color-accent);
-  transform: scale(1.3);
+  background: #D4AF37; /* Gold */
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 .heroContainer {
@@ -85,39 +86,47 @@
 .label {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--color-accent);
-  margin-bottom: 1rem;
+  color: #D4AF37;
+  margin-bottom: 1.5rem;
+  padding-left: 2px;
 }
 
 .heroTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  color: white;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 1.5rem;
 }
 
 .accent {
-  color: var(--color-accent);
+  /* Metallic Gold Text */
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-style: italic;
+  font-weight: 700;
 }
 
 .heroSubtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 500px;
+  color: #94A3B8; /* Silver Text */
+  max-width: 600px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
-/* --- SELECTION GRID --- */
+/* --- SELECTION GRID (The Portals) --- */
 .selectionGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
+  gap: 2rem;
+  margin-bottom: 6rem;
 }
 
 .selectionCard {
@@ -125,36 +134,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 2rem 1.5rem;
+  background: #1E293B; /* Surface Slate */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  padding: 2.5rem 1.5rem;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   overflow: hidden;
 }
 
 .selectionCard:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(10, 30, 59, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .selectionCard.active {
-  border-color: var(--color-primary);
-  background: var(--color-bg-subtle);
+  background: #151B25; /* Darker when active to show depth */
+  border-color: #D4AF37; /* Solid Gold Border */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .selectionCard.active .selectionIndicator {
   transform: scaleX(1);
 }
 
-.selectionCard.active .selectionImage {
-  filter: grayscale(0%);
-}
-
 .selectionCard.active .selectionName {
-  color: var(--color-accent);
+  color: #D4AF37;
 }
 
 /* Selection Image */
@@ -163,15 +169,15 @@
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 1.25rem;
-  background: var(--color-bg-subtle);
-  border: 3px solid var(--color-border);
+  margin-bottom: 1.5rem;
+  background: #0F172A;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   transition: border-color 0.3s ease;
 }
 
 .selectionCard:hover .selectionImageWrapper,
 .selectionCard.active .selectionImageWrapper {
-  border-color: var(--color-accent);
+  border-color: #D4AF37;
 }
 
 .selectionImage {
@@ -183,7 +189,8 @@
   transition: filter 0.4s ease;
 }
 
-.selectionCard:hover .selectionImage {
+.selectionCard:hover .selectionImage,
+.selectionCard.active .selectionImage {
   filter: grayscale(0%);
 }
 
@@ -198,60 +205,62 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--color-accent);
-  margin-bottom: 0.35rem;
+  color: #94A3B8;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.selectionCard.active .selectionRole {
+  color: #FFFFFF;
 }
 
 .selectionName {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #FFFFFF;
   transition: color 0.3s ease;
 }
 
-/* Active Indicator */
+/* Active Indicator Line */
 .selectionIndicator {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: var(--color-primary);
+  height: 2px;
+  background: #D4AF37;
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- PROFILE SECTION --- */
+/* --- PROFILE SECTION (The Dossier) --- */
 .profile {
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.8s ease;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .profileGrid {
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 4rem;
-  margin-bottom: 3rem;
+  grid-template-columns: 450px 1fr;
+  gap: 5rem;
+  margin-bottom: 4rem;
 }
 
 /* Profile Image */
 .profileImageWrapper {
   position: relative;
   aspect-ratio: 4 / 5;
-  border-radius: var(--radius);
+  border-radius: 2px;
   overflow: hidden;
-  background: var(--color-bg-subtle);
+  /* Gold Frame Offset Effect could go here if desired */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .profileImage {
@@ -259,11 +268,7 @@
   height: 100%;
   background-size: cover;
   background-position: center top;
-  transition: transform 0.6s ease;
-}
-
-.profileImageWrapper:hover .profileImage {
-  transform: scale(1.03);
+  filter: contrast(1.1);
 }
 
 .profileImageOverlay {
@@ -271,15 +276,19 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 2rem;
-  background: linear-gradient(to top, rgba(10, 30, 59, 0.9), transparent);
+  padding: 4rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
 }
 
 .profileImageRole {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--color-accent);
-  letter-spacing: 4px;
+  font-family: var(--font-serif);
+  font-size: 5rem; /* Huge background text effect */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.1); /* Subtle watermark */
+  line-height: 0.8;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 /* Profile Content */
@@ -287,40 +296,40 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 0;
 }
 
 .profileHeader {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .profileName {
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.1;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1;
   margin-bottom: 0.5rem;
 }
 
 .profileRole {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--color-accent);
+  color: #D4AF37;
 }
 
 .profileBio {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .profileText {
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--color-text-light);
-  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #94A3B8; /* Slate */
+  margin-bottom: 1.5rem;
 }
 
 .profileText:last-child {
@@ -330,40 +339,32 @@
 /* Quote */
 .profileQuote {
   position: relative;
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
   font-style: italic;
-  line-height: 1.7;
-  color: var(--color-primary);
-  padding: 1.5rem 2rem;
-  background: var(--color-bg-subtle);
-  border-left: 4px solid var(--color-accent);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  line-height: 1.5;
+  color: #FFFFFF;
+  padding: 0;
+  border-left: 3px solid #D4AF37;
+  padding-left: 2rem;
 }
 
 .quoteIcon {
-  font-size: 2.5rem;
-  color: var(--color-accent);
-  opacity: 0.4;
-  position: absolute;
-  top: 0.5rem;
-  left: 0.75rem;
-  line-height: 1;
+  display: none; /* Hide standard quote icon for cleaner look */
 }
 
 /* --- DETAILS GRID --- */
 .detailsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--color-border);
+  gap: 3rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .detailsCard {
-  background: white;
-  padding: 2rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--color-border);
+  background: transparent;
+  padding: 0;
 }
 
 .detailsTitle {
@@ -371,11 +372,19 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--color-primary);
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--color-accent);
-  display: inline-block;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Gold Line after title */
+.detailsTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .detailsList {
@@ -387,46 +396,42 @@
 .detailsItem {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 0.95rem;
-  color: var(--color-text-light);
+  gap: 1rem;
+  font-size: 1rem;
+  color: #94A3B8;
   margin-bottom: 1rem;
   line-height: 1.5;
 }
 
-.detailsItem:last-child {
-  margin-bottom: 0;
-}
-
 .detailsBullet {
-  color: var(--color-accent);
-  font-size: 0.6rem;
+  color: #D4AF37;
+  font-size: 0.7rem;
   margin-top: 0.4rem;
-  flex-shrink: 0;
 }
 
 /* Expertise Tags */
 .expertiseTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .expertiseTag {
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-primary);
-  background: var(--color-bg-subtle);
-  padding: 0.6rem 1.25rem;
-  border-radius: 2px;
-  border: 1px solid var(--color-border);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
 .expertiseTag:hover {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
+  border-color: #D4AF37;
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.1);
 }
 
 /* --- FOOTER --- */
@@ -435,103 +440,80 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-top: 5rem;
-  padding-top: 4rem;
+  margin-top: 6rem;
+  opacity: 0.6;
 }
 
 .footerDivider {
-  flex: 1;
-  max-width: 200px;
+  width: 60px;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-border),
-    transparent
-  );
+  background: #D4AF37;
 }
 
 .footerTagline {
+  font-family: var(--font-serif);
   font-size: 1.5rem;
-  font-weight: 800;
   font-style: italic;
-  color: var(--color-primary);
+  color: #FFFFFF;
   text-align: center;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
   .profileGrid {
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 1fr; /* Stack Image & Bio */
     gap: 3rem;
+  }
+
+  .profileImageWrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    aspect-ratio: 16/9; /* Landscape on tablet? Or keep portrait */
   }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
   }
 
   .heroHeader {
-    padding: calc(var(--header-height) + 3rem) 0 5rem 0;
-    margin-bottom: 2rem;
-  }
-
-  .carouselSlide {
-    background-position: center center;
-  }
-
-  .carouselIndicators {
-    bottom: 1.5rem;
+    padding: 8rem 0 5rem 0;
   }
 
   .selectionGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack Selection Cards */
     gap: 1rem;
   }
 
   .selectionCard {
     flex-direction: row;
-    padding: 1.25rem 1.5rem;
-    gap: 1rem;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    align-items: center;
   }
 
   .selectionImageWrapper {
     width: 60px;
     height: 60px;
     margin-bottom: 0;
-    flex-shrink: 0;
   }
 
   .selectionInfo {
     text-align: left;
   }
 
-  .profileGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .profileImageWrapper {
-    max-width: 300px;
-    margin: 0 auto;
+  .selectionIndicator {
+    display: none; /* Remove line on mobile, rely on border color */
   }
 
   .detailsGrid {
     grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
   .footer {
     flex-direction: column;
     gap: 1.5rem;
-  }
-
-  .footerDivider {
-    width: 80px;
-    max-width: none;
-  }
-
-  .footerTagline {
-    font-size: 1.25rem;
   }
 }

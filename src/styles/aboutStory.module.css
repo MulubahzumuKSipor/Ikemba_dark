@@ -1,37 +1,44 @@
+/* --- SECTION --- */
 .section {
   padding: 8rem 0;
+  /* Deep Dark Background */
   background-color: var(--color-bg);
+  position: relative;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 8rem;
+  gap: 10rem; /* Increased gap for dramatic pacing */
 }
 
 /* --- ZIG-ZAG BLOCK --- */
 .block {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 6rem;
   align-items: center;
 }
 
+/* Reversing logic */
 .block.reversed {
-  direction: rtl;
+  direction: rtl; /* Moves image to right */
 }
 
 .block.reversed > * {
-  direction: ltr;
+  direction: ltr; /* Keeps text left-aligned inside the block */
 }
 
-/* --- IMAGE SIDE --- */
+/* --- IMAGE SIDE (The "Frame" Effect) --- */
 .imageWrapper {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: var(--radius);
-  background-color: var(--color-bg-subtle);
+  border-radius: 2px;
+  /* Subtle border to define edges in the dark */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
 }
 
 .image {
@@ -40,24 +47,35 @@
   background-size: cover;
   background-position: center;
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Slight desaturation for mood, color returns on hover */
+  filter: grayscale(30%) contrast(1.1);
+}
+
+.imageWrapper:hover {
+  border-color: #D4AF37; /* Gold Border on Hover */
+  transform: translateY(-10px); /* Lift */
 }
 
 .imageWrapper:hover .image {
   transform: scale(1.05);
+  filter: grayscale(0%) contrast(1);
 }
 
 .imageTag {
   position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  font-size: 0.7rem;
-  font-weight: 700;
+  bottom: 0;
+  left: 0;
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: white;
-  background: var(--color-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
+
+  /* Dark Text on Gold Background */
+  color: #0F172A;
+  background: #D4AF37;
+
+  padding: 1rem 1.5rem;
+  z-index: 2;
 }
 
 /* --- CONTENT SIDE --- */
@@ -67,31 +85,34 @@
 
 .label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--color-accent);
-  font-weight: 700;
-  margin-bottom: 1rem;
+  color: #D4AF37; /* Gold */
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  padding-left: 2px;
 }
 
 .title {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.15;
+  font-family: var(--font-serif); /* Times New Roman */
+  font-size: 3rem;
+  font-weight: 400;
+  color: #FFFFFF; /* White */
+  line-height: 1.1;
   margin-bottom: 2rem;
 }
 
 .accent {
-  color: var(--color-accent);
+  font-style: italic;
+  color: #D4AF37;
 }
 
 .text {
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--color-text-light);
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #94A3B8; /* Silver/Muted Text */
+  margin-bottom: 2rem;
 }
 
 .text:last-of-type {
@@ -99,47 +120,76 @@
 }
 
 .text strong {
-  color: var(--color-primary);
-  font-weight: 700;
+  color: #FFFFFF; /* Highlight key phrases in white */
+  font-weight: 600;
 }
 
-/* --- EXPERIENCE BANNER --- */
+/* --- EXPERIENCE BANNER (The Gold Ingot) --- */
 .experienceBanner {
   display: flex;
   align-items: center;
-  gap: 4rem;
-  padding: 4rem 5rem;
-  background: var(--color-primary);
-  border-radius: var(--radius);
-  margin-top: 2rem;
+  gap: 5rem;
+  padding: 5rem 6rem;
+
+  /* THE VISUAL ANCHOR: Metallic Gradient Background */
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%);
+
+  border-radius: 2px;
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(197, 160, 89, 0.15); /* Warm Glow */
+}
+
+/* Grain texture overlay (Optional, adds realism to metal) */
+.experienceBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .experienceNumber {
-  font-size: clamp(4rem, 8vw, 6rem);
-  font-weight: 800;
-  color: var(--color-accent);
-  line-height: 1;
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: 7rem;
+  font-weight: 400;
+  color: #0F172A; /* Dark Ink on Gold */
+  line-height: 0.8;
   flex-shrink: 0;
+  z-index: 2;
 }
 
 .experienceText {
+  position: relative;
   flex: 1;
+  z-index: 2;
 }
 
 .experienceLabel {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  color: white;
+  color: #0F172A; /* Dark Text */
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #0F172A;
+  display: inline-block;
+  padding-bottom: 0.5rem;
 }
 
 .experienceDesc {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #1E293B; /* Slate Text for readability on Gold */
+  font-weight: 500;
+  max-width: 600px;
 }
 
 /* --- RESPONSIVE --- */
@@ -150,27 +200,31 @@
   }
   
   .block.reversed {
-    direction: ltr;
+    direction: ltr; /* Reset direction on mobile so text is below image */
   }
   
+  .title {
+    font-size: 2.5rem;
+  }
+
   .experienceBanner {
     flex-direction: column;
     text-align: center;
     gap: 2rem;
     padding: 3rem 2rem;
   }
+
+  .experienceNumber {
+    font-size: 5rem;
+  }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 5rem 0;
+    padding: 6rem 0;
   }
   
   .container {
-    gap: 5rem;
-  }
-  
-  .imageWrapper {
-    aspect-ratio: 16 / 10;
+    gap: 6rem;
   }
 }

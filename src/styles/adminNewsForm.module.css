@@ -1,0 +1,197 @@
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94A3B8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+.backLink:hover { color: #D4AF37; }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #FFF;
+}
+
+.icon { width: 18px; height: 18px; }
+
+/* LAYOUT GRID */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+}
+
+/* INPUT STYLES (Shared) */
+.fieldGroup { margin-bottom: 1.5rem; }
+
+.label {
+  display: block;
+  color: #94A3B8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.input, .select, .textareaShort, .textareaLong {
+  width: 100%;
+  background: #0F172A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.input:focus, .select:focus, .textareaShort:focus, .textareaLong:focus {
+  outline: none;
+  border-color: #D4AF37;
+}
+
+/* Specific Input Tweaks */
+.inputLg {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+.inputLg:focus { outline: none; border-color: #D4AF37; }
+
+.textareaShort { height: 100px; resize: vertical; }
+.textareaLong { height: 500px; resize: vertical; line-height: 1.6; }
+
+.hint {
+  display: block;
+  color: #64748B;
+  font-size: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+/* SIDEBAR CARD */
+.sidebarCard {
+  background: #151B25;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 4px;
+  position: sticky;
+  top: 2rem;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  color: #FFF;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* CHECKBOX */
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #D4AF37;
+}
+
+.checkboxLabel {
+  color: #FFF;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 1.5rem 0;
+}
+
+/* SUBMIT BUTTON */
+.submitButton {
+  width: 100%;
+  background: #D4AF37;
+  color: #0F172A;
+  border: none;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.submitButton:hover {
+  background: #E5C359;
+  transform: translateY(-2px);
+}
+
+.btnIcon { width: 20px; height: 20px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .formGrid { grid-template-columns: 1fr; }
+  .sidebarCard { position: static; }
+}
+
+/* Add this to your existing CSS file */
+.deleteLink {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.deleteLink:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #EF4444;
+}
+
+/* Update Header to align Delete button to the right */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* ... existing properties ... */
+}

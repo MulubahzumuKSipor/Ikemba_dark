@@ -1,248 +1,280 @@
-/* --- VARIABLES --- */
+/* --- PAGE LAYOUT --- */
 .main {
-  /* CHANGED: From Sand (#FDF9F0) to Premium Grayish White */
-  --color-bg: #F8F9FA; 
-  
-  /* Core Brand Colors */
-  --color-dark: #0A1E3B;
-  --color-gold: #C5A059;
-  --color-text-light: #666;
-  
-  /* Pure White for Cards to pop against the gray bg */
-  --color-card-bg: #FFFFFF; 
-
-  --font-serif: "Times New Roman", serif;
-  --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-
-  background-color: var(--color-bg);
+  background-color: #151B25; /* Deep Dark Background */
   min-height: 100vh;
-  padding-top: 8rem;
-  padding-bottom: 6rem;
+  color: #FFFFFF;
 }
 
-/* --- HEADER SECTION --- */
+/* --- 1. HEADER SECTION --- */
 .header {
-  padding-bottom: 3rem;
-  /* Lighter border color for the lighter background */
-  border-bottom: 1px solid rgba(10, 30, 59, 0.08); 
-  margin-bottom: 3rem;
+  padding: 10rem 0 6rem 0;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(30, 41, 59, 0.3) 0%, transparent 70%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .label {
-  display: block;
+  display: inline-block;
   font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--color-gold);
-  font-weight: 700;
-  margin-bottom: 1rem;
+  color: #D4AF37; /* Gold */
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .pageTitle {
-  font-size: 4rem;
-  color: var(--color-dark);
-  font-weight: 900;
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
   line-height: 1;
+  color: #FFFFFF;
   margin-bottom: 1.5rem;
-  letter-spacing: -1px;
 }
 
 .gold {
-  color: var(--color-gold);
-  font-family: var(--font-serif);
+  color: #D4AF37;
   font-style: italic;
 }
 
 .subtitle {
-  font-size: 1.15rem;
-  color: var(--color-text-light);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #94A3B8; /* Slate */
   max-width: 600px;
-  line-height: 1.6;
+  margin: 0 auto;
 }
 
-/* --- FILTER BAR --- */
+/* --- 2. FEED SECTION --- */
+.feedSection {
+  padding: 4rem 0 8rem 0;
+}
+
+/* --- FILTER BAR (The Ticker) --- */
 .filterBar {
   display: flex;
-  gap: 2.5rem;
-  margin-bottom: 3.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.filterBar::-webkit-scrollbar { display: none; }
 
 .filterBtn {
-  background: none;
-  border: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
+  padding: 0.75rem 1.5rem;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: rgba(10, 30, 59, 0.5);
+  letter-spacing: 1px;
+  border-radius: 2px;
   cursor: pointer;
-  padding: 0.5rem 0;
-  position: relative;
-  transition: var(--transition-smooth);
-  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-.filterBtn:hover, .filterBtn.active {
-  color: var(--color-dark);
+.filterBtn:hover {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
-.filterBtn.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-gold);
+.filterBtn.active {
+  background-color: #D4AF37; /* Solid Gold Active State */
+  color: #0F172A; /* Dark Text */
+  border-color: #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
-/* --- THE GRID --- */
+/* --- GRID LAYOUT --- */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  row-gap: 4rem;
+  gap: 2rem;
 }
 
-/* --- HERO CARD --- */
-.heroCard {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  padding-bottom: 4rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(10, 30, 59, 0.08);
-}
-
-.heroCard .imageWrapper {
-  height: 500px;
-  /* Shadow added to hero image for depth */
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
-}
-
-.heroCard .title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.heroCard .excerpt {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  -webkit-line-clamp: 5;
-}
-
-/* --- STANDARD CARD --- */
+/* --- ARTICLE CARD --- */
 .card {
   display: flex;
   flex-direction: column;
+  background-color: #1E293B; /* Surface Slate */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
   text-decoration: none;
-  /* NEW: White background for cards makes them pop against the grayish page */
-  background-color: transparent; 
-  transition: transform 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+  group: true;
 }
 
+/* THE HERO CARD (Spans 2 Columns) */
+.heroCard {
+  grid-column: span 2;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.3); /* Gold Border on Hover */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Wrapper */
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 260px;
+  padding-top: 60%; /* 16:9 Aspect Ratio */
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  background-color: #E5E5E5;
-  border-radius: 2px;
 }
 
 .image {
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  transition: transform 0.8s ease;
+  filter: grayscale(20%); /* Slight mute */
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+  filter: grayscale(0%);
 }
 
 .categoryBadge {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--color-dark);
-  color: white;
-  font-size: 0.65rem;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: #D4AF37;
+  color: #0F172A;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover Effects */
-.card:hover .image { transform: scale(1.05); }
-.card:hover .title { color: var(--color-gold); }
-.card:hover .readMore { opacity: 1; transform: translateX(5px); }
+/* Content Area */
+.content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 
 .meta {
   font-size: 0.75rem;
-  color: rgba(10, 30, 59, 0.6);
   text-transform: uppercase;
+  color: #94A3B8; /* Slate-400 */
   letter-spacing: 1px;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: #D4AF37;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .title {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--color-dark);
-  line-height: 1.25;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #FFFFFF;
   margin-bottom: 1rem;
-  transition: color 0.3s ease;
+  line-height: 1.3;
+  transition: color 0.3s;
+}
+
+/* Hero Card gets a bigger title */
+.heroCard .title {
+  font-size: 2.5rem;
+}
+
+.card:hover .title {
+  color: #D4AF37;
 }
 
 .excerpt {
-  font-size: 0.95rem;
-  color: var(--color-text-light);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #94A3B8;
+  margin-bottom: 2rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 3; /* Limit text lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .readMore {
-  font-size: 0.75rem;
-  font-weight: 800;
+  margin-top: auto; /* Pushes to bottom */
+  font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-gold);
-  transition: var(--transition-smooth);
-  opacity: 0.8;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.3s;
 }
 
+.card:hover .readMore {
+  color: #D4AF37;
+  gap: 1rem; /* Arrow slides out */
+}
+
+/* --- EMPTY STATE --- */
 .emptyState {
   grid-column: 1 / -1;
   text-align: center;
   padding: 4rem;
-  color: rgba(10, 30, 59, 0.5);
-  font-size: 1.1rem;
-  border: 1px dashed rgba(10, 30, 59, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-  .pageTitle { font-size: 3rem; }
-  .grid { grid-template-columns: 1fr 1fr; }
-  .heroCard { grid-template-columns: 1fr; gap: 2rem; }
-  .heroCard .imageWrapper { height: 400px; }
+  .grid {
+    grid-template-columns: 1fr 1fr; /* 2 Columns */
+  }
+
+  .heroCard {
+    grid-column: span 2; /* Still spans full width */
+  }
 }
 
 @media (max-width: 768px) {
-  .pageTitle { font-size: 2.5rem; }
-  .filterBar { gap: 1.5rem; }
-  .grid { grid-template-columns: 1fr; gap: 3rem; }
-  .heroCard { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-  .heroCard .imageWrapper { height: 300px; }
-  .heroCard .title { font-size: 1.75rem; }
+  .header {
+    padding: 8rem 0 4rem 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* 1 Column */
+  }
+
+  .heroCard {
+    grid-column: span 1; /* Reset span */
+  }
+
+  .heroCard .title {
+    font-size: 1.75rem; /* Resize hero text for mobile */
+  }
+
+  .filterBar {
+    justify-content: flex-start;
+    overflow-x: auto; /* Scrollable filters on mobile */
+    padding-bottom: 1rem;
+    flex-wrap: nowrap;
+  }
+
+  .filterBtn {
+    flex-shrink: 0;
+  }
 }

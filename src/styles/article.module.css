@@ -1,33 +1,23 @@
-/* --- VARIABLES --- */
+/* --- PAGE LAYOUT --- */
 .main {
-  /* CHANGED: Grayish White for comfortable reading */
-  --color-bg: #F8F9FA;
-  
-  --color-dark: #0A1E3B;
-  --color-gold: #C5A059;
-  --color-text: #2D3748; /* Slightly softer black for text */
-  --font-serif: "Times New Roman", serif;
-  --font-sans: system-ui, -apple-system, sans-serif;
-  
-  background-color: var(--color-bg);
+  background-color: #151B25; /* Deep Dark Background */
   min-height: 100vh;
-  padding-top: 8rem; 
-  padding-bottom: 6rem;
-  display: flex;
-  justify-content: center;
+  color: #FFFFFF;
+  padding-bottom: 8rem;
 }
 
 .articleContainer {
-  width: 100%;
   max-width: 1000px;
+  margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* --- HEADER --- */
+/* --- 1. EDITORIAL HEADER --- */
 .header {
+  padding: 8rem 0 4rem 0;
   text-align: center;
-  margin-bottom: 3rem;
-  padding-top: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .metaRow {
@@ -35,101 +25,167 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba(10, 30, 59, 0.6);
-  font-weight: 700;
 }
 
-.category { color: var(--color-gold); }
-.separator { opacity: 0.5; }
+.category {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #0F172A; /* Dark Text */
+  background-color: #D4AF37; /* Gold Badge */
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+}
+
+.separator {
+  color: #D4AF37;
+  opacity: 0.5;
+}
+
+.date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #94A3B8; /* Slate */
+}
 
 .headline {
   font-family: var(--font-serif);
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400; /* Let the size do the work */
   line-height: 1.1;
-  color: var(--color-dark);
-  font-weight: 400; 
+  color: #FFFFFF;
   margin-bottom: 2rem;
-  letter-spacing: -0.5px;
 }
 
 .leadParagraph {
-  font-family: var(--font-sans);
   font-size: 1.25rem;
   line-height: 1.6;
-  color: rgba(10, 30, 59, 0.85); /* Increased contrast slightly */
-  max-width: 700px;
+  color: #94A3B8; /* Slate-400 */
+  font-weight: 300;
+  border-left: 2px solid #D4AF37; /* Gold accent line */
+  padding-left: 1.5rem;
+  text-align: left; /* Lead paragraph looks better left-aligned usually, even if header is centered */
   margin: 0 auto;
 }
 
-/* --- HERO IMAGE --- */
+/* --- 2. CINEMATIC HERO IMAGE --- */
 .heroImageWrapper {
   position: relative;
   width: 100%;
-  height: 550px;
-  margin-bottom: 4rem;
-  overflow: hidden;
+  aspect-ratio: 21 / 9; /* Cinematic Ultra-Wide */
+  margin-bottom: 5rem;
   border-radius: 2px;
-  /* Added subtle shadow to lift image off the gray bg */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-.heroImage { object-fit: cover; }
+.heroImage {
+  object-fit: cover;
+  transition: transform 10s ease; /* Subtle slow zoom */
+}
 
-/* --- CONTENT BODY --- */
+.heroImageWrapper:hover .heroImage {
+  transform: scale(1.05);
+}
+
+/* --- 3. THE READING COLUMN --- */
 .contentBody {
-  max-width: 680px;
+  max-width: 680px; /* Optimal reading width (approx 65-75 characters) */
   margin: 0 auto;
-  font-family: var(--font-serif);
+  font-family: var(--font-serif); /* Serif for body text is classic luxury */
+}
+
+/* Paragraph Styling */
+.contentBody p {
   font-size: 1.15rem;
   line-height: 1.8;
-  color: var(--color-text);
+  color: #CBD5E1; /* Slate-300 (High readability off-white) */
+  margin-bottom: 2rem;
 }
 
-.contentBody p { margin-bottom: 2rem; }
-
-/* Drop Cap Styling */
+/* Drop Cap for the first paragraph (Optional Polish) */
 .contentBody p:first-of-type::first-letter {
   float: left;
-  font-size: 4.5rem;
+  font-size: 4rem;
   line-height: 0.8;
   padding-right: 0.75rem;
   padding-top: 0.25rem;
-  color: var(--color-gold);
-  font-family: var(--font-serif);
+  color: #D4AF37;
   font-weight: 700;
 }
 
-/* --- FOOTER --- */
+/* Blockquotes (If you add them later) */
+.contentBody blockquote {
+  border-left: 4px solid #D4AF37;
+  padding-left: 2rem;
+  margin: 3rem 0;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #FFFFFF;
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.05), transparent);
+  padding: 2rem;
+}
+
+/* --- 4. FOOTER NAVIGATION --- */
 .footer {
   max-width: 680px;
-  margin: 4rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(10, 30, 59, 0.08); /* Lighter border */
+  margin: 6rem auto 0 auto;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: flex-start;
 }
 
 .backLink {
-  display: inline-block;
-  font-family: var(--font-sans);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--color-dark);
+  letter-spacing: 2px;
+  color: #94A3B8;
   text-decoration: none;
-  transition: opacity 0.3s ease;
-  margin-top: 1rem;
+  transition: all 0.3s ease;
 }
 
-.backLink:hover { opacity: 0.7; }
+.backLink:hover {
+  color: #D4AF37;
+  transform: translateX(-5px);
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .headline { font-size: 2.5rem; }
-  .leadParagraph { font-size: 1.1rem; }
-  .heroImageWrapper { height: 300px; margin-bottom: 3rem; }
+  .header {
+    padding: 6rem 0 3rem 0;
+    text-align: left; /* Left align on mobile for easier reading */
+  }
+
+  .metaRow {
+    justify-content: flex-start;
+  }
+
+  .headline {
+    font-size: 2.5rem;
+  }
+
+  .leadParagraph {
+    font-size: 1.1rem;
+    padding-left: 1rem;
+  }
+
+  .heroImageWrapper {
+    aspect-ratio: 16 / 9; /* Taller on mobile */
+    margin-bottom: 3rem;
+  }
+
+  .contentBody p {
+    font-size: 1.05rem;
+  }
 }

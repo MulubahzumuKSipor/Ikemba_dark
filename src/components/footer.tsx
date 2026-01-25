@@ -67,9 +67,11 @@ export default function Footer() {
       {/* BOTTOM BAR: LEGAL & PARTNERS */}
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
-          <p className={styles.copyright}>
-            &copy; {currentYear} Ikemba Investment Group. All Rights Reserved.
-          </p>
+          <Link href={'/admin'}>
+            <p className={styles.copyright}>
+              &copy; {currentYear} Ikemba Investment Group. All Rights Reserved.
+            </p>
+          </Link>
           <div className={styles.partnerLogos}>
             <span>Partnered with:</span>
             <strong>Tri Buchanan</strong>

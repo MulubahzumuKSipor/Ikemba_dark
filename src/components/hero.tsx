@@ -4,12 +4,24 @@ import styles from '@/styles/hero.module.css';
 export default function Hero() {
   return (
     <section className={styles.hero}>
-      {/* Background Image Layer */}
-      <div className={styles.bgImage} />
       
-      {/* Adaptive Gradient: Shifts from radial on desktop to linear on mobile */}
+      {/* 1. THE BACKGROUND VIDEO (Plays everywhere) */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline /* CRITICAL for Mobile Autoplay */
+        className={styles.bgVideo}
+        poster="/ghana_ins_campus.avif" /* Shows instantly while video loads */
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* 2. THE CINEMATIC OVERLAY (Dark Gradient) */}
+      {/* This ensures text is readable against the moving video */}
       <div className={styles.overlay} />
 
+      {/* 3. CONTENT LAYER */}
       <div className={`container ${styles.content}`}>
         <div className={styles.textWrapper}>
           <span className={styles.tagline}>
@@ -38,7 +50,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Hidden on small mobile to save vertical space */}
+      {/* 4. SCROLL INDICATOR */}
       <div className={styles.scrollIndicator}>
         <div className={styles.mouse}>
           <div className={styles.wheel} />

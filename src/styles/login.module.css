@@ -1,0 +1,218 @@
+/* --- 1. CONTAINER (The Viewport) --- */
+.container {
+  min-height: 100vh;
+  background-color: #0F172A; /* Deepest Dark */
+  display: flex;
+  align-items: stretch; /* Ensures both sides are full height */
+  overflow: hidden;
+}
+
+/* --- 2. IMAGE SIDE (The Vision) --- */
+.imageSide {
+  display: none; /* Hidden on mobile by default */
+  flex: 1; /* Takes up remaining space on desktop */
+  position: relative;
+  /* Replace this URL with your actual high-rise/luxury image */
+  background-image: url('/tower.avif');
+  background-size: cover;
+  background-position: center;
+}
+
+/* The Midnight Overlay (Gradient) */
+.imageSide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(15, 23, 42, 0.3) 0%,
+    rgba(15, 23, 42, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+/* The Watermark (Large text on image) */
+.watermark {
+  position: absolute;
+  bottom: 4rem;
+  left: 4rem;
+  z-index: 2;
+  font-family: var(--font-serif); /* Ensure you have your serif font var set */
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.1);
+  letter-spacing: 10px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* --- 3. FORM SIDE (The Access Console) --- */
+.formSide {
+  flex: 0 0 100%; /* Full width on mobile */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0F172A; /* Solid dark background */
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- 4. THE CARD (Mobile Box / Desktop Cleaner) --- */
+.card {
+  width: 100%;
+  max-width: 400px;
+
+  /* Mobile Default: Look like a floating card */
+  background-color: #151B25;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3rem 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+/* --- 5. TYPOGRAPHY --- */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.subtitle {
+  color: #D4AF37; /* Gold */
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* --- 6. FORM ELEMENTS --- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.label {
+  color: #94A3B8; /* Slate-400 */
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Sleek Line */
+  padding: 0.75rem 0;
+  color: #FFFFFF;
+  border-radius: 0;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-color: #D4AF37; /* Gold on focus */
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 1rem;
+}
+
+.button {
+  background: #D4AF37; /* Gold */
+  color: #0F172A; /* Dark Text */
+  border: none;
+  padding: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  padding: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- 7. DESKTOP TRANSFORMATION (Split Screen) --- */
+@media (min-width: 1024px) {
+  /* Show the image side */
+  .imageSide {
+    display: block;
+  }
+
+  /* Adjust form side width (45% width) */
+  .formSide {
+    flex: 0 0 45%;
+    justify-content: flex-start; /* Align content to the left of the container */
+    padding-left: 10%; /* Push content in from the center line */
+    padding-top: 10%;
+  }
+
+  /* Transform the Card: Remove borders/shadows to make it look seamless */
+  .card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-width: 420px; /* Keep the content narrow for readability */
+  }
+
+  /* Left-align text for a more "Dashboard" feel */
+  .header {
+    text-align: left;
+    margin-bottom: 4rem;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .footer {
+    text-align: left;
+  }
+}

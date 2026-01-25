@@ -1,0 +1,161 @@
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* WELCOME BANNER */
+.welcomeBanner {
+  margin-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 2rem;
+}
+
+.welcomeTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.gold {
+  color: #D4AF37;
+  font-style: italic;
+}
+
+.welcomeText {
+  color: #94A3B8;
+  font-size: 1.1rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* FEATURE GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive Grid */
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  background-color: #151B25;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  cursor: default; /* Or pointer if you wrap them in Links */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.3);
+  background-color: #1E293B;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.iconWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.card:hover .iconWrapper {
+  background: #D4AF37;
+  border-color: #D4AF37;
+  color: #0F172A;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #94A3B8;
+  transition: color 0.3s;
+}
+
+.card:hover .icon {
+  color: #0F172A;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+}
+
+.cardText {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  flex-grow: 1; /* Pushes the shortcut to the bottom */
+}
+
+.shortcut {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #D4AF37;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.card:hover .shortcut {
+  opacity: 1;
+}
+
+/* SYSTEM STATUS FOOTER */
+.statusFooter {
+  display: flex;
+  gap: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.8rem;
+  color: #64748B;
+}
+
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  background-color: #10B981; /* Green */
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.statusValue {
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .statusFooter {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

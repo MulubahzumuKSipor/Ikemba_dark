@@ -1,200 +1,229 @@
+/* --- SECTION --- */
 .section {
+  background-color: var(--color-bg); /* Deep Dark */
   padding: 8rem 0;
-  background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  gap: 6rem;
 }
 
 /* --- HEADER --- */
 .header {
   text-align: center;
-  margin-bottom: 5rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--color-accent);
-  font-weight: 700;
-  margin-bottom: 1rem;
+  color: #D4AF37;
+  margin-bottom: 1.5rem;
 }
 
 .title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.15;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  color: #FFFFFF;
+  line-height: 1.1;
 }
 
 .accent {
-  color: var(--color-accent);
+  color: #D4AF37;
+  font-style: italic;
 }
 
-/* --- TIMELINE --- */
+/* --- TIMELINE GRID (The Ruler) --- */
 .timeline {
   position: relative;
-  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* No gap, the rows connect perfectly */
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 0;
 }
 
-.line {
+/* The Continuous Gold Thread running down the "Marker" column */
+.trackLine {
   position: absolute;
-  left: 50%;
-  top: 0;
+  left: 170px; /* Aligns with the center of the marker column */
+  top: 20px;
   bottom: 0;
-  width: 2px;
+  width: 1px;
   background: linear-gradient(
     to bottom,
-    transparent,
-    var(--color-border) 5%,
-    var(--color-border) 95%,
-    transparent
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.5) 50%,
+    rgba(212, 175, 55, 0.1) 100%
   );
-  transform: translateX(-50%);
+  z-index: 0;
 }
 
-/* --- TIMELINE ITEM --- */
-.item {
+/* --- THE ROW (Grid Layout) --- */
+.row {
+  display: grid;
+  /* 150px Year | 40px Marker | Rest for Content */
+  grid-template-columns: 150px 40px 1fr;
+  gap: 3rem;
+  align-items: flex-start;
   position: relative;
-  display: flex;
-  justify-content: flex-start;
-  width: 50%;
-  padding-right: 4rem;
-  margin-bottom: 3rem;
+  padding-bottom: 5rem; /* Space between entries */
+  group: true;
 }
 
-.item.itemRight {
-  justify-content: flex-end;
-  margin-left: 50%;
-  padding-right: 0;
-  padding-left: 4rem;
-}
-
-.item:last-child {
-  margin-bottom: 0;
-}
-
-/* --- MARKER --- */
-.marker {
-  position: absolute;
-  right: -11px;
-  top: 1.5rem;
-  z-index: 2;
-}
-
-.item.itemRight .marker {
-  right: auto;
-  left: -11px;
-}
-
-.markerDot {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background: white;
-  border: 3px solid var(--color-accent);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.item:hover .markerDot {
-  background: var(--color-accent);
-  transform: scale(1.2);
-}
-
-/* --- CARD --- */
-.card {
-  background: white;
-  padding: 2rem;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--color-border);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  width: 100%;
-}
-
-.item:hover .card {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(10, 30, 59, 0.1);
-  border-color: var(--color-accent);
+/* --- COL 1: THE TIME --- */
+.timeColumn {
+  text-align: right;
+  padding-top: 0.5rem; /* Optical alignment with marker */
 }
 
 .year {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: white;
-  background: var(--color-primary);
-  padding: 0.4rem 0.8rem;
-  border-radius: 2px;
-  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.3); /* Dim by default */
+  transition: all 0.4s ease;
+  display: block;
+}
+
+/* Hover Effect: Year Lights Up */
+.row:hover .year {
+  color: #D4AF37;
+  transform: translateX(-10px); /* Nudges slightly left */
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* --- COL 2: THE MARKER --- */
+.markerColumn {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem; /* Aligns dot with the year center */
+  position: relative;
+  z-index: 1;
+}
+
+.marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #D4AF37;
+  background-color: var(--color-bg); /* Mask the line behind it */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 0 8px var(--color-bg); /* Creates "gap" in the line */
+}
+
+.innerDot {
+  width: 4px;
+  height: 4px;
+  background-color: #D4AF37;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.row:hover .marker {
+  border-color: #FFFFFF;
+  transform: scale(1.3);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 0 8px var(--color-bg);
+}
+
+.row:hover .innerDot {
+  background-color: #FFFFFF;
+}
+
+/* --- COL 3: THE LEDGER (Content) --- */
+.contentColumn {
+  padding-top: 0.5rem;
+}
+
+.card {
+  background: transparent; /* No background, looks like text on page */
+  border-left: 1px solid rgba(255, 255, 255, 0.1); /* Subtle guide line */
+  padding-left: 2rem;
+  transition: border-color 0.4s ease;
+}
+
+.row:hover .card {
+  border-left-color: #D4AF37; /* Line lights up on hover */
 }
 
 .cardTitle {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  margin-bottom: 0.75rem;
-  line-height: 1.2;
-}
-
-.cardText {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--color-text-light);
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: #FFFFFF;
   margin-bottom: 1rem;
 }
 
-.location {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-accent);
+.cardText {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #94A3B8; /* Slate */
+  margin-bottom: 1.5rem;
+  max-width: 500px;
 }
 
-.locationIcon {
-  width: 14px;
-  height: 14px;
+.locationTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #D4AF37;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.icon {
+  filter: grayscale(100%); /* Keeps emoji subtle */
+  font-size: 1rem;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .section {
-    padding: 5rem 0;
+  .row {
+    grid-template-columns: 1fr; /* Stack everything */
+    gap: 1rem;
+    padding-bottom: 4rem;
+    padding-left: 2rem; /* Indent content */
+    border-left: 1px solid rgba(212, 175, 55, 0.2); /* Draw line on left edge */
   }
-  
-  .timeline {
-    padding-left: 2rem;
+
+  .trackLine {
+    display: none; /* Hide complex line on mobile, replace with border-left above */
   }
-  
-  .line {
-    left: 0;
+
+  .timeColumn {
+    text-align: left;
+    padding-top: 0;
   }
-  
-  .item,
-  .item.itemRight {
-    width: 100%;
-    margin-left: 0;
-    padding-right: 0;
-    padding-left: 3rem;
-    justify-content: flex-start;
+
+  .year {
+    font-size: 2.5rem;
+    color: #D4AF37; /* Always light up year on mobile */
   }
-  
-  .marker,
-  .item.itemRight .marker {
-    left: -11px;
-    right: auto;
+
+  .markerColumn {
+    display: none; /* Hide dots on mobile to save space */
+  }
+
+  .contentColumn {
+    padding-top: 0;
+  }
+
+  .card {
+    border-left: none; /* Remove desktop border */
+    padding-left: 0;
   }
 }

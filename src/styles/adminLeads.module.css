@@ -1,0 +1,165 @@
+/* CONTAINER & HEADER */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #94A3B8;
+  font-size: 0.9rem;
+}
+
+.countBadge {
+  background: #1E293B;
+  color: #D4AF37;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* TABLE CARD */
+.card {
+  background: #151B25;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow-x: auto; /* Handles scroll on small screens */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px; /* Forces scroll if too squeezed */
+}
+
+/* HEADERS */
+.table th {
+  text-align: left;
+  padding: 1.25rem 1.5rem;
+  background: #1E293B;
+  color: #94A3B8;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.thStatus { width: 120px; }
+.thSender { width: 250px; }
+.thMessage { width: 35%; }
+.thAction { width: 100px; text-align: right; }
+
+/* ROW STYLES */
+.table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: top;
+  color: #E2E8F0;
+  font-size: 0.95rem;
+}
+
+.row:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.row:last-child td {
+  border-bottom: none;
+}
+
+/* COLUMN SPECIFICS */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+.new { background: rgba(212, 175, 55, 0.1); color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.3); }
+.contacted { background: rgba(56, 189, 248, 0.1); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.closed { background: rgba(148, 163, 184, 0.1); color: #94A3B8; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+.senderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.senderName { font-weight: 600; color: #fff; }
+.senderEmail { font-size: 0.85rem; color: #94A3B8; }
+.senderPhone { font-size: 0.8rem; color: #64748B; margin-top: 2px; }
+
+.clientType {
+  color: #CBD5E1;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.messagePreview {
+  color: #94A3B8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  
+  /* Text Truncation Logic */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 400px;
+}
+
+.dateCell {
+  color: #64748B;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.actionButton {
+  display: inline-block;
+  color: #D4AF37;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 6px 12px;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.actionButton:hover {
+  background: #D4AF37;
+  color: #0F172A;
+}
+
+/* EMPTY STATE */
+.emptyState {
+  padding: 4rem;
+  text-align: center;
+  color: #64748B;
+}

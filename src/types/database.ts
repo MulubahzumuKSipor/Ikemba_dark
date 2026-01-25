@@ -6,6 +6,8 @@ export type ProjectCategory = 'Living' | 'Landmarks';
 export type ClientType = 'Investor' | 'Homeowner' | 'Institution' | 'General Inquiry';
 export type NewsCategory = 'Press Release' | 'Project Update' | 'Milestone' | 'Industry Insight';
 export type JobType = 'Full-time' | 'Part-time' | 'Contract' | 'Internship';
+export type UserRole = 'super_admin' | 'admin' | 'staff';
+export type UserStatus = 'active' | 'suspended';
 
 export interface ProjectStats {
   area?: string;
@@ -39,6 +41,8 @@ export interface Lead {
   client_type: ClientType;
   message: string;
   internal_status: 'New' | 'Contacted' | 'Closed';
+  is_flagged: boolean;
+  flagged_by: string | null;
 }
 
 export interface Article {
@@ -69,6 +73,17 @@ export interface Job {
   is_active: boolean;
 }
 
+export interface Profile {
+  id: string;
+  email: string;
+  full_name: string | null;
+  role: UserRole;
+  status: UserStatus;
+  job_title: string | null;
+  last_login: string | null;
+  created_at: string;
+}
+
 
 // --- 2. DATABASE TYPES (For Supabase Client) ---
 
@@ -80,9 +95,69 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
+
+  // types/database.ts
+
+
+
+export interface Career {
+  id: string;
+  created_at: string;
+  title: string;
+  slug: string;
+  department: string;
+  location: string;
+  type: JobType;
+  description: string; // HTML content from RichEditor
+  is_active: boolean;
+  posted_at?: string;
+}
+
+// ... existing types (Profile, Lead, Article, etc.)
 export type Database = {
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          id: string
+          email: string
+          full_name: string | null
+          role: UserRole
+          status: UserStatus
+          job_title: string | null
+          last_login: string | null
+          created_at: string
+        }
+        Insert: {
+          id: string
+          email: string
+          full_name?: string | null
+          role?: UserRole
+          status?: UserStatus
+          job_title?: string | null
+          last_login?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          full_name?: string | null
+          role?: UserRole
+          status?: UserStatus
+          job_title?: string | null
+          last_login?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       projects: {
         Row: {
           id: string
@@ -141,6 +216,8 @@ export type Database = {
           client_type: ClientType
           message: string
           internal_status: string
+          is_flagged: boolean
+          flagged_by: string | null
         }
         Insert: {
           id?: string
@@ -151,6 +228,8 @@ export type Database = {
           client_type: ClientType
           message: string
           internal_status?: string
+          is_flagged?: boolean
+          flagged_by?: string | null
         }
         Update: {
           id?: string
@@ -161,8 +240,18 @@ export type Database = {
           client_type?: ClientType
           message?: string
           internal_status?: string
+          is_flagged?: boolean
+          flagged_by?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "leads_flagged_by_fkey"
+            columns: ["flagged_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       news: {
         Row: {
@@ -253,10 +342,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_my_profile: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          email: string
+          full_name: string | null
+          role: UserRole
+          status: UserStatus
+          job_title: string | null
+          last_login: string | null
+          created_at: string
+        }[]
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: 'super_admin' | 'admin' | 'staff'
     }
     CompositeTypes: {
       [_ in never]: never

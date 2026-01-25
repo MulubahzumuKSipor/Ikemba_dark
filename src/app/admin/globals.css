@@ -1,0 +1,153 @@
+:root {
+  /* --- 1. THE MIDNIGHT LUXURY PALETTE --- */
+  
+  /* Backgrounds */
+  --color-bg: #151B25;       /* Deep Matte Slate (Main Page Background) */
+  --color-surface: #1E293B;  /* Lighter Slate (Cards, Forms, Modals) */
+  
+  /* Brand Accents */
+  --color-gold: #C5A059;     /* The Architectural Gold */
+  --color-gold-hover: #b08d4b;
+  --color-gold-dim: rgba(197, 160, 89, 0.15); /* For subtle borders/lines */
+  
+  /* Typography (High Contrast for Dark Mode) */
+  --color-text-main: #F8FAFC;    /* Off-White (Primary Headings/Body) */
+  --color-text-muted: #94A3B8;   /* Silver-Gray (Secondary/Description) */
+  --color-text-inverse: #0F172A; /* Dark Text (Only for Gold Buttons) */
+
+  /* Structural */
+  --color-border: rgba(255, 255, 255, 0.08); /* Very subtle white line */
+  --radius: 2px; /* Sharp, premium corners (Not rounded like an app) */
+
+  /* --- 2. FONTS & LAYOUT --- */
+  --font-serif: "Times New Roman", serif; /* For Headlines */
+  --font-sans: system-ui, -apple-system, sans-serif; /* For Body Text */
+  
+  --container-width: 1280px; 
+  --header-height: 90px;
+}
+
+/* --- 3. GLOBAL RESET --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased; /* Critical for crisp text on dark backgrounds */
+  line-height: 1.6;
+}
+
+/* --- 4. TYPOGRAPHY --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400; /* Serif doesn't need bold to look heavy */
+  line-height: 1.1;
+  color: var(--color-text-main);
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Selection Color (Premium Feel when user highlights text) */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+/* --- 5. UTILITIES --- */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+/* --- 6. GLOBAL BUTTONS --- */
+/* These map to the classes used in your components */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+/* Primary Action (Gold) */
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-text-inverse); /* Dark text on Gold */
+  border-color: var(--color-gold);
+}
+
+.btn-primary:hover {
+  background-color: transparent; /* Turn into outline on hover */
+  color: var(--color-gold);
+}
+
+/* Secondary Action (Outline) */
+.btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-main);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* --- DARK SCROLLBAR OVERRIDE --- */
+
+/* For Webkit Browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F172A; /* Match your app background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155; /* Slate Grey thumb */
+  border-radius: 5px;
+  border: 2px solid #0F172A; /* Padds the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37; /* Turn Gold on Hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0F172A;
+}
+
+/* Ensure no white flashes on overscroll */
+html, body {
+  background-color: #0F172A;
+  color: #FFFFFF;
+}
