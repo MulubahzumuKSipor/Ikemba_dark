@@ -11,7 +11,7 @@ const services = [
     fullTitle: 'Real Estate Development',
     description: 'High-quality, sustainable projects that drive economic growth. We handle land acquisition, site prep, and joint venture partnerships.',
     features: ['Mixed-Use Developments', 'Residential Communities', 'Public-Private Partnerships'],
-    bgImage: '/construct.avif', // Ensure you have these images or placeholders
+    bgImage: '/construct.avif',
   },
   {
     id: '02',
@@ -32,7 +32,7 @@ const services = [
 ];
 
 export default function Services() {
-  const [activeId, setActiveId] = useState('02'); // Start with middle open for balance
+  const [activeId, setActiveId] = useState('02');
 
   return (
     <section className={styles.section}>
@@ -47,26 +47,25 @@ export default function Services() {
           </h2>
         </div>
 
-        {/* THE CINEMATIC ACCORDION */}
+        {/* ACCORDION WRAPPER */}
         <div className={styles.accordion}>
           {services.map((service) => (
             <div 
               key={service.id} 
               className={`${styles.card} ${activeId === service.id ? styles.active : ''}`}
               onMouseEnter={() => setActiveId(service.id)}
-              // Inline style for dynamic background images
+              onClick={() => setActiveId(service.id)} // <--- Added for Mobile Tap Support
               style={{ backgroundImage: `url(${service.bgImage})` }} 
             >
-              {/* Dark Gradient Overlay */}
               <div className={styles.overlay} />
               
-              {/* STATE A: COLLAPSED (Vertical Text) */}
+              {/* COLLAPSED CONTENT (Visible when inactive) */}
               <div className={styles.collapsedContent}>
                 <span className={styles.verticalNumber}>{service.id}</span>
                 <span className={styles.verticalTitle}>{service.title}</span>
               </div>
 
-              {/* STATE B: EXPANDED (Rich Content) */}
+              {/* EXPANDED CONTENT (Visible when active) */}
               <div className={styles.expandedContent}>
                 <div className={styles.contentInner}>
                   <span className={styles.bigNumber}>{service.id}</span>

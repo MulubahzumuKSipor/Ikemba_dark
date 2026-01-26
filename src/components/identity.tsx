@@ -29,6 +29,21 @@ export default function Identity() {
                 <span className={styles.partnerRole}>Partner</span>
               </div>
             </div>
+            <div className={styles.partnerItem}>
+              <div className={styles.logoWrapper}>
+                <Image
+                  src="/build.jfif"
+                  alt="Build Forms Logo"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 200px"
+                  className={styles.logoImage}
+                />
+              </div>
+              <div className={styles.partnerText}>
+                <span className={styles.partnerName}>Buildforms Construction Pte Ltd</span>
+                <span className={styles.partnerRole}>Partner</span>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -47,8 +62,7 @@ export default function Identity() {
             Ikemba Investment Group is a Pan-African firm strategically focused on 
             Development, Architecture, and Construction Management. 
             <br /><br />
-            Supported by our licensed general contractor <strong>Tri Buchanan</strong> and 
-            sales prowess of <strong>Gateway Realty</strong>, we execute unique real estate 
+            Supported by our licensed general contractor <strong>Saraiva + Associados</strong> and <strong>Buildforms Construction Pte Ltd</strong>, we execute unique real estate
             investment opportunities across the continent.
           </p>
           

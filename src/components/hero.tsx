@@ -16,12 +16,10 @@ export default function Hero() {
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
+{/*
 
-      {/* 2. THE CINEMATIC OVERLAY (Dark Gradient) */}
-      {/* This ensures text is readable against the moving video */}
       <div className={styles.overlay} />
 
-      {/* 3. CONTENT LAYER */}
       <div className={`container ${styles.content}`}>
         <div className={styles.textWrapper}>
           <span className={styles.tagline}>
@@ -48,7 +46,7 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* 4. SCROLL INDICATOR */}
       <div className={styles.scrollIndicator}>

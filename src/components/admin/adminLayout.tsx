@@ -15,15 +15,16 @@ export default function AdminLayoutClient({ sidebar, header, children, footer }:
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close sidebar automatically when navigating to a new page (mobile UX)
+  // FIX: This pattern prevents the "synchronous setState" error.
+  // We check the previous state value inside the setter function.
   useEffect(() => {
-    setIsSidebarOpen(false);
+    setIsSidebarOpen((prev) => (prev ? false : prev));
   }, [pathname]);
 
   return (
     <div className={styles.layoutContainer}>
 
-      {/* MOBILE OVERLAY (Darkens background when menu is open) */}
+      {/* MOBILE OVERLAY */}
       <div
         className={`${styles.mobileOverlay} ${isSidebarOpen ? styles.overlayVisible : ''}`}
         onClick={() => setIsSidebarOpen(false)}
@@ -39,11 +40,11 @@ export default function AdminLayoutClient({ sidebar, header, children, footer }:
       {/* MAIN CONTENT AREA */}
       <div className={styles.mainArea}>
 
-        {/* Mobile Menu Toggle Button */}
+        {/* MOBILE HEADER (Hamburger Menu) */}
         <div className={styles.mobileHeaderBar}>
            <button
              className={styles.hamburgerBtn}
-             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+             onClick={() => setIsSidebarOpen((prev) => !prev)}
              aria-label="Toggle Menu"
            >
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -53,11 +54,12 @@ export default function AdminLayoutClient({ sidebar, header, children, footer }:
            <span className={styles.mobileBrand}>IKEMBA <span className={styles.gold}>ADMIN</span></span>
         </div>
 
-        {/* Desktop Header (Hidden on Mobile usually, or adapted) */}
+        {/* DESKTOP HEADER */}
         <div className={styles.desktopHeaderWrapper}>
            {header}
         </div>
 
+        {/* PAGE CONTENT */}
         <main className={styles.contentScrollable}>
           <div className={styles.contentWrapper}>
             {children}

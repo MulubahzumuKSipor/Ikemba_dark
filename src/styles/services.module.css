@@ -1,248 +1,274 @@
-/* --- SECTION --- */
+/* SECTION SETUP */
 .section {
-  /* CHANGED: From 'bg' (#151B25) to 'surface' (#1E293B) */
-  /* This creates the visual "step up" in brightness you requested */
-  background-color: var(--color-surface);
-
-  padding-bottom: 8rem;
-  padding-top: 4rem; /* Added top padding to balance the lighter color */
+  padding: 6rem 0;
+  background-color: #0F172A;
+  color: #fff;
   overflow: hidden;
-
-  /* Optional: A subtle top highlight to separate it from the previous dark section */
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .header {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  text-align: left;
 }
 
 .label {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 800;
+  color: #D4AF37;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--color-gold);
-  margin-bottom: 1.5rem;
-  padding-left: 2px;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .heading {
-  font-family: var(--font-serif);
-  font-size: 3.5rem;
+  font-family: var(--font-serif); /* e.g., Playfair Display */
+  font-size: 3rem;
   line-height: 1.1;
-  /* Since the background is lighter slate, this Off-White still pops perfectly */
-  color: var(--color-text-main);
+  color: #fff;
 }
 
 .accent {
-  color: var(--color-gold);
+  color: #D4AF37;
   font-style: italic;
-  font-weight: 400;
 }
 
-/* --- THE ACCORDION --- */
+/* =========================================
+   DESKTOP ACCORDION (Horizontal)
+   ========================================= */
 .accordion {
   display: flex;
-  height: 600px;
-  gap: 1.5rem;
+  flex-direction: row;
+  height: 600px; /* Fixed height for the cinematic feel */
+  gap: 1rem;
   width: 100%;
 }
 
 .card {
   position: relative;
-  flex: 1;
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
+  flex: 1; /* Default collapsed state width */
   background-size: cover;
   background-position: center;
-  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  /* Darker border to contrast against the lighter section bg */
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  /* Add shadow to lift cards off the lighter background */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth spring-like animation */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align content to bottom */
 }
 
-.card.active {
-  flex: 3.5;
-  border-color: var(--color-gold);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); /* Deeper shadow when active */
+/* The Active Card Expands */
+.active {
+  flex: 3.5; /* Takes up 3.5x more space */
+  cursor: default;
 }
 
-/* Overlay to darken images */
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 30, 59, 0.4) 0%,
-    rgba(10, 30, 59, 0.8) 50%,
-    rgba(15, 23, 42, 0.95) 100%
-  );
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
   z-index: 1;
-  transition: background 0.6s;
+  transition: background 0.4s;
 }
 
-.card.active .overlay {
-  background: linear-gradient(
-    to right,
-    rgba(15, 23, 42, 0.9) 0%,
-    rgba(15, 23, 42, 0.7) 50%,
-    rgba(15, 23, 42, 0.4) 100%
-  );
+.active .overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.1));
 }
 
-/* --- COLLAPSED STATE (Vertical Text) --- */
+/* COLLAPSED STATE STYLING */
 .collapsedContent {
   position: absolute;
-  bottom: 3rem;
+  bottom: -1rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column-reverse; /* Title on top of number visually due to rotation */
   align-items: center;
-  gap: 2rem;
-  transition: opacity 0.3s;
-  white-space: nowrap;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  padding-bottom: 3rem;
 }
 
-.card.active .collapsedContent {
+/* Hide collapsed content when active */
+.active .collapsedContent {
   opacity: 0;
   pointer-events: none;
 }
 
-.verticalNumber {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.5);
-}
-
 .verticalTitle {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  writing-mode: vertical-rl; /* Vertical Text */
+  transform: rotate(180deg); /* Read upwards */
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--color-gold);
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
 }
 
-/* --- EXPANDED STATE (Rich Content) --- */
+.verticalNumber {
+  font-size: 1.25rem;
+  color: #D4AF37;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+/* EXPANDED CONTENT STYLING */
 .expandedContent {
   position: relative;
-  z-index: 3;
-  padding: 4rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  z-index: 2;
+  padding: 3rem;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.5s ease 0.1s;
+  transition: all 0.5s ease 0.1s; /* Slight delay so it appears after expansion */
+  display: none; /* Hide entirely when collapsed to prevent layout shifts */
 }
 
-.card.active .expandedContent {
+.active .expandedContent {
   opacity: 1;
   transform: translateY(0);
+  display: block;
 }
 
 .contentInner {
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .bigNumber {
-  font-family: var(--font-serif);
+  display: block;
   font-size: 4rem;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.1);
   line-height: 1;
-  display: block;
   margin-bottom: -1rem;
 }
 
 .fullTitle {
   font-family: var(--font-serif);
   font-size: 2.5rem;
-  color: #FFFFFF;
+  color: #fff;
   margin-bottom: 1.5rem;
 }
 
 .divider {
   width: 60px;
   height: 3px;
-  background-color: var(--color-gold);
+  background: #D4AF37;
   margin-bottom: 1.5rem;
 }
 
 .description {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+  color: #CBD5E1;
   margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .featureList {
   list-style: none;
-  margin-bottom: 2.5rem;
   padding: 0;
+  margin: 0 0 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
 }
 
 .featureList li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
 }
 
 .featureList li::before {
-  content: '•';
-  color: var(--color-gold);
-  position: absolute;
-  left: 0;
+  content: "•";
+  color: #D4AF37;
+  margin-right: 0.5rem;
   font-size: 1.2rem;
-  line-height: 1;
 }
 
 .link {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
   display: inline-block;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--color-gold);
-  transition: color 0.3s;
+  transition: transform 0.2s;
 }
 
 .link:hover {
-  color: #FFFFFF;
+  transform: translateX(5px);
 }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
-@media (max-width: 1024px) {
-  .section {
-    padding-bottom: 4rem; /* Tighter on mobile */
-  }
+/* =========================================
+   MOBILE RESPONSIVENESS (Max-width: 768px)
+   ========================================= */
 
+@media (max-width: 768px) {
+  .section { padding: 3rem 0; }
+  .header { margin-bottom: 2rem; }
+  .heading { font-size: 2rem; }
+
+  /* 1. Switch to Vertical Layout */
   .accordion {
     flex-direction: column;
-    height: auto;
-    gap: 2rem;
+    height: 650px; /* Taller container to fit vertical content */
   }
 
+  /* 2. Card Base State */
   .card {
-    height: 400px;
-    flex: none !important;
     width: 100%;
-    /* On mobile, cards need strong shadow to separate from bg */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    /* flex: 1 means "take up 1 share of space" (collapsed) */
+    flex: 1;
   }
 
-  .card .collapsedContent { display: none; }
-  .card .expandedContent { opacity: 1; transform: translateY(0); padding: 2rem; }
-  .fullTitle { font-size: 2rem; }
+  /* 3. Card Active State */
+  .active {
+    /* flex: 6 means "take up 6 shares" (expanded) */
+    flex: 6;
+  }
+
+  /* 4. Fix Collapsed Content for Mobile */
+  .collapsedContent {
+    flex-direction: row; /* Horizontal text */
+    justify-content: flex-start; /* Align left */
+    align-items: center;
+    padding: 0 1.5rem; /* Simple padding */
+    bottom: 0; /* Align vertically centered in the collapsed strip */
+    top: 0;
+    transform: none;
+    left: 0;
+  }
+
+  .verticalTitle {
+    writing-mode: horizontal-tb; /* Reset text direction */
+    transform: none; /* Remove rotation */
+    font-size: 1.1rem;
+    margin-left: 1rem;
+    color: #fff;
+  }
+
+  .verticalNumber {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+
+  /* 5. Expanded Content Tweaks */
+  .expandedContent {
+    padding: 1.5rem;
+  }
+
+  .fullTitle { font-size: 1.75rem; }
+  .bigNumber { display: none; } /* Hide big number to save space */
+  .description { font-size: 0.95rem; }
+
+  .featureList {
+    grid-template-columns: 1fr; /* Single column list */
+    gap: 0.5rem;
+  }
 }

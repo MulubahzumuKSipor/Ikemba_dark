@@ -7,7 +7,7 @@
   --font-serif: "Times New Roman", serif;
   
   background-color: #FFFFFF;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .wrapper {
@@ -100,7 +100,7 @@
 .formSide {
   flex: 1;
   background-color: #FFFFFF;
-  padding: 4rem 5rem;
+  padding: 9rem 5rem;
   display: flex;
   align-items: center;
 }
@@ -267,13 +267,10 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-  .wrapper {
-    flex-direction: column;
-  }
   
   .infoSide {
-    padding: 3rem 1.5rem;
-    flex: auto;
+    padding: 12rem 1.5rem;
+    /* flex: auto; */
   }
 
   .formSide {
@@ -285,7 +282,11 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 635px) {
+
+  .wrapper {
+    flex-direction: column;
+  }
   .radioGrid {
     grid-template-columns: 1fr; /* Stack radio cards on mobile */
   }

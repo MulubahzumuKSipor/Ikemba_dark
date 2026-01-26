@@ -1,17 +1,39 @@
+import { createClient } from '@/lib/server';
 import Contact from "@/components/contact";
 import Hero from "@/components/hero";
 import Identity from "@/components/identity";
 import Leadership from "@/components/leadership";
 import Philosophy from "@/components/philosophy";
 import Services from "@/components/services";
-import Image from "next/image";
+import NewsGrid from "@/components/newsSection";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+
+  const { data: articles } = await supabase
+    .from('news')
+    .select('*')
+    .eq('is_published', true)
+    .order('published_at', { ascending: false })
+    .limit(3);
+
   return (
     <>
       <Hero />
-      <Identity/>
+      <Identity />
       <Services />
+
+
+      <section style={{
+        backgroundColor: '#0F172A',
+        padding: '6rem 0',
+        borderTop: '1px solid rgba(255,255,255,0.05)'
+      }}>
+        <div className="container">
+          <NewsGrid articles={articles || []} variant="home" />
+        </div>
+      </section>
+
       <Philosophy />
       <Leadership />
       <Contact />
