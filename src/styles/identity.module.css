@@ -3,6 +3,7 @@
   position: relative;
   background-color: var(--color-bg); /* Global Dark Background (#151B25) */
   padding-bottom: 8rem;
+  padding-top: 4rem;
 }
 
 /* --- PART 1: STRATEGIC PARTNERS (The White Letterhead Strip) --- */

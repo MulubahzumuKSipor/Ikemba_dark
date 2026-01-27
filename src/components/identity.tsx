@@ -5,53 +5,8 @@ import styles from '@/styles/identity.module.css';
 export default function Identity() {
   return (
     <section className={styles.section}>
-      
-      {/* PART 1: STRATEGIC PARTNERS STRIP */}
-      <div className={styles.trustStrip}>
-        <div className={`container ${styles.trustContainer}`}>
-          <span className={styles.trustLabel}>Strategic Partners</span>
-          
-          <div className={styles.partnerGrid}>
-            
-            {/* PARTNER 1: CONSTRUCTION */}
-            <div className={styles.partnerItem}>
-              <div className={styles.logoWrapper}>
-                <Image 
-                  src="/sa.png"
-                  alt="S + A Logo"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 200px"
-                  className={styles.logoImage}
-                />
-              </div>
-              <div className={styles.partnerText}>
-                <span className={styles.partnerName}>Saraiva + Associados</span>
-                <span className={styles.partnerRole}>Partner</span>
-              </div>
-            </div>
-            <div className={styles.partnerItem}>
-              <div className={styles.logoWrapper}>
-                <Image
-                  src="/build.webp"
-                  alt="Build Forms Logo"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 200px"
-                  className={styles.logoImage}
-                />
-              </div>
-              <div className={styles.partnerText}>
-                <span className={styles.partnerName}>Buildforms Construction Pte Ltd</span>
-                <span className={styles.partnerRole}>Partner</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
       {/* PART 2: THE VISION */}
       <div className={`container ${styles.container}`}>
-        
         {/* LEFT: MISSION */}
         <div className={styles.mission}>
           <h2 className={styles.title}>
@@ -59,8 +14,7 @@ export default function Identity() {
             <span className={styles.accent}>Built Environment.</span>
           </h2>
           <p className={styles.text}>
-            Ikemba Investment Group is a Pan-African firm strategically focused on 
-            Development, Architecture, and Construction Management. 
+            Ikemba Investment Group is a Pan African firm strategically focused on Development, Architecture, Construction Management and Consulting towards real estate in Africa’s emerging economies. With offices in Monrovia, Liberia and Accra, Ghana, our firm’s core approach involves working with public and private partners to help identify, plan and execute unique real estate investment opportunities across the African continent.
             <br /><br />
             Supported by our licensed general contractor <strong>Saraiva + Associados</strong> and <strong>Buildforms Construction Pte Ltd</strong>, we execute unique real estate
             investment opportunities across the continent.
@@ -80,7 +34,7 @@ export default function Identity() {
               <span className={styles.statLabel}>Global Offices</span>
             </div>
           </div>
-          
+
           <Link href="/about" className={styles.textLink}>
             Read Our Story &rarr;
           </Link>
@@ -88,7 +42,7 @@ export default function Identity() {
 
         {/* RIGHT: CARDS */}
         <div className={styles.cards}>
-          
+
           <Link href="/portfolio?filter=Living" className={styles.card}>
             <div className={styles.cardBg} style={{ backgroundImage: "url('/images/projects/atlantic.png')" }} />
             <div className={styles.cardContent}>

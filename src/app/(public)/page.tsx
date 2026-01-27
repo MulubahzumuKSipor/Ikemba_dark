@@ -6,10 +6,12 @@ import Leadership from "@/components/leadership";
 import Philosophy from "@/components/philosophy";
 import Services from "@/components/services";
 import NewsGrid from "@/components/newsSection";
+import Partners from '@/components/partners';
 
 export default async function Home() {
   const supabase = await createClient();
 
+  // Fetch the latest 3 published articles
   const { data: articles } = await supabase
     .from('news')
     .select('*')
@@ -22,8 +24,8 @@ export default async function Home() {
       <Hero />
       <Identity />
       <Services />
-
-
+      <Philosophy />
+      <Leadership />
       <section style={{
         backgroundColor: '#0F172A',
         padding: '6rem 0',
@@ -33,9 +35,7 @@ export default async function Home() {
           <NewsGrid articles={articles || []} variant="home" />
         </div>
       </section>
-
-      <Philosophy />
-      <Leadership />
+      <Partners />
       <Contact />
     </>
   );
