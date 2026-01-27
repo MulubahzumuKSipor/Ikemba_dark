@@ -32,7 +32,7 @@ export default function Identity() {
             <div className={styles.partnerItem}>
               <div className={styles.logoWrapper}>
                 <Image
-                  src="/build.jfif"
+                  src="/build.webp"
                   alt="Build Forms Logo"
                   fill
                   sizes="(max-width: 768px) 100vw, 200px"
