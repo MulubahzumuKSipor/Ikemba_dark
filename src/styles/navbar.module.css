@@ -34,12 +34,12 @@
 
 /* --- LOGO MAGIC (The Color Swap) --- */
 .logoImage {
-  transition: filter 0.4s ease;
+  /* transition: filter 0.4s ease; */
 }
 
 /* When scrolled, INVERT the dark blue logo to make it WHITE */
 .header.scrolled .logoImage {
-  filter: brightness(0) invert(1); 
+  /* filter: brightness(0) invert(1);  */
 }
 
 /* --- LINKS --- */
