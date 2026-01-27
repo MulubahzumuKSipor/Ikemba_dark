@@ -254,7 +254,7 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
   .spotlightContainer { grid-template-columns: 1fr; gap: 3rem; }
-  .spotlightImageWrapper { order: 2; margin: 0 1rem; }
+  .spotlightImageWrapper { order: -1; margin: 0 1rem; }
   .imageBorder { left: 10px; top: 10px; }
 }
 

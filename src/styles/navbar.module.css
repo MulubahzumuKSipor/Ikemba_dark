@@ -200,7 +200,7 @@
 /* --- RESPONSIVE --- */
 @media (min-width: 1024px) {
   .nav { display: flex; }
-  .ctaWrapper { display: block; }
+  .ctaWrapper { display: flex; }
   .hamburger { display: none; }
   .mobileMenu { display: none; }
 }
