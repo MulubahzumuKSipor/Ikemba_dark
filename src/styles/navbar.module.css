@@ -141,9 +141,9 @@
   background-color: var(--color-gold);
 }
 
-.hamburger.open .hamburgerLine:first-child { transform: rotate(45deg); }
+.hamburger.open .hamburgerLine:first-child { transform: rotate(45deg); background-color: white; }
 .hamburger.open .hamburgerLine:nth-child(2) { opacity: 0; }
-.hamburger.open .hamburgerLine:last-child { transform: rotate(-45deg); }
+.hamburger.open .hamburgerLine:last-child { transform: rotate(-45deg); background-color: white; }
 
 /* --- MOBILE MENU --- */
 .mobileMenu {
@@ -170,7 +170,7 @@
   font-family: var(--font-serif);
   font-size: 2rem;
   color: #FFFFFF; /* White text on dark mobile menu */
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
   opacity: 0;
   transform: translateY(20px);

@@ -115,7 +115,7 @@ export default function Navbar() {
               <button
                 className={styles.mobileLink} 
                 onClick={() => setIsMobileImpactOpen(!isMobileImpactOpen)}
-                style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
+                style={{ display: 'flex', justifyContent: 'space-between', width: '100%', border: 'none', background: 'none' }}
               >
                 CSR & Impact
                 <span style={{ transform: isMobileImpactOpen ? 'rotate(180deg)' : 'rotate(0)' }}>▼</span>
