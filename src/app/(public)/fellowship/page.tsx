@@ -48,13 +48,12 @@ export default function FellowshipPage() {
             {/* Placeholder for an image of mentorship or construction site discussion */}
             <div className={styles.imageCard}>
                <Image 
-                 src="/mentorship.avif" 
+                 src="/workers.avif"
                  alt="Mentorship in action" 
                  fill 
                  className={styles.image} 
                />
                <div className={styles.floatingCard}>
-                 <span className={styles.cardIcon}>🛠️</span>
                  <span className={styles.cardText}>Real-world Execution</span>
                </div>
             </div>

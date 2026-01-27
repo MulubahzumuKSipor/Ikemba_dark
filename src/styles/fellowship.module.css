@@ -7,10 +7,11 @@
 
 /* --- HERO --- */
 .hero {
+    padding-top: 40px;
   position: relative;
-  height: 60vh;
+  height: 90vh;
   min-height: 500px;
-  background-image: url('/fellowship_hero.avif'); /* Add a group photo or construction site photo */
+  background-image: url('/images/projects/aya_hotel.png');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -25,9 +26,10 @@
 }
 
 .heroContainer {
+    padding-top: 20px;
   position: relative;
   z-index: 2;
-  max-width: 800px;
+
 }
 
 .label {
@@ -128,7 +130,7 @@
 .floatingCard {
   position: absolute;
   bottom: 2rem;
-  right: -2rem;
+  right: 0;
   background: #151B25;
   padding: 1rem 1.5rem;
   border-left: 3px solid #D4AF37;

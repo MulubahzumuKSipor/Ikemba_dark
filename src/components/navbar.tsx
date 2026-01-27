@@ -64,7 +64,6 @@ export default function Navbar() {
                 <span className={styles.megaMenuLabel}>Corporate Social Responsibility</span>
 
                 <Link href="/impact" className={styles.megaMenuItem}>
-                  <div className={styles.menuIcon}>🌍</div>
                   <div>
                     <span className={styles.menuTitle}>Community & Impact</span>
                     <span className={styles.menuDesc}>Our commitment to sustainability.</span>
@@ -72,7 +71,6 @@ export default function Navbar() {
                 </Link>
 
                 <Link href="/fellowship" className={styles.megaMenuItem}>
-                  <div className={styles.menuIcon}>🎓</div>
                   <div>
                     <span className={styles.menuTitle}>Ikemba Fellowship</span>
                     <span className={styles.menuDesc}>Empowering the next generation.</span>
