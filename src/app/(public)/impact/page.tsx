@@ -49,7 +49,7 @@ export default function ImpactPage() {
 
           <div className={styles.spotlightImageWrapper}>
             <Image
-              src="/llc-hero.jfif"
+              src="/llc-hero.webp"
               alt="Liberian Learning Center"
               fill
               className={styles.spotlightImage}
