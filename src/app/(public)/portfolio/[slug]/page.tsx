@@ -1,5 +1,5 @@
+import { notFound } from 'next/navigation';
 import { supabase, Project } from "@/lib/supabase";
-import { notFound } from "next/navigation";
 import ProjectDetail from "@/components/projectDetail";
 
 interface ProjectPageProps {
@@ -7,6 +7,7 @@ interface ProjectPageProps {
 }
 
 async function getProject(slug: string): Promise<Project | null> {
+  notFound();
   const { data, error } = await supabase
     .from("projects")
     .select("*")

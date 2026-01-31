@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Project } from "@/lib/supabase";
@@ -13,6 +14,7 @@ type CategoryFilter = "All" | "Living" | "Landmarks";
 type StatusFilter = "All" | "Planned" | "In Progress" | "Completed";
 
 export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) {
+  notFound();
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("All");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
 

@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { supabase, Project } from "@/lib/supabase";
 import PortfolioShowcase from "@/components/portfolioShowcase";
 
