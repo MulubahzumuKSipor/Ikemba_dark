@@ -15,9 +15,9 @@ export default function Identity() {
           </h2>
           <p className={styles.text}>
             Ikemba Investment Group is a Pan African firm strategically focused on Development, Architecture, Construction Management and Consulting towards real estate in Africa’s emerging economies. With offices in Monrovia, Liberia and Accra, Ghana, our firm’s core approach involves working with public and private partners to help identify, plan and execute unique real estate investment opportunities across the African continent.
-            <br /><br />
+            {/* <br /><br />
             Supported by our licensed general contractor <strong>Saraiva + Associados</strong> and <strong>Buildforms Construction Pte Ltd</strong>, we execute unique real estate
-            investment opportunities across the continent.
+            investment opportunities across the continent. */}
           </p>
           
           {/* <div className={styles.statRow}>

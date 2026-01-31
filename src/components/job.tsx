@@ -7,33 +7,35 @@ import styles from '@/styles/careers.module.css';
 export default function JobBoard({ jobs }: { jobs: Job[] }) {
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
-  // Helper to close modal on background click
+  // Close modal when clicking the dark overlay
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) setSelectedJob(null);
   };
 
   return (
     <>
-      {/* 1. THE GRID */}
+      {/* --- 1. THE GRID (Preview Cards) --- */}
       <div className={styles.grid}>
         {jobs.map((job) => (
           <div key={job.id} className={styles.card}>
+            {/* Card Header */}
             <div className={styles.cardHeader}>
               <span className={styles.department}>{job.department}</span>
               <span className={styles.type}>{job.type}</span>
             </div>
             
+            {/* Card Content */}
             <h3 className={styles.jobTitle}>{job.title}</h3>
             <div className={styles.locationRow}>
               <span className={styles.locationIcon}>📍</span>
               {job.location}
             </div>
 
-            {/* Preview text (Optional: Truncated plain text) */}
             <p className={styles.previewText}>
-              Click below to view full requirements and application details.
+              Click to view full description, requirements, and application details.
             </p>
 
+            {/* Card Action */}
             <button 
               onClick={() => setSelectedJob(job)} 
               className={styles.applyBtn}
@@ -44,7 +46,7 @@ export default function JobBoard({ jobs }: { jobs: Job[] }) {
         ))}
       </div>
 
-      {/* 2. THE MODAL */}
+      {/* --- 2. THE MODAL (Detailed View) --- */}
       {selectedJob && (
         <div className={styles.modalOverlay} onClick={handleOverlayClick}>
           <div className={styles.modalContent}>
@@ -66,18 +68,30 @@ export default function JobBoard({ jobs }: { jobs: Job[] }) {
               </button>
             </div>
 
-            {/* Scrollable Description */}
-            <div 
-              className={styles.modalBody}
-              dangerouslySetInnerHTML={{ __html: selectedJob.description }} 
-            />
+            {/* Modal Body */}
+            <div className={styles.modalBody}>
+              {/* 1. Rich Text Description */}
+              <div dangerouslySetInnerHTML={{ __html: selectedJob.description }} />
 
-            {/* Modal Footer */}
+              {/* 2. Explicit Requirements List (from Array) */}
+              {selectedJob.requirements && selectedJob.requirements.length > 0 && (
+                <div style={{ marginTop: '2rem' }}>
+                  <strong>Key Requirements:</strong>
+                  <ul>
+                    {selectedJob.requirements.map((req, i) => (
+                      <li key={i}>{req}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer (Gmail Link) */}
             <div className={styles.modalFooter}>
               <a 
                 href={`https://mail.google.com/mail/?view=cm&fs=1&to=${
-                  selectedJob.application_email || 'isekajipo@ikembagroupintl.com'
-                }&su=${encodeURIComponent(`Application for ${selectedJob.title}`)}`}
+                  selectedJob.application_email || 'careers@ikembagroupintl.com'
+                }&su=${encodeURIComponent(`Application: ${selectedJob.title}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.modalApplyBtn}

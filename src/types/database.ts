@@ -59,19 +59,24 @@ export interface Article {
   is_featured: boolean;
 }
 
-export interface Job {
+// FIX: Updated Career Interface to match Database Schema
+export interface Career {
   id: string;
   created_at: string;
   title: string;
   slug: string;
-  location: string;
   department: string;
+  location: string;
   type: JobType;
-  description: string;
-  requirements: string[];
+  description: string; // HTML content
+  requirements: string[]; // Array of strings (bullet points)
   application_email: string | null;
   is_active: boolean;
+  posted_at?: string;
 }
+
+// Alias 'Job' to 'Career' for backward compatibility
+export type Job = Career;
 
 export interface Profile {
   id: string;
@@ -95,25 +100,6 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-
-  // types/database.ts
-
-
-
-export interface Career {
-  id: string;
-  created_at: string;
-  title: string;
-  slug: string;
-  department: string;
-  location: string;
-  type: JobType;
-  description: string; // HTML content from RichEditor
-  is_active: boolean;
-  posted_at?: string;
-}
-
-// ... existing types (Profile, Lead, Article, etc.)
 export type Database = {
   public: {
     Tables: {
