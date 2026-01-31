@@ -24,7 +24,7 @@ export default function ImpactPage() {
       </section>
 
       {/* STATS STRIP */}
-      <section className={styles.statsSection}>
+      {/* <section className={styles.statsSection}>
         <div className={`container ${styles.statsGrid}`}>
           <div className={styles.statItem}>
             <span className={styles.statNumber}>500+</span>
@@ -41,7 +41,7 @@ export default function ImpactPage() {
             <span className={styles.statLabel}>Students Impacted</span>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* SPOTLIGHT: FLASGHIP PROJECT */}
       <section className={styles.spotlightSection}>

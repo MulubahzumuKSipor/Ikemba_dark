@@ -20,7 +20,7 @@ export default function Identity() {
             investment opportunities across the continent.
           </p>
           
-          <div className={styles.statRow}>
+          {/* <div className={styles.statRow}>
             <div className={styles.stat}>
               <span className={styles.statNumber}>15+</span>
               <span className={styles.statLabel}>Years Active</span>
@@ -33,7 +33,7 @@ export default function Identity() {
               <span className={styles.statNumber}>3</span>
               <span className={styles.statLabel}>Global Offices</span>
             </div>
-          </div>
+          </div> */}
 
           <Link href="/about" className={styles.textLink}>
             Read Our Story &rarr;

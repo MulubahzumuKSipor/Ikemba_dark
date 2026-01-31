@@ -11,7 +11,6 @@ import Partners from '@/components/partners';
 export default async function Home() {
   const supabase = await createClient();
 
-  // Fetch the latest 3 published articles
   const { data: articles } = await supabase
     .from('news')
     .select('*')

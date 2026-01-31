@@ -107,11 +107,11 @@ const services: Service[] = [
       },
     ],
     project: {
-      title: "7th & Tubman Tower",
-      location: "Monrovia, Liberia",
-      image: "/tower.avif",
-      stat: "12",
-      statLabel: "Stories",
+      title: "Atlantic View Residence",
+      location: "Marshall, Liberia",
+      image: "/avr.avif",
+      stat: "Luxury",
+      statLabel: "Oceanfront",
     },
   },
   {

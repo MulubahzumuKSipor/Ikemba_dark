@@ -17,14 +17,6 @@ const offices = [
       "Leading our expansion across Anglophone West Africa, including the Ghana Insurance College project.",
     image: "/construct.avif",
   },
-  {
-    city: "Philadelphia",
-    country: "USA",
-    role: "Investment Office",
-    description:
-      "Connecting diaspora investors with African opportunities. Financial operations and investor relations.",
-    image: "/workers.avif",
-  },
 ];
 
 export default function AboutPresence() {

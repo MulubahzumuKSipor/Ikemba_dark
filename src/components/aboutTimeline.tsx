@@ -20,12 +20,6 @@ const milestones = [
     location: "Accra, Ghana",
   },
   {
-    year: "2021",
-    title: "US Operations",
-    description: "Launched Philadelphia headquarters to serve diaspora investors and facilitate capital flow.",
-    location: "Philadelphia, USA",
-  },
-  {
     year: "2024",
     title: "7th & Tubman",
     description: "Broke ground on our flagship mixed-use high-rise development in central Monrovia.",

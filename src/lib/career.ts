@@ -3,7 +3,7 @@
 import { createClient } from '@/lib/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { JobType } from '@/types/database'; // <--- 1. Import the Type
+import { JobType } from '@/types/database';
 
 export async function createJob(formData: FormData) {
   const supabase = await createClient();
@@ -11,14 +11,11 @@ export async function createJob(formData: FormData) {
   const title = formData.get('title') as string;
   const department = formData.get('department') as string;
   const location = formData.get('location') as string;
-  
-  // 2. Fix: Cast the string to the JobType enum
   const type = formData.get('type') as JobType; 
-  
   const description = formData.get('description') as string;
   const is_active = formData.get('is_active') === 'on';
 
-  // 3. Fix: Generate a slug (Required by Database)
+  // Generate slug from title
   const slug = title
     .toLowerCase()
     .replace(/ /g, '-')
@@ -28,14 +25,12 @@ export async function createJob(formData: FormData) {
     .from('careers')
     .insert({
       title,
-      slug, // <--- Add this
+      slug,
       department,
       location,
-      type, // Now TypeScript is happy
+      type,
       description,
       is_active,
-      // Note: 'posted_at' was removed as it wasn't in your type definition. 
-      // Supabase auto-handles 'created_at'.
     });
 
   if (error) {
@@ -47,22 +42,32 @@ export async function createJob(formData: FormData) {
   redirect('/admin/careers');
 }
 
-export async function toggleJobStatus(id: string, currentStatus: boolean) {
+// FIX 1: Simpler logic. We just set it to the 'isActive' value passed in.
+export async function toggleJobStatus(id: string, isActive: boolean) {
   const supabase = await createClient();
   
   await supabase
     .from('careers')
-    .update({ is_active: !currentStatus })
+    .update({ is_active: isActive }) // Set directly, don't flip it again
     .eq('id', id);
 
   revalidatePath('/admin/careers');
 }
 
-export async function deleteJob(formData: FormData) {
+// FIX 2: Accept 'id' directly as a string to match your component call
+export async function deleteJob(id: string) {
   const supabase = await createClient();
-  const id = formData.get('id') as string;
 
-  await supabase.from('careers').delete().eq('id', id);
+  const { error } = await supabase
+    .from('careers')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error deleting job:', error);
+    throw new Error('Failed to delete job');
+  }
+
   revalidatePath('/admin/careers');
 }
 
@@ -77,7 +82,6 @@ export async function updateJob(formData: FormData) {
   const description = formData.get('description') as string;
   const is_active = formData.get('is_active') === 'on';
 
-  // Regenerate slug from title to keep URL sync
   const slug = title
     .toLowerCase()
     .replace(/ /g, '-')

@@ -1,19 +1,20 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/server';
-import { Career } from '@/types/database'; // You might need to add this type
+import { Career } from '@/types/database';
 import { toggleJobStatus, deleteJob } from '@/lib/career';
 import styles from '@/styles/adminCareers.module.css';
 
-// --- SERVER ACTIONS COMPONENTS ---
-
+// --- SERVER COMPONENTS (ACTIONS) ---
 
 async function StatusToggle({ id, isActive }: { id: string, isActive: boolean }) {
-  'use server';
   return (
-    <form action={async () => {
-      'use server';
-      await toggleJobStatus(id, isActive);
-    }}>
+    <form
+      action={async () => {
+        'use server';
+        // Flips the status (Open <-> Closed)
+        await toggleJobStatus(id, !isActive);
+      }}
+    >
       <button
         type="submit"
         className={`${styles.statusBadge} ${isActive ? styles.active : styles.closed}`}
@@ -26,10 +27,13 @@ async function StatusToggle({ id, isActive }: { id: string, isActive: boolean })
 }
 
 async function DeleteButton({ id }: { id: string }) {
-  'use server';
   return (
-    <form action={deleteJob}>
-      <input type="hidden" name="id" value={id} />
+    <form
+      action={async () => {
+        'use server';
+        await deleteJob(id);
+      }}
+    >
       <button type="submit" className={styles.deleteBtn}>
         Delete
       </button>
@@ -38,6 +42,7 @@ async function DeleteButton({ id }: { id: string }) {
 }
 
 // --- MAIN PAGE ---
+
 export default async function CareersPage() {
   const supabase = await createClient();
 
@@ -46,7 +51,7 @@ export default async function CareersPage() {
     .select('*')
     .order('created_at', { ascending: false });
 
-  if (error) console.error(error);
+  if (error) console.error("Error fetching careers:", error);
 
   const careerList = (jobs || []) as unknown as Career[];
 
@@ -69,6 +74,7 @@ export default async function CareersPage() {
         {careerList.map((job) => (
           <div key={job.id} className={styles.card}>
 
+            {/* CARD HEADER */}
             <div className={styles.cardHeader}>
               <div className={styles.roleInfo}>
                 <h3 className={styles.jobTitle}>{job.title}</h3>
@@ -79,6 +85,7 @@ export default async function CareersPage() {
               <StatusToggle id={job.id} isActive={job.is_active} />
             </div>
 
+            {/* CARD FOOTER */}
             <div className={styles.cardFooter}>
               <span className={styles.date}>
                 Posted: {new Date(job.created_at).toLocaleDateString()}
@@ -90,6 +97,7 @@ export default async function CareersPage() {
                 <DeleteButton id={job.id} />
               </div>
             </div>
+
           </div>
         ))}
 

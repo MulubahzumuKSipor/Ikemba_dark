@@ -10,22 +10,32 @@ export const metadata = {
 export default async function NewsPage() {
   const supabase = await createClient();
 
-  // 1. SECURE FETCH: Only get published news
   const { data } = await supabase
     .from('news')
     .select('*')
     .eq('is_published', true)
-    .order('is_featured', { ascending: false }) // Pinned items first
-    .order('published_at', { ascending: false }); // Newest items next
+    .order('is_featured', { ascending: false })
+    .order('published_at', { ascending: false });
 
-  // Cast data to our strict Type
-  const articles = (data || []) as Article[];
+  const allArticles = (data || []) as Article[];
 
-  
+  // 2. FILTER: Keep ONLY AVR related items
+  const avrArticles = allArticles.filter((article) => {
+    const searchContent = (
+      article.title +
+      article.slug +
+      (article.excerpt || '')
+    ).toLowerCase();
+
+    // UPDATED: Check for correct name
+    return (
+      searchContent.includes('avr') ||
+      searchContent.includes('atlantic view residence')
+    );
+  });
 
   return (
     <main className={styles.main}>
-      {/* 2. STATIC HEADER (Good for SEO) */}
       <section className={styles.header}>
         <div className="container">
           <span className={styles.label}>Corporate Communications</span>
@@ -39,10 +49,9 @@ export default async function NewsPage() {
         </div>
       </section>
 
-      {/* 3. INTERACTIVE SECTION */}
       <section className={styles.feedSection}>
-        <div className="container">
-          <NewsSection articles={articles} />
+        <div className={styles.container}>
+          <NewsSection articles={avrArticles} />
         </div>
       </section>
     </main>

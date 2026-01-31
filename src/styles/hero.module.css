@@ -258,3 +258,52 @@
     object-position: center;
   }
 }
+
+/* Add this to your existing CSS file */
+
+.audioBtn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 20; /* Ensure it sits above video/overlays */
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.audioBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+  border-color: #D4AF37; /* Your Gold accent color */
+  color: #D4AF37;
+}
+
+.audioBtn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 768px) {
+  .audioBtn {
+    bottom: 90px; /* Move up slightly to avoid mobile browser bars */
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .audioBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+}

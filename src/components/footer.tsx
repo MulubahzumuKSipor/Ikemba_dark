@@ -25,8 +25,8 @@ export default function Footer() {
             strategic development and world-class architecture.
           </p>
           <div className={styles.socials}>
-            <a href="#" className={styles.socialLink}>LinkedIn</a>
-            <a href="#" className={styles.socialLink}>Instagram</a>
+            <a href="https://www.linkedin.com/company/ikemba-investment-group" className={styles.socialLink}>LinkedIn</a>
+            <a href="https://www.instagram.com/ikembagroup/profilecard/?igsh=aHA4cGw1NXl3aGZ5" className={styles.socialLink}>Instagram</a>
           </div>
         </div>
 
@@ -55,10 +55,10 @@ export default function Footer() {
               <strong>Accra, Ghana</strong>
               <p>East Legon</p>
             </div>
-            <div className={styles.officeItem}>
+            {/* <div className={styles.officeItem}>
               <strong>United States</strong>
               <p>Philadelphia, PA</p>
-            </div>
+            </div> */}
           </div>
         </div>
 

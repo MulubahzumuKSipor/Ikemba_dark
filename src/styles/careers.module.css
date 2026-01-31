@@ -58,7 +58,7 @@
   gap: 2rem;
 }
 
-/* --- JOB CARD (The Dossier) --- */
+/* --- JOB CARD (Preview Mode) --- */
 .card {
   background-color: #1E293B; /* Surface Slate */
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -66,9 +66,10 @@
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Pushes button to bottom */
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   position: relative;
-  overflow: hidden;
+  min-height: 320px; /* Uniform height for all cards */
 }
 
 .card:hover {
@@ -128,57 +129,15 @@
   font-size: 1rem;
 }
 
-/* Description */
-.description {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #CBD5E1; /* High-readability slate */
-  margin-bottom: 2rem;
-  flex-grow: 1; /* Pushes button to bottom */
-}
-
-/* Requirements List */
-.requirements {
-  background-color: rgba(15, 23, 42, 0.5); /* Darker inset box */
-  padding: 1.5rem;
-  border-radius: 2px;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.reqLabel {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #D4AF37;
-  margin-bottom: 0.75rem;
-}
-
-.requirements ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.requirements li {
-  position: relative;
-  padding-left: 1.25rem;
+.previewText {
+  color: #64748B;
   font-size: 0.9rem;
-  color: #94A3B8;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  font-style: italic;
   line-height: 1.5;
 }
 
-.requirements li::before {
-  content: '•';
-  color: #D4AF37;
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-/* Apply Button */
+/* Apply Button (In Card) */
 .applyBtn {
   display: inline-flex;
   align-items: center;
@@ -193,14 +152,166 @@
   color: #D4AF37;
   background: transparent;
   border: 1px solid #D4AF37;
-  text-decoration: none;
+  cursor: pointer; /* Important for button element */
   transition: all 0.3s ease;
 }
 
 .applyBtn:hover {
   background: #D4AF37;
-  color: #0F172A; /* Dark Text */
-  gap: 1.25rem; /* Arrow Slide */
+  color: #0F172A;
+  gap: 1.25rem;
+}
+
+/* --- MODAL OVERLAY & CONTENT --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.95); /* Darker backdrop */
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modalContent {
+  background: #1E293B;
+  width: 100%;
+  max-width: 800px;
+  max-height: 85vh; /* Keep it inside viewport */
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal Header */
+.modalHeader {
+  padding: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #0F172A;
+}
+
+.modalBadge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0F172A;
+  background: #D4AF37;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
+}
+
+.modalTitle {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.modalSubtitle {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #64748B;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 0.5;
+  padding: 0 0 10px 10px;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover {
+  color: #fff;
+}
+
+/* Modal Body (Scrollable Area) */
+.modalBody {
+  padding: 2.5rem;
+  overflow-y: auto; /* Internal Scrollbar */
+  color: #CBD5E1;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* Rich Text Formatting inside Modal */
+.modalBody p {
+  margin-bottom: 1.2rem;
+}
+
+.modalBody ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.modalBody li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #CBD5E1;
+}
+
+.modalBody li::before {
+  content: '•';
+  color: #D4AF37; /* Gold Bullet */
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.modalBody strong {
+  color: #D4AF37;
+  font-weight: 700;
+}
+
+/* Modal Footer */
+.modalFooter {
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0F172A;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalApplyBtn {
+  display: inline-block;
+  background: #D4AF37;
+  color: #0F172A;
+  padding: 1rem 2.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.modalApplyBtn:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 /* --- EMPTY STATE --- */
@@ -238,16 +349,27 @@
   opacity: 0.8;
 }
 
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: 1fr 1fr; /* 2 Cols */
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr; /* 1 Col */
+    grid-template-columns: 1fr;
   }
 
   .header {
@@ -256,5 +378,15 @@
 
   .pageTitle {
     font-size: 3rem;
+  }
+
+  .modalContent {
+    height: 100vh; /* Full screen on mobile */
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .modalBody {
+    padding: 1.5rem;
   }
 }

@@ -219,7 +219,7 @@ export default function LeadershipShowcase() {
 
           {/* ACHIEVEMENTS & EXPERTISE ROW */}
           <div className={styles.detailsGrid}>
-            <div className={styles.detailsCard}>
+            {/* <div className={styles.detailsCard}>
               <h4 className={styles.detailsTitle}>Key Achievements</h4>
               <ul className={styles.detailsList}>
                 {selectedLeader.achievements.map((achievement, index) => (
@@ -229,7 +229,7 @@ export default function LeadershipShowcase() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             <div className={styles.detailsCard}>
               <h4 className={styles.detailsTitle}>Areas of Expertise</h4>
