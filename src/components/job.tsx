@@ -76,7 +76,7 @@ export default function JobBoard({ jobs }: { jobs: Job[] }) {
             <div className={styles.modalFooter}>
               <a 
                 href={`https://mail.google.com/mail/?view=cm&fs=1&to=${
-                  selectedJob.application_email || 'careers@ikembagroupintl.com'
+                  selectedJob.application_email || 'isekajipo@ikembagroupintl.com'
                 }&su=${encodeURIComponent(`Application for ${selectedJob.title}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
