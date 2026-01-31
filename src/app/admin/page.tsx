@@ -1,4 +1,5 @@
 import styles from '@/styles/adminDashboard.module.css';
+import Link from 'next/link';
 
 // SVG Icons for the feature cards
 const Icons = {
@@ -28,58 +29,66 @@ export default function AdminDashboard() {
 
         {/* Module: Messages */}
         <div className={styles.card}>
-          <div className={styles.iconWrapper}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
-              <Icons.Message />
-            </svg>
-          </div>
-          <h3 className={styles.cardTitle}>Client Communications</h3>
-          <p className={styles.cardText}>
-            Review inquiries from investors, homeowners, and institutions.
-          </p>
-          <span className={styles.shortcut}>Go to Messages →</span>
+          <Link href="/admin/leads" className={styles.cardLink}>
+            <div className={styles.iconWrapper}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
+                <Icons.Message />
+              </svg>
+            </div>
+            <h3 className={styles.cardTitle}>Client Communications</h3>
+            <p className={styles.cardText}>
+              Review inquiries from investors, homeowners, and institutions.
+            </p>
+            <span className={styles.shortcut}>Go to Messages →</span>
+          </Link>
         </div>
 
         {/* Module: News */}
         <div className={styles.card}>
-          <div className={styles.iconWrapper}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
-              <Icons.News />
-            </svg>
-          </div>
-          <h3 className={styles.cardTitle}>Market Intelligence</h3>
-          <p className={styles.cardText}>
-            Publish press releases, project updates, and industry insights.
-          </p>
-          <span className={styles.shortcut}>Manage News →</span>
+          <Link href="/admin/news" className={styles.cardLink}>
+            <div className={styles.iconWrapper}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
+                <Icons.News />
+              </svg>
+            </div>
+            <h3 className={styles.cardTitle}>Market Intelligence</h3>
+            <p className={styles.cardText}>
+              Publish press releases, project updates, and industry insights.
+            </p>
+            <span className={styles.shortcut}>Manage News →</span>
+          </Link>
         </div>
 
         {/* Module: Careers */}
         <div className={styles.card}>
-          <div className={styles.iconWrapper}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
-              <Icons.Briefcase />
-            </svg>
-          </div>
-          <h3 className={styles.cardTitle}>Talent Acquisition</h3>
-          <p className={styles.cardText}>
-            Post new job openings and manage recruitment status.
-          </p>
-          <span className={styles.shortcut}>Manage Careers →</span>
+          <Link href="/admin/careers" className={styles.cardLink}>
+            <div className={styles.iconWrapper}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
+                <Icons.Briefcase />
+              </svg>
+            </div>
+            <h3 className={styles.cardTitle}>Talent Acquisition</h3>
+            <p className={styles.cardText}>
+              Post new job openings and manage recruitment status.
+            </p>
+            <span className={styles.shortcut}>Manage Careers →</span>
+        </Link>
         </div>
 
         {/* Module: Team */}
         <div className={styles.card}>
-          <div className={styles.iconWrapper}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
-              <Icons.Users />
-            </svg>
-          </div>
-          <h3 className={styles.cardTitle}>Team Access</h3>
+          <Link href="/admin/team" className={styles.cardLink}>
+            <div className={styles.iconWrapper}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={styles.icon}>
+                <Icons.Users />
+              </svg>
+            </div>
+            <h3 className={styles.cardTitle}>Team Access</h3>
           <p className={styles.cardText}>
             Control staff roles, permissions, and system access levels.
           </p>
           <span className={styles.shortcut}>Manage Users →</span>
+        </Link>
         </div>
 
       </div>
