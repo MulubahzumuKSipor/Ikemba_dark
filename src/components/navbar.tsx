@@ -48,7 +48,7 @@ export default function Navbar() {
           <Link href="/about" className={styles.link}>About</Link>
           <Link href="/leadership" className={styles.link}>Leadership</Link>
           <Link href="/services" className={styles.link}>Services</Link>
-          {/* <Link href="/portfolio" className={styles.link}>Portfolio</Link> */}
+          <Link href="/portfolio" className={styles.link}>Portfolio</Link>
 
           {/* MEGA MENU: CSR */}
           <div className={styles.megaMenuWrapper}>
@@ -108,7 +108,7 @@ export default function Navbar() {
             <Link href="/about" className={styles.mobileLink} onClick={closeMenu}>About</Link>
             <Link href="/leadership" className={styles.mobileLink} onClick={closeMenu}>Leadership</Link>
             <Link href="/services" className={styles.mobileLink} onClick={closeMenu}>Services</Link>
-            {/* <Link href="/portfolio" className={styles.mobileLink} onClick={closeMenu}>Portfolio</Link> */}
+            <Link href="/portfolio" className={styles.mobileLink} onClick={closeMenu}>Portfolio</Link>
 
             {/* MOBILE DROPDOWN */}
             <div className={styles.mobileSubGroup}>

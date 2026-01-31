@@ -14,7 +14,7 @@ type CategoryFilter = "All" | "Living" | "Landmarks";
 type StatusFilter = "All" | "Planned" | "In Progress" | "Completed";
 
 export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) {
-  notFound();
+  // notFound();
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("All");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
 
