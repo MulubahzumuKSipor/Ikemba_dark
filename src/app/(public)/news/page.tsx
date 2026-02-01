@@ -22,6 +22,7 @@ export default async function NewsPage() {
   // 2. FILTER: Keep ONLY AVR related items
   const avrArticles = allArticles.filter((article) => {
     const searchContent = (
+      article.category +
       article.title +
       article.slug +
       (article.excerpt || '')
@@ -30,7 +31,8 @@ export default async function NewsPage() {
     // UPDATED: Check for correct name
     return (
       searchContent.includes('avr') ||
-      searchContent.includes('atlantic view residence')
+      searchContent.includes('atlantic view residence') ||
+      searchContent.includes('events')
     );
   });
 

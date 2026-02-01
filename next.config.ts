@@ -2,9 +2,22 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    // @ts-ignore — supported at runtime, missing from types
-    allowedDevOrigins: [
-      "https://*.ngrok-free.dev",
+    serverActions: {
+      allowedOrigins: [
+        "*.ngrok-free.dev",
+        "localhost:3000"
+      ],
+    },
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'vsmicouphxhyjjhrjrih.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
   },
 

@@ -95,6 +95,7 @@ export default function CreateNewsPage() {
                 <option value="Press Release">Press Release</option>
                 <option value="Project Update">Project Update</option>
                 <option value="Milestone">Milestone</option>
+                <option value="Events">Events</option>
                 <option value="Industry Insight">Industry Insight</option>
               </select>
             </div>

@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { createClient } from '@/lib/server';
-import { Article } from '@/types/database'; // Fixed: Import from the central index.ts
-import styles from '@/styles/article.module.css'; // Fixed: Co-located styles
+import { Article } from '@/types/database';
+import styles from '@/styles/article.module.css';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -43,7 +43,6 @@ export default async function ArticlePage({ params }: PageProps) {
   if (!data) return notFound();
 
   // 3. TYPE SAFE CASTING
-  // We cast to 'unknown' first to safely bridge the Database types to your App types
   const article = data as unknown as Article;
 
   return (
@@ -81,12 +80,11 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
 
         {/* THE READING COLUMN */}
-        <div className={styles.contentBody}>
-          {article.content?.split('\n').map((paragraph, index) => (
-            // Only render non-empty paragraphs to keep spacing clean
-            paragraph.trim() && <p key={index}>{paragraph}</p>
-          ))}
-        </div>
+        {/* FIX: Render HTML correctly using dangerouslySetInnerHTML */}
+        <div
+          className={styles.contentBody}
+          dangerouslySetInnerHTML={{ __html: article.content || '' }}
+        />
 
         {/* FOOTER NAVIGATION */}
         <footer className={styles.footer}>

@@ -54,7 +54,7 @@ export default function NewsGrid({ articles, variant = 'full' }: NewsGridProps) 
         </div>
       ) : (
         <div className={styles.filterBar}>
-          {['All', 'Press Release', 'Project Update', 'Milestone', 'Industry Insight'].map((cat) => (
+          {['All', 'Press Release', 'Project Update', 'Milestone', 'Industry Insight', 'Events'].map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
