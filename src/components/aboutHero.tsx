@@ -14,7 +14,7 @@ export default function AboutHero() {
             A Pan-African vision rooted in over 50 years of combined expertise 
             in Real Estate Development, Architecture, and Construction Management.
           </p>
-          <div className={styles.stats}>
+          {/* <div className={styles.stats}>
             <div className={styles.stat}>
               <span className={styles.statNumber}>15+</span>
               <span className={styles.statLabel}>Years Active</span>
@@ -29,7 +29,7 @@ export default function AboutHero() {
               <span className={styles.statNumber}>3</span>
               <span className={styles.statLabel}>Global Offices</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       
