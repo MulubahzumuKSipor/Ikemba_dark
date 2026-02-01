@@ -15,13 +15,13 @@ export default function Footer() {
             <Image 
               src="/logo.png" 
               alt="Ikemba Group Logo" 
-              width={180} 
-              height={60} 
+              width={180}
+              height={60}
               style={{ width: 'auto', height: 'auto' }}
             />
           </Link>
           <p className={styles.missionSnippet}>
-            A Pan-African firm redefining the built environment through 
+            A Pan-African firm redefining the african built environment through
             strategic development and world-class architecture.
           </p>
           <div className={styles.socials}>
@@ -72,14 +72,14 @@ export default function Footer() {
               &copy; {currentYear} Ikemba Investment Group. All Rights Reserved.
             </p>
           </Link>
-          <div className={styles.partnerLogos}>
+          {/* <div className={styles.partnerLogos}>
             <span>Partnered with:</span>
             <strong>Tri Buchanan</strong>
             <span className={styles.divider}>|</span>
             <strong>Gateway Realty</strong>
             <span className={styles.divider}>|</span>
             <strong>Kanree Global</strong>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

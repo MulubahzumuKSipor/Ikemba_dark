@@ -1,63 +1,51 @@
-import styles from "@/styles/aboutPresence.module.css";
-
-const offices = [
-  {
-    city: "Monrovia",
-    country: "Liberia",
-    role: "Headquarters",
-    description:
-      "Our founding office and operational hub for all West African development projects.",
-    image: "/avr.avif",
-  },
-  {
-    city: "Accra",
-    country: "Ghana",
-    role: "Regional Office",
-    description:
-      "Leading our expansion across Anglophone West Africa, including the Ghana Insurance College project.",
-    image: "/construct.avif",
-  },
-];
+import styles from '@/styles/about.module.css';
 
 export default function AboutPresence() {
   return (
-    <section className={styles.section}>
-      <div className={`container ${styles.container}`}>
-        <div className={styles.header}>
-          <span className={styles.label}>Global Reach</span>
-          <h2 className={styles.title}>
-            Three Continents, <span className={styles.accent}>One Vision</span>
-          </h2>
-          <p className={styles.subtitle}>
-            Our strategic presence across Africa and North America enables us to mobilize 
-            capital, talent, and expertise for transformative development projects.
-          </p>
-        </div>
+    <section className={styles.presenceSection}>
+      {/* 1. BACKGROUND MAP / TEXTURE */}
+      <div
+        className={styles.presenceBackground}
+        style={{ backgroundImage: 'url(/dark_map.jpg)' }}
+        // Tip: Use a dark, subtle world map or architectural texture here
+      />
 
-        <div className={styles.grid}>
-          {offices.map((office) => (
-            <div key={office.city} className={styles.card}>
-              <div 
-                className={styles.cardImage}
-                style={{ backgroundImage: `url('${office.image}')` }}
-              >
-                <div className={styles.cardOverlay} />
-                <span className={styles.cardRole}>{office.role}</span>
-              </div>
-              <div className={styles.cardContent}>
-                <h3 className={styles.cardCity}>{office.city}</h3>
-                <span className={styles.cardCountry}>{office.country}</span>
-                <p className={styles.cardText}>{office.description}</p>
-              </div>
+      {/* 2. GRADIENT OVERLAY */}
+      <div className={styles.presenceOverlay} />
+
+      <div className={`container ${styles.presenceContainer}`}>
+        <h2 className={styles.presenceTitle}>Global Presence, Local Impact</h2>
+        <p className={styles.presenceSubtitle}>
+          Operating across time zones to deliver world-class results.
+        </p>
+
+        {/* 3. CENTERED GRID FOR 2 ITEMS */}
+        <div className={styles.locationsGrid}>
+          {/* Location 1: Monrovia */}
+          <div className={styles.locationCard}>
+            <div className={styles.cardContent}>
+              <span className={styles.locationIcon}>LR</span>
+              <h3 className={styles.locationCity}>Monrovia</h3>
+              <p className={styles.locationCountry}>Liberia</p>
+              <div className={styles.locationDivider} />
+              <p className={styles.locationDetail}>
+                Headquarters & <br/>Development Operations
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Connection Lines Visual */}
-        <div className={styles.connections}>
-          <div className={styles.connectionLine} />
-          <span className={styles.connectionLabel}>Connected Operations</span>
-          <div className={styles.connectionLine} />
+          {/* Location 2: Accra */}
+          <div className={styles.locationCard}>
+            <div className={styles.cardContent}>
+              <span className={styles.locationIcon}>GH</span>
+              <h3 className={styles.locationCity}>Accra</h3>
+              <p className={styles.locationCountry}>Ghana</p>
+              <div className={styles.locationDivider} />
+              <p className={styles.locationDetail}>
+                Regional Hub & <br/>Design Studio
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

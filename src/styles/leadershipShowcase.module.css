@@ -304,6 +304,47 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* NEW: LinkedIn Integration Header Layout */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.linkedinButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.linkedinIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.linkedinButton:hover {
+  background-color: #D4AF37; /* Matches Gold theme instead of default blue */
+  border-color: #D4AF37;
+  color: #151B25;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 .profileName {
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -479,6 +520,16 @@
 
   .heroHeader {
     padding: 8rem 0 5rem 0;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .linkedinButton {
+    justify-content: center;
   }
 
   .selectionGrid {

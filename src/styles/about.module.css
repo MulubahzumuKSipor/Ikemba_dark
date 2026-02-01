@@ -1,0 +1,497 @@
+/* styles/about.module.css */
+
+/* --- GLOBAL SETTINGS --- */
+.main {
+  background-color: #051b2c; /* Deep Midnight Blue base */
+  color: #ffffff;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden; /* Prevents horizontal scroll from animations */
+}
+
+/* --- 1. HERO SECTION (Cinematic) --- */
+.heroSection {
+  position: relative;
+  /* Extra padding to accommodate the background image feel */
+  padding: 14rem 0 10rem;
+  text-align: center;
+  background-color: #051b2c;
+  color: #ffffff;
+  overflow: hidden; /* Crucial: crops the zooming background image */
+}
+
+/* Background Image Layer */
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  /* Cinematic Slow Zoom Animation */
+  animation: slowZoom 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+/* Gradient Overlay (Essential for text readability) */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 27, 44, 0.85) 0%,   /* Dark top for nav visibility */
+    rgba(5, 27, 44, 0.6) 50%,   /* Semi-transparent middle */
+    #051b2c 100%                /* Fades seamlessly into the next section */
+  );
+  z-index: 1;
+}
+
+/* Glow Effect (Behind text, above overlay) */
+.heroGlow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, rgba(191, 161, 95, 0.2) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Content Container */
+.heroContainer {
+  position: relative;
+  z-index: 3;
+}
+
+.heroLabel {
+  display: inline-block;
+  color: #bfa15f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+}
+
+.accent {
+  color: #bfa15f;
+  font-style: italic;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: #e2e8f0; /* Brighter silver for contrast against image */
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/* --- 2. STORY SECTION (Magazine Editorial Style) --- */
+.storySection {
+  padding: 8rem 0;
+  background: linear-gradient(to bottom, #051b2c 0%, #020f1a 100%);
+  color: #ffffff;
+  position: relative;
+  z-index: 2; /* Ensures it sits above hero bottom fade */
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+/* Left Side: Visual */
+.storyVisual {
+  position: relative;
+  height: 600px;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.storyImage {
+  object-fit: cover;
+  transition: transform 0.7s ease, filter 0.7s ease;
+  filter: grayscale(20%) contrast(1.1);
+}
+
+.imageFrame:hover .storyImage {
+  transform: scale(1.03);
+  filter: grayscale(0%) contrast(1);
+}
+
+/* Badge overlay (Est. 2011) */
+.storyBadge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: #bfa15f; /* Gold Background */
+  color: #051b2c;       /* Dark Text */
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  z-index: 2;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.badgeYear {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-family: var(--font-serif);
+  line-height: 1;
+}
+
+.badgeText {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+/* Right Side: Content */
+.storyContent {
+  padding-left: 2rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.storyDivider {
+  width: 60px;
+  height: 2px;
+  background: #bfa15f;
+  margin-bottom: 2.5rem;
+}
+
+.prose p {
+  font-size: 1.125rem;
+  line-height: 1.85;
+  color: #cbd5e1; /* Light gray text */
+  margin-bottom: 1.5rem;
+}
+
+.prose strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Editorial Drop Cap Styling */
+.dropCap {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 4.5rem;
+  line-height: 0.75;
+  color: #bfa15f;
+  padding-right: 0.75rem;
+  padding-top: 0.35rem;
+  font-weight: 400;
+}
+
+/* --- 3. PRESENCE SECTION (Redesigned) --- */
+.presenceSection {
+  position: relative;
+  padding: 10rem 0;
+  background-color: #051b2c;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Background Image Layer */
+.presenceBackground {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; /* Keeps it subtle */
+  /* If you don't have an image yet, this radial gradient is a nice fallback */
+  background-image: radial-gradient(circle at center, #1e293b 0%, #051b2c 70%);
+  z-index: 0;
+}
+
+/* Gradient Overlay to fade edges */
+.presenceOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 20%, #051b2c 90%);
+  z-index: 1;
+}
+
+.presenceContainer {
+  position: relative;
+  z-index: 2;
+}
+
+.presenceTitle {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.presenceSubtitle {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  margin-bottom: 5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* THE GRID: Centered for 2 items */
+.locationsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Split perfectly in half */
+  gap: 3rem;
+  max-width: 900px; /* Constrain width so cards aren't too stretched */
+  margin: 0 auto;
+}
+
+/* THE CARD: Glassmorphism Style */
+.locationCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03); /* Very transparent */
+  backdrop-filter: blur(10px); /* The "Frosted Glass" blur */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4rem 2rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.locationCard:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: #bfa15f; /* Gold border on hover */
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+}
+
+/* Big "Watermark" Letters behind text */
+.locationIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12rem; /* Huge */
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02); /* Barely visible */
+  z-index: 0;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Ensure content sits above the watermark */
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.locationCity {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+}
+
+.locationCountry {
+  color: #bfa15f;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+
+.locationDivider {
+  width: 50px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 2rem auto;
+  transition: width 0.3s ease;
+}
+
+.locationCard:hover .locationDivider {
+  width: 80px;
+  background: #bfa15f;
+}
+
+.locationDetail {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .locationsGrid {
+    grid-template-columns: 1fr; /* Stack vertically on mobile */
+    max-width: 400px;
+  }
+
+  .presenceTitle {
+    font-size: 2.25rem;
+  }
+
+  .locationCard {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* --- 4. CTA SECTION --- */
+.ctaSection {
+  padding: 8rem 0 10rem;
+  background: #020f1a; /* Darkest Navy */
+  text-align: center;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ctaTitle {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.ctaText {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.primaryBtn {
+  background: #bfa15f;
+  color: #051b2c;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.primaryBtn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(191, 161, 95, 0.2);
+}
+
+.secondaryBtn {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  border-color: #bfa15f;
+  color: #bfa15f;
+  background: rgba(191, 161, 95, 0.05);
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+  .heroTitle { font-size: 3.5rem; }
+
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .storyVisual {
+    height: 450px;
+    order: -1; /* Image always on top on mobile */
+  }
+
+  .storyContent {
+    padding-left: 0;
+  }
+
+  .locationsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 10rem 0 6rem;
+  }
+
+  .storySection {
+    padding: 4rem 0;
+  }
+
+  .storyBadge {
+    right: 1rem;
+    bottom: -1.5rem;
+    padding: 1.5rem;
+  }
+
+  .badgeYear { font-size: 1.5rem; }
+
+  .ctaButtons {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropCap {
+    font-size: 3.5rem;
+  }
+}

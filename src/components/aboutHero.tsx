@@ -1,38 +1,29 @@
-import styles from "@/styles/aboutHero.module.css";
+import styles from '@/styles/about.module.css';
 
 export default function AboutHero() {
   return (
-    <section className={styles.section}>
-      <div className={styles.overlay} />
-      <div className={`container ${styles.container}`}>
-        <div className={styles.content}>
-          <span className={styles.established}>Est. 2011</span>
-          <h1 className={styles.title}>
-            Building the Future of <span className={styles.accent}>Africa</span>
-          </h1>
-          <p className={styles.subtitle}>
-            A Pan-African vision rooted in over 50 years of combined expertise 
-            in Real Estate Development, Architecture, and Construction Management.
-          </p>
-          {/* <div className={styles.stats}>
-            <div className={styles.stat}>
-              <span className={styles.statNumber}>15+</span>
-              <span className={styles.statLabel}>Years Active</span>
-            </div>
-            <div className={styles.divider} />
-            <div className={styles.stat}>
-              <span className={styles.statNumber}>600+</span>
-              <span className={styles.statLabel}>Acres Managed</span>
-            </div>
-            <div className={styles.divider} />
-            <div className={styles.stat}>
-              <span className={styles.statNumber}>3</span>
-              <span className={styles.statLabel}>Global Offices</span>
-            </div>
-          </div> */}
-        </div>
+    <section className={styles.heroSection}>
+      {/* NEW: Background Image Container */}
+      <div
+        className={styles.heroBackground}
+        style={{ backgroundImage: 'url(/service.avif)' }} // Replace with your preferred image path
+      />
+
+      {/* NEW: Dark Gradient Overlay */}
+      <div className={styles.heroOverlay} />
+
+      <div className={`container ${styles.heroContainer}`}>
+        <span className={styles.heroLabel}>Who We Are</span>
+        <h1 className={styles.heroTitle}>
+          Bridging Capital & <br />
+          <span className={styles.accent}>African Innovation.</span>
+        </h1>
+        <p className={styles.heroSubtitle}>
+          Ikemba Investment Group is not just a development firm. We are the architects of a new economic era, connecting the Diaspora&apos;s resources with Africa&apos;s limitless potential.
+        </p>
       </div>
-      
+
+      <div className={styles.heroGlow} />
     </section>
   );
 }
