@@ -7,7 +7,6 @@ interface ProjectPageProps {
 }
 
 async function getProject(slug: string): Promise<Project | null> {
-  notFound();
   const { data, error } = await supabase
     .from("projects")
     .select("*")
