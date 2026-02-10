@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "@/styles/leadershipShowcase.module.css";
 
@@ -18,7 +18,7 @@ interface Leader {
   linkedinUrl: string;
 }
 
-// --- DATA (AUTHENTIC PROFILES) ---
+// --- DATA ---
 const leaders: Leader[] = [
   {
     id: "bleejay",
@@ -109,12 +109,12 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-// --- MAIN COMPONENT ---
-export default function LeadershipShowcase() {
+// --- 1. INTERNAL LOGIC COMPONENT ---
+function ShowcaseContent() {
   const searchParams = useSearchParams();
   const leaderId = searchParams.get('id');
 
-  // FIX 1: Initialize State Lazily based on URL
+  // FIX: Initialize state directly from URL params to avoid extra renders
   const [selectedLeader, setSelectedLeader] = useState<Leader>(() => {
     if (leaderId) {
       const found = leaders.find((l) => l.id === leaderId);
@@ -131,17 +131,17 @@ export default function LeadershipShowcase() {
     return 0;
   });
 
-  // FIX 2: Effect only runs on navigation changes
-  useEffect(() => {
-    if (leaderId && leaderId !== selectedLeader.id) {
-      const leader = leaders.find((l) => l.id === leaderId);
-      if (leader) {
-        setSelectedLeader(leader);
-        const index = leaders.findIndex((l) => l.id === leaderId);
-        if (index !== -1) setCarouselIndex(index);
-      }
-    }
-  }, [leaderId, selectedLeader.id]);
+  // This effect now only runs if the URL changes (like clicking the back button)
+  // useEffect(() => {
+  //   if (leaderId && leaderId !== selectedLeader.id) {
+  //     const leader = leaders.find((l) => l.id === leaderId);
+  //     if (leader) {
+  //       setSelectedLeader(leader);
+  //       const index = leaders.findIndex((l) => l.id === leaderId);
+  //       if (index !== -1) setCarouselIndex(index);
+  //     }
+  //   }
+  // }, [leaderId, selectedLeader.id]);
 
   // Auto-Rotate Background Carousel
   useEffect(() => {
@@ -153,6 +153,7 @@ export default function LeadershipShowcase() {
 
   const handleLeaderClick = (leader: Leader) => {
     setSelectedLeader(leader);
+    // Update URL without refreshing the page
     window.history.pushState(null, '', `?id=${leader.id}`);
   };
 
@@ -188,7 +189,7 @@ export default function LeadershipShowcase() {
             The Minds Behind <span className={styles.accent}>Ikemba</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Three leaders. Fifty years of combined expertise. One shared vision for Africa&apos;s future. [cite: 22]
+            Three leaders. Fifty years of combined expertise. One shared vision for Africa&apos;s future.
           </p>
         </div>
       </div>
@@ -270,10 +271,20 @@ export default function LeadershipShowcase() {
 
         <div className={styles.footer}>
           <div className={styles.footerDivider} />
-          <p className={styles.footerTagline}>&ldquo;Building the Future of Africa Together&rdquo; [cite: 15]</p>
+          <p className={styles.footerTagline}>&ldquo;Building the Future of Africa Together&rdquo;</p>
           <div className={styles.footerDivider} />
         </div>
       </div>
     </section>
   );
 }
+
+// --- 2. EXPORTED WRAPPER (Fixes Build Error) ---
+export default function LeadershipShowcase() {
+  return (
+    <Suspense fallback={<div className={styles.loadingState} />}>
+      <ShowcaseContent />
+    </Suspense>
+  );
+}
+
