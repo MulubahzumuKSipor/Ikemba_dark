@@ -35,7 +35,7 @@ export default function FellowshipPage() {
             <h2 className={styles.sectionTitle}>Not a Classroom. <br />This is the Field.</h2>
             <div className={styles.divider} />
             <p className={styles.text}>
-              My team and I at Ikemba Investment Group believe Africa’s future will be built 
+              Ikemba Investment Group believe Africa’s future will be built
               by well-trained, values-driven people, not just capital.
             </p>
             <p className={styles.text}>
