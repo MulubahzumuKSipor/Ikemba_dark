@@ -1,6 +1,5 @@
 "use client";
 
-import { notFound } from "next/navigation";
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Project } from "@/lib/supabase";
@@ -11,10 +10,10 @@ interface PortfolioShowcaseProps {
 }
 
 type CategoryFilter = "All" | "Living" | "Landmarks";
-type StatusFilter = "All" | "Planned" | "In Progress" | "Completed";
+// UPDATE: Removed "In Progress", Added "Proposed"
+type StatusFilter = "All" | "Proposed" | "Planned" | "Completed";
 
 export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) {
-  // notFound();
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("All");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
 
@@ -43,8 +42,8 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
     switch (status) {
       case "Completed":
         return styles.statusCompleted;
-      case "In Progress":
-        return styles.statusInProgress;
+      // UPDATE: Mapped Proposed to the Planned style (usually yellow/gold)
+      case "Proposed":
       case "Planned":
         return styles.statusPlanned;
       default:
@@ -129,7 +128,8 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
           <div className={styles.statusFilters}>
             <span className={styles.statusLabel}>Status:</span>
             <div className={styles.statusTags}>
-              {(["All", "Planned", "In Progress", "Completed"] as StatusFilter[]).map(
+              {/* UPDATE: Replaced "In Progress" with "Proposed" */}
+              {(["All", "Proposed", "Planned", "Completed"] as StatusFilter[]).map(
                 (status) => (
                   <button
                     key={status}

@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import styles from "@/styles/leadershipShowcase.module.css";
 
+// --- TYPES ---
 interface Leader {
   id: string;
   name: string;
@@ -13,9 +15,10 @@ interface Leader {
   achievements: string[];
   expertise: string[];
   quote: string;
-  linkedinUrl: string; // Added field
+  linkedinUrl: string;
 }
 
+// --- DATA (AUTHENTIC PROFILES) ---
 const leaders: Leader[] = [
   {
     id: "bleejay",
@@ -25,20 +28,20 @@ const leaders: Leader[] = [
     image: "/CEO.avif",
     linkedinUrl: "https://www.linkedin.com/in/bleejay-innis",
     bio: [
-      "Bleejay Innis is the visionary force behind Ikemba Investment Group's Pan-African expansion. With over two decades of experience in real estate development and investment banking, he has led the firm from its founding in Monrovia to becoming a continental leader in infrastructure development.",
-      "Under his leadership, IIG has secured landmark projects including the 61-acre Ghana Insurance College campus and the flagship 7th & Tubman mixed-use development. His expertise in structuring complex development deals has attracted institutional investors from across the African diaspora.",
+      "Bleejay Innis serves as the Chief Executive Officer and a Managing Partner of Ikemba Investment Group, LLC. He is a primary visionary behind the group's mission to contribute meaningfully to the development of Africa's vast economies through long-lasting infrastructure projects.",
+      "Under his leadership, the firm strategically focuses on real estate development, architecture, construction management, and consulting within Africa's emerging economies. He oversees operations across the company's international offices in Monrovia (Liberia), Accra (Ghana), and the USA.",
     ],
     achievements: [
-      "Founded Ikemba Investment Group in 2011",
-      "Secured $50M+ in development financing",
-      "Led expansion into Ghana and US markets",
-      "Pioneered diaspora investment frameworks",
+      "Founded Ikemba Investment Group",
+      "Established strategic presence in Ghana and Liberia",
+      "Secured major development and consulting mandates",
+      "Pioneered a Pan-African firm model for emerging economies",
     ],
     expertise: [
       "Real Estate Development",
-      "Investment Structuring",
-      "Strategic Partnerships",
-      "Capital Markets",
+      "Strategic Planning",
+      "Infrastructure Investment",
+      "International Business",
     ],
     quote:
       "Africa's urban future will be built by Africans. Our role is to channel global expertise and diaspora capital into developments that serve our communities for generations.",
@@ -51,20 +54,20 @@ const leaders: Leader[] = [
     image: "/COO1.avif",
     linkedinUrl: "https://www.linkedin.com/in/imari-sekajipo",
     bio: [
-      "Imari Sekajipo brings operational excellence to every IIG project. His background in civil engineering and construction management ensures that the firm's ambitious designs become reality—on time, on budget, and to the highest international standards.",
-      "Before joining IIG, Imari led major infrastructure projects across East and West Africa, developing deep expertise in navigating the regulatory and logistical challenges unique to African markets. His operational frameworks have become the backbone of IIG's execution capability.",
+      "Imari Sekajipo is a Managing Partner and the Chief Operating Officer for the group. He plays a critical role in the partnership of African professionals that founded the firm, bringing together over 50 years of collective industry experience.",
+      "As COO, he is responsible for the operational execution of the company's diverse services, which include turnkey 'Design & Build' solutions and comprehensive construction management. He ensures that project concept-to-completion workflows maintain strict standards of quality, timeline, and budget.",
     ],
     achievements: [
-      "Delivered 600+ acres of managed developments",
-      "Established Tri Buchanan Development Corp partnership",
-      "Implemented ISO-certified project management systems",
-      "Reduced average project delivery time by 30%",
+      "Implemented turnkey 'Design & Build' operational frameworks",
+      "Standardized site supervision and contractor oversight protocols",
+      "Managed project delivery timelines across multiple markets",
+      "Optimized concept-to-completion development workflows",
     ],
     expertise: [
-      "Project Management",
-      "Creative Financing",
       "Operations & Logistics",
-      "Investor Relations",
+      "Construction Management",
+      "Project Oversight",
+      "Quality Control",
     ],
     quote:
       "Excellence in execution is non-negotiable. Every project we deliver is a testament to what African firms can achieve when we hold ourselves to the highest global standards.",
@@ -77,26 +80,27 @@ const leaders: Leader[] = [
     image: "/CCO.avif",
     linkedinUrl: "https://www.linkedin.com/in/samuel-adabie",
     bio: [
-      "Samuel Kofi Adabie is the architectural mind shaping IIG's landmark developments. With formal training in architecture and urban design from institutions in Ghana and the United States, he brings a unique perspective that blends African design heritage with contemporary innovation.",
-      "Samuel's design philosophy centers on creating spaces that honor local context while meeting world-class standards. His work on the SG Residence and the 7th & Tubman tower has established IIG's reputation for developments that are both functionally superior and aesthetically distinctive.",
+      "Samuel Kofi Adabie is a Managing Partner and the Chief Creative Officer, leading the firm's architectural design vision. He has been instrumental in defining the 'Architecture of a New Africa' by moving away from traditional boxy aesthetics toward contemporary, majestic designs.",
+      "His work emphasizes the integration of sustainable elements, such as solar power backup and rainwater harvesting, into modern African architecture. His creative portfolio includes landmark projects such as the Beauty Queen Hotel, the SOS Centre for Arts, and high-end smart homes like the SG Residence.",
     ],
     achievements: [
-      "Designed the $2.5M SG Residence",
-      "Lead architect for 7th & Tubman tower",
-      "Developed IIG's sustainable design standards",
-      "Created the firm's Pan-African design language",
+      "Defined the 'Architecture of a New Africa' design language",
+      "Lead designer for the $6M Beauty Queen Hotel",
+      "Architect for the bespoke automated $2.5M SG Residence",
+      "Integrated sustainable solar and water systems into luxury living",
     ],
     expertise: [
-      "Architecture & Design",
-      "Urban Planning",
-      "Sustainable Development",
-      "Brand Identity",
+      "Architectural Design",
+      "Contemporary Aesthetics",
+      "Sustainable Design",
+      "Smart Home Integration",
     ],
     quote:
       "Great architecture tells the story of its people. Every structure we design carries forward the legacy of African craftsmanship while embracing the possibilities of tomorrow.",
   },
 ];
 
+// --- ICONS ---
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -105,19 +109,56 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
+// --- MAIN COMPONENT ---
 export default function LeadershipShowcase() {
-  const [selectedLeader, setSelectedLeader] = useState<Leader>(leaders[0]);
-  const [carouselIndex, setCarouselIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const leaderId = searchParams.get('id');
 
+  // FIX 1: Initialize State Lazily based on URL
+  const [selectedLeader, setSelectedLeader] = useState<Leader>(() => {
+    if (leaderId) {
+      const found = leaders.find((l) => l.id === leaderId);
+      if (found) return found;
+    }
+    return leaders[0];
+  });
+
+  const [carouselIndex, setCarouselIndex] = useState(() => {
+    if (leaderId) {
+      const index = leaders.findIndex((l) => l.id === leaderId);
+      if (index !== -1) return index;
+    }
+    return 0;
+  });
+
+  // FIX 2: Effect only runs on navigation changes
+  useEffect(() => {
+    if (leaderId && leaderId !== selectedLeader.id) {
+      const leader = leaders.find((l) => l.id === leaderId);
+      if (leader) {
+        setSelectedLeader(leader);
+        const index = leaders.findIndex((l) => l.id === leaderId);
+        if (index !== -1) setCarouselIndex(index);
+      }
+    }
+  }, [leaderId, selectedLeader.id]);
+
+  // Auto-Rotate Background Carousel
   useEffect(() => {
     const interval = setInterval(() => {
       setCarouselIndex((prev) => (prev + 1) % leaders.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
+  const handleLeaderClick = (leader: Leader) => {
+    setSelectedLeader(leader);
+    window.history.pushState(null, '', `?id=${leader.id}`);
+  };
+
   return (
     <section className={styles.section}>
+      {/* 1. HERO HEADER */}
       <div className={styles.heroHeader}>
         <div className={styles.carouselContainer}>
           {leaders.map((leader, index) => (
@@ -136,7 +177,7 @@ export default function LeadershipShowcase() {
               key={leader.id}
               className={`${styles.carouselDot} ${index === carouselIndex ? styles.carouselDotActive : ""}`}
               onClick={() => setCarouselIndex(index)}
-              aria-label={`View ${leader.name}`}
+              aria-label={`View background for ${leader.name}`}
             />
           ))}
         </div>
@@ -147,18 +188,19 @@ export default function LeadershipShowcase() {
             The Minds Behind <span className={styles.accent}>Ikemba</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Three leaders. Fifty years of combined expertise. One shared vision for Africa&apos;s future.
+            Three leaders. Fifty years of combined expertise. One shared vision for Africa&apos;s future. [cite: 22]
           </p>
         </div>
       </div>
 
+      {/* 2. INTERACTIVE CONTENT */}
       <div className={`container ${styles.container}`}>
         <div className={styles.selectionGrid}>
           {leaders.map((leader) => (
             <button
               key={leader.id}
               className={`${styles.selectionCard} ${selectedLeader.id === leader.id ? styles.active : ""}`}
-              onClick={() => setSelectedLeader(leader)}
+              onClick={() => handleLeaderClick(leader)}
               aria-pressed={selectedLeader.id === leader.id}
             >
               <div className={styles.selectionImageWrapper}>
@@ -228,7 +270,7 @@ export default function LeadershipShowcase() {
 
         <div className={styles.footer}>
           <div className={styles.footerDivider} />
-          <p className={styles.footerTagline}>&ldquo;Building the Future of Africa Together&rdquo;</p>
+          <p className={styles.footerTagline}>&ldquo;Building the Future of Africa Together&rdquo; [cite: 15]</p>
           <div className={styles.footerDivider} />
         </div>
       </div>

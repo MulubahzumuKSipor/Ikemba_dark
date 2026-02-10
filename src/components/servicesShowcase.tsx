@@ -42,7 +42,7 @@ const services: Service[] = [
     id: "development",
     number: "01",
     title: "Real Estate Development",
-    tagline: "Building Sustainable Communities",
+    tagline: "Building Sustainable Projects",
     description:
       "From land acquisition to project completion, we develop high-quality, sustainable projects that drive economic growth across Africa.",
     longDescription:

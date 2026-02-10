@@ -1,172 +1,131 @@
-/* STRIP CONTAINER */
+/* styles/partners.module.css */
+
 .trustStrip {
-  background-color: #FFFFFF; /* White Background */
+  /* "Little bit dark white" (Off-White/Light Gray) */
+  background-color: #F3F4F6;
+  padding: 5rem 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 3rem 0;
-  position: relative;
-
-  /* FIX 1: Allow tooltip to spill outside the box */
-  overflow: visible;
-
-  /* FIX 2: Ensure this strip floats ABOVE the section below it */
-  z-index: 10;
 }
 
 .trustContainer {
   display: flex;
-  align-items: center;
-  /* FIX 3: Keep items close together (Start), not pushed apart */
-  justify-content: flex-start;
-  /* FIX 4: Use a fixed gap to connect Label to Logos */
-  gap: 6rem;
-  width: 100%;
+  flex-direction: column;
+  gap: 3rem;
 }
 
-/* LEFT HEADER (Label) */
+/* Header Section */
 .header {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  min-width: max-content; /* Prevents text wrapping */
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .trustLabel {
-  font-family: var(--font-serif);
-  color: #64748B; /* Dark Slate for contrast */
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-  font-weight: 600;
+  color: #bfa15f; /* Keep Gold for branding */
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
 }
 
 .divider {
-  width: 60px;
   height: 1px;
-  background: rgba(0, 0, 0, 0.1); /* Visible dark line */
+  background: rgba(0, 0, 0, 0.1); /* Dark divider for light bg */
+  flex: 1;
 }
 
-/* RIGHT SIDE (Logos) */
+/* Grid Layout - 3 Columns */
 .partnerGrid {
-  display: flex;
-  align-items: center;
-  gap: 5rem; /* Space between partner logos */
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  align-items: flex-start;
 }
 
+/* Individual Partner Item */
 .partnerItem {
-  position: relative;
-  group: hover;
-  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+  border-radius: 4px;
 }
 
+.partnerItem:hover {
+  background: #ffffff; /* Pure white on hover */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Subtle shadow */
+  transform: translateY(-5px);
+}
+
+/* Logo Styling */
 .logoWrapper {
   position: relative;
-  width: 140px;
-  height: 60px;
-  opacity: 0.6;
-  filter: grayscale(100%);
-  transition: all 0.3s ease;
-}
-
-/* Hover Effect: Full Color & Opacity */
-.partnerItem:hover .logoWrapper {
-  opacity: 1;
-  filter: grayscale(0%);
-  transform: scale(1.05);
+  width: 180px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logoImage {
   object-fit: contain;
+  /* Darken the logos to be visible on light background */
+  /* filter: grayscale(100%) contrast(0.1) brightness(0.2); */
+  opacity: 0.6;
+  transition: all 0.3s ease;
 }
 
-/* TOOLTIP STYLES */
-.tooltip {
-  position: absolute;
-  bottom: 100%; /* Position above the logo */
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: #0F172A; /* Dark Blue Box */
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 4px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s ease;
-  pointer-events: none;
-  margin-bottom: 10px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  text-align: center;
-
-  /* FIX 5: High Z-Index to float over everything */
-  z-index: 100;
-}
-
-/* Tooltip Arrow */
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #0F172A transparent transparent transparent;
-}
-
-.partnerItem:hover .tooltip {
+.partnerItem:hover .logoImage {
+  /* Restore original colors on hover */
+  filter: grayscale(0%) contrast(1) brightness(1);
   opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: scale(1.05);
+}
+
+/* Text Info Styling */
+.infoWrapper {
+  text-align: center;
 }
 
 .partnerName {
   display: block;
-  font-size: 0.85rem;
+  /* Dark text for light background */
+  color: #1e293b;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
   font-weight: 600;
-  color: #fff;
 }
 
 .partnerRole {
   display: block;
-  color: #D4AF37; /* Gold Accent */
-  font-size: 0.7rem;
+  /* Muted gray text */
+  color: #64748b;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 2px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
-/* --- MOBILE RESPONSIVE --- */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .trustStrip {
-    padding: 2.5rem 0;
-  }
-
-  .trustContainer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+  .partnerGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
   .header {
-    width: 100%;
-    margin-bottom: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .divider {
-    flex-grow: 1; /* Line stretches across on mobile */
-  }
-
-  .partnerGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 logos per row */
-    gap: 3rem;
     width: 100%;
-    justify-items: center;
-  }
-
-  .logoWrapper {
-    width: 120px;
-    height: 50px;
-    opacity: 0.8; /* Higher visibility on mobile */
   }
 }
