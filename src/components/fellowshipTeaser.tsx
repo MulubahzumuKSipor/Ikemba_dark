@@ -7,6 +7,7 @@ export default function FellowshipTeaser() {
     <section className={styles.section}>
       <div className={`container ${styles.container}`}>
         
+        {/* TEXT CONTENT */}
         <div className={styles.content}>
           <span className={styles.label}>Capacity Building</span>
           <h2 className={styles.title}>
@@ -26,18 +27,21 @@ export default function FellowshipTeaser() {
           </Link>
         </div>
 
+        {/* VISUAL / IMAGE */}
         <div className={styles.visual}>
           <div className={styles.imageWrapper}>
-            {/*  */}
-            <Image 
-              src="/workers.avif" 
+            <Image
+              src="/workers.avif"
               alt="Ikemba Liberia Fellowship"
               fill
               className={styles.image}
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
+            {/* Subtle inner shadow for depth */}
             <div className={styles.imageOverlay} />
           </div>
-          <div className={styles.borderOffset} />
+
+          {/* Web-style floating badge */}
           <div className={styles.floatingBadge}>
             <span>Inaugural Cohort</span>
           </div>
