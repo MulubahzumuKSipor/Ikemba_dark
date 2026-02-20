@@ -6,9 +6,21 @@ export default function ImpactPage() {
   return (
     <main className={styles.main}>
 
-      {/* HERO SECTION */}
+      {/* --- HERO SECTION --- */}
       <section className={styles.hero}>
+        {/* Native Next.js Image Optimization for the Hero Background */}
+        <Image
+          src="/impact-hero-bg.jpeg" // Add a high-quality community or architecture image to public/
+          alt="Ikemba Corporate Social Responsibility"
+          fill
+          className={styles.heroImage}
+          priority // Tells Next.js to load this image instantly
+        />
+
+        {/* The Dark Navy Gradient Overlay */}
         <div className={styles.heroOverlay} />
+
+        {/* The Content */}
         <div className={`container ${styles.heroContainer}`}>
           <span className={styles.label}>Corporate Social Responsibility</span>
           <h1 className={styles.heroTitle}>
@@ -23,27 +35,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* STATS STRIP */}
-      {/* <section className={styles.statsSection}>
-        <div className={`container ${styles.statsGrid}`}>
-          <div className={styles.statItem}>
-            <span className={styles.statNumber}>500+</span>
-            <span className={styles.statLabel}>Local Jobs Created</span>
-          </div>
-          <div className={styles.statDivider} />
-          <div className={styles.statItem}>
-            <span className={styles.statNumber}>$2M+</span>
-            <span className={styles.statLabel}>Community Investment</span>
-          </div>
-          <div className={styles.statDivider} />
-          <div className={styles.statItem}>
-            <span className={styles.statNumber}>10k</span>
-            <span className={styles.statLabel}>Students Impacted</span>
-          </div>
-        </div>
-      </section> */}
-
-      {/* SPOTLIGHT: FLASGHIP PROJECT */}
+      {/* --- SPOTLIGHT 1: FLASGHIP PROJECT --- */}
       <section className={styles.spotlightSection}>
         <div className={`container ${styles.spotlightContainer}`}>
 
@@ -74,10 +66,48 @@ export default function ImpactPage() {
               Partner on this Project &rarr;
             </Link>
           </div>
+
         </div>
       </section>
 
-      {/* THREE PILLARS GRID */}
+      {/* --- SPOTLIGHT 2: LFA (CSS Reversal) --- */}
+      {/* Removed the inline white background style here */}
+      <section className={`${styles.spotlightSection} ${styles.spotlightReverse}`}>
+        <div className={`container ${styles.spotlightContainer}`}>
+
+          <div className={styles.spotlightImageWrapper}>
+            <Image
+              src="/lfa-team.jpeg"
+              alt="Liberia Football Academy Team"
+              fill
+              className={styles.spotlightImage}
+            />
+            <div className={styles.imageBorder} />
+          </div>
+
+          <div className={styles.spotlightContent}>
+            <span className={styles.sectionLabel}>Community & Sports</span>
+            <h2 className={styles.sectionTitle}>Liberia Football Academy</h2>
+            <p className={styles.text}>
+              More than just a football team, the Liberia Football Academy is a community-rooted
+              platform for opportunity, mentorship, and positive engagement. Built on the core
+              values of discipline, teamwork, and respect, LFA nurtures young talent from the
+              grassroots level up to the 3rd Division League.
+            </p>
+            <p className={styles.text} style={{ marginBottom: '2.5rem' }}>
+              Backed by thousands of passionate supporters, the team stands as a powerful symbol
+              of growth, unity, and hope for young Liberians through the beautiful game.
+            </p>
+
+            <Link href="/impact/lfa" className={styles.btnPrimary}>
+              View the Full Story & Gallery
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- THREE PILLARS GRID --- */}
       <section className={styles.pillarsSection}>
         <div className="container">
           <div className={styles.centerHeader}>
@@ -88,7 +118,6 @@ export default function ImpactPage() {
           </div>
 
           <div className={styles.pillarGrid}>
-            {/* PILLAR 1 */}
             <div className={styles.pillarCard}>
               <div className={styles.iconWrapper}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -98,12 +127,10 @@ export default function ImpactPage() {
               <h3>Education & Skills</h3>
               <p>
                 We don&apos;t just hire; we train. Every construction site serves as a
-                training ground for local artisans, ensuring skills transfer in modern
-                building techniques.
+                training ground for local artisans, ensuring skills transfer.
               </p>
             </div>
 
-            {/* PILLAR 2 */}
             <div className={styles.pillarCard}>
               <div className={styles.iconWrapper}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -114,11 +141,10 @@ export default function ImpactPage() {
               <h3>Sustainability</h3>
               <p>
                 From solar-integrated designs to locally sourced materials, we minimize
-                our carbon footprint while maximizing energy efficiency for our tenants.
+                our carbon footprint while maximizing efficiency.
               </p>
             </div>
 
-            {/* PILLAR 3 */}
             <div className={styles.pillarCard}>
               <div className={styles.iconWrapper}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -128,7 +154,7 @@ export default function ImpactPage() {
               <h3>Economic Growth</h3>
               <p>
                 We prioritize Liberian vendors and supply chains. By sourcing locally,
-                we ensure our investment circulates within the local economy.
+                we ensure our investment circulates locally.
               </p>
             </div>
           </div>

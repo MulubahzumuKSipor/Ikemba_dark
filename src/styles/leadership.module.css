@@ -2,7 +2,7 @@
 .section {
   /* LIGHTER SLATE BACKGROUND */
   /* This creates separation from the Dark 'Philosophy' section before it */
-  background-color: var(--color-surface);
+  background-color: #0F172A;
   padding: 8rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }

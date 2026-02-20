@@ -35,6 +35,9 @@ export default function AdminSidebar({ role }: { role: string }) {
         <Link href="/admin/careers" className={styles.navLink}>
           Careers
         </Link>
+        <Link href="/admin/portfolio" className={styles.navLink}>
+          Portfolio Projects
+        </Link>
         {(role === 'super_admin' || role === 'admin') && (
           <Link href="/admin/team" className={styles.navLink}>
             Team Access

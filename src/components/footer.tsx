@@ -7,30 +7,35 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
+      {/* NO MORE SEPARATE STRIP - Everything is merged into one cohesive grid */}
       <div className={`container ${styles.container}`}>
         
-        {/* BRAND & MISSION */}
+        {/* 1. BRAND & MISSION (With Logo Fix) */}
         <div className={styles.brandSide}>
-          <Link href="/" className={styles.logo}>
-            <Image 
-              src="/logo.png" 
-              alt="Ikemba Group Logo" 
-              width={180}
-              height={60}
-              style={{ width: 'auto', height: 'auto' }}
-            />
+          <Link href="/" className={styles.logoLink}>
+            {/* The white background pad to make the dark blue logo pop */}
+            <div className={styles.logoBg}>
+              <Image
+                src="/logo.png"
+                alt="Ikemba Group Logo"
+                width={160}
+                height={50}
+                style={{ width: 'auto', height: 'auto' }}
+                priority
+              />
+            </div>
           </Link>
           <p className={styles.missionSnippet}>
-            A Pan-African firm redefining the african built environment through
+            A Pan-African firm redefining the African built environment through
             strategic development and world-class architecture.
           </p>
           <div className={styles.socials}>
-            <a href="https://www.linkedin.com/company/ikemba-investment-group" className={styles.socialLink}>LinkedIn</a>
-            <a href="https://www.instagram.com/ikembagroup/profilecard/?igsh=aHA4cGw1NXl3aGZ5" className={styles.socialLink}>Instagram</a>
+            <a href="https://www.linkedin.com/company/ikemba-investment-group" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>LinkedIn</a>
+            <a href="https://www.instagram.com/ikembagroup/profilecard/?igsh=aHA4cGw1NXl3aGZ5" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>Instagram</a>
           </div>
         </div>
 
-        {/* QUICK LINKS */}
+        {/* 2. QUICK LINKS */}
         <div className={styles.linksSide}>
           <h4 className={styles.columnTitle}>Company</h4>
           <nav className={styles.footerNav}>
@@ -39,11 +44,11 @@ export default function Footer() {
             <Link href="/services">Our Services</Link>
             <Link href="/portfolio">Portfolio</Link>
             <Link href="/news">News</Link>
-            <Link href="/careers">Careers</Link>
+            <Link href="/contact">Contact</Link>
           </nav>
         </div>
 
-        {/* GLOBAL OFFICES */}
+        {/* 3. GLOBAL OFFICES */}
         <div className={styles.officesSide}>
           <h4 className={styles.columnTitle}>Global Presence</h4>
           <div className={styles.officeGrid}>
@@ -55,31 +60,57 @@ export default function Footer() {
               <strong>Accra, Ghana</strong>
               <p>East Legon</p>
             </div>
-            {/* <div className={styles.officeItem}>
-              <strong>United States</strong>
-              <p>Philadelphia, PA</p>
-            </div> */}
+          </div>
+        </div>
+
+        {/* 4. STRATEGIC PARTNERS (Merged into the footer layout) */}
+        <div className={styles.partnersSide}>
+          <h4 className={styles.columnTitle}>Strategic Partners</h4>
+          <div className={styles.partnerList}>
+
+            <a href="https://www.saraivaeassociados.com/" target="_blank" rel="noopener noreferrer" className={styles.partnerListItem}>
+              <div className={styles.smallPartnerLogoWrapper}>
+                <Image src="/sa.png" alt="Saraiva + Associados" fill className={styles.smallPartnerLogo} />
+              </div>
+              <div className={styles.partnerText}>
+                <span className={styles.partnerName}>Saraiva + Associados</span>
+                <span className={styles.partnerRole}>Architecture</span>
+              </div>
+            </a>
+
+            <a href="https://buildformltd.com/" target="_blank" rel="noopener noreferrer" className={styles.partnerListItem}>
+              <div className={styles.smallPartnerLogoWrapper}>
+                <Image src="/build_form.png" alt="Build Form Ltd." fill className={styles.smallPartnerLogo} />
+              </div>
+              <div className={styles.partnerText}>
+                <span className={styles.partnerName}>Build Form Ltd.</span>
+                <span className={styles.partnerRole}>Construction</span>
+              </div>
+            </a>
+
+            <a href="https://vilalta.studio/" target="_blank" rel="noopener noreferrer" className={styles.partnerListItem}>
+              <div className={styles.smallPartnerLogoWrapper}>
+                <Image src="/vilalta.jpg" alt="Vilalta Studio" fill className={styles.smallPartnerLogo} />
+              </div>
+              <div className={styles.partnerText}>
+                <span className={styles.partnerName}>Vilalta Studio</span>
+                <span className={styles.partnerRole}>Architecture</span>
+              </div>
+            </a>
+
           </div>
         </div>
 
       </div>
 
-      {/* BOTTOM BAR: LEGAL & PARTNERS */}
+      {/* BOTTOM BAR: LEGAL */}
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
-          <Link href={'/admin'}>
+          <Link href={'/admin'} style={{ textDecoration: 'none' }}>
             <p className={styles.copyright}>
               &copy; {currentYear} Ikemba Investment Group. All Rights Reserved.
             </p>
           </Link>
-          {/* <div className={styles.partnerLogos}>
-            <span>Partnered with:</span>
-            <strong>Tri Buchanan</strong>
-            <span className={styles.divider}>|</span>
-            <strong>Gateway Realty</strong>
-            <span className={styles.divider}>|</span>
-            <strong>Kanree Global</strong>
-          </div> */}
         </div>
       </div>
     </footer>

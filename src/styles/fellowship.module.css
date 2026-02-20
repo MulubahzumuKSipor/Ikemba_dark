@@ -9,7 +9,7 @@
 .hero {
     padding-top: 40px;
   position: relative;
-  height: 90vh;
+  height: 100vh;
   min-height: 500px;
   background-image: url('/images/projects/aya_hotel.png');
   background-size: cover;

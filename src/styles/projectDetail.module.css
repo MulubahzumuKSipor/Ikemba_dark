@@ -347,3 +347,40 @@
   .galleryGrid { grid-template-columns: 1fr; }
   .relatedGrid { grid-template-columns: 1fr; }
 }
+
+/* --- GALLERY GRID --- */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.galleryItem {
+  border: 2px solid transparent; /* Hidden border to prevent layout shift */
+  cursor: pointer;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  transition: all 0.3s ease;
+  aspect-ratio: 1 / 1; /* Makes thumbnails perfect squares */
+}
+
+/* The active state when a user clicks the thumbnail */
+.activeGalleryItem {
+  border-color: #c2a368; /* Ikemba Gold */
+  box-shadow: 0 0 10px rgba(194, 163, 104, 0.4);
+  transform: scale(0.95); /* Slight physical feedback */
+}
+
+.galleryItem:hover:not(.activeGalleryItem) {
+  border-color: rgba(194, 163, 104, 0.5); /* Faded gold on hover */
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}

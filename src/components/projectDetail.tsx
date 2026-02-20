@@ -34,11 +34,12 @@ export default function ProjectDetail({
   return (
     <div className={styles.pageWrapper}>
 
-      {/* --- 1. HERO HEADER --- */}
+      {/* --- 1. HERO HEADER (Now dynamic!) --- */}
       <header className={styles.header}>
         <div
           className={styles.headerBackground}
-          style={{ backgroundImage: `url(${images[0]})` }}
+          // FIX: This now responds to thumbnail clicks instead of being hardcoded to [0]
+          style={{ backgroundImage: `url(${images[activeImageIndex]})` }}
         />
         <div className={styles.headerOverlay} />
 
@@ -103,22 +104,25 @@ export default function ProjectDetail({
               </div>
             )}
 
-            {/* Image Gallery (Grid Layout) */}
-            {images.length > 0 && (
+            {/* --- VISUAL GALLERY (Interactive Thumbnails) --- */}
+            {/* Only show the gallery grid if there is more than 1 image */}
+            {images.length > 1 && (
               <div className={styles.gallery}>
                 <h3 className={styles.sectionLabel}>Visual Gallery</h3>
                 <div className={styles.galleryGrid}>
                   {images.map((img, index) => (
-                    <div
+                    <button
                       key={index}
-                      className={styles.galleryItem}
+                      // FIX: Highlights the thumbnail that is currently displayed in the hero
+                      className={`${styles.galleryItem} ${activeImageIndex === index ? styles.activeGalleryItem : ''}`}
                       onClick={() => setActiveImageIndex(index)}
+                      aria-label={`View image ${index + 1}`}
                     >
                       <div
                         className={styles.galleryImage}
                         style={{ backgroundImage: `url(${img})` }}
                       />
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>

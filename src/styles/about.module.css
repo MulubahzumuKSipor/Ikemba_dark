@@ -274,13 +274,18 @@
   margin-right: auto;
 }
 
-/* THE GRID: Centered for 2 items */
 .locationsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Split perfectly in half */
-  gap: 3rem;
-  max-width: 900px; /* Constrain width so cards aren't too stretched */
-  margin: 0 auto;
+  grid-template-columns: 1fr; /* Mobile: 1 column */
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .locationsGrid {
+    /* Desktop: Changed from repeat(2, 1fr) to repeat(3, 1fr) */
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* THE CARD: Glassmorphism Style */

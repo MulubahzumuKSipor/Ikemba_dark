@@ -7,6 +7,7 @@ import Philosophy from "@/components/philosophy";
 import Services from "@/components/services";
 import NewsGrid from "@/components/newsSection";
 import Partners from '@/components/partners';
+import FellowshipTeaser from '@/components/fellowshipTeaser';
 
 export default async function Home() {
   const supabase = await createClient();
@@ -25,8 +26,12 @@ export default async function Home() {
       <Services />
       <Philosophy />
       <Leadership />
+
+      {/* Insert the Fellowship Teaser here */}
+      <FellowshipTeaser />
+
       <section style={{
-        backgroundColor: '#0F172A',
+        backgroundColor: '#051b2c', /* Matched to dark navy */
         padding: '6rem 0',
         borderTop: '1px solid rgba(255,255,255,0.05)'
       }}>
@@ -34,6 +39,7 @@ export default async function Home() {
           <NewsGrid articles={articles || []} variant="home" />
         </div>
       </section>
+
       <Partners />
       <Contact />
     </>

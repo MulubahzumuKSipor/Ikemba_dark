@@ -19,7 +19,7 @@ export default function AboutPresence() {
           Operating across time zones to deliver world-class results.
         </p>
 
-        {/* 3. CENTERED GRID FOR 2 ITEMS */}
+        {/* 3. CENTERED GRID FOR 3 ITEMS */}
         <div className={styles.locationsGrid}>
           {/* Location 1: Monrovia */}
           <div className={styles.locationCard}>
@@ -43,6 +43,19 @@ export default function AboutPresence() {
               <div className={styles.locationDivider} />
               <p className={styles.locationDetail}>
                 Regional Hub & <br/>Design Studio
+              </p>
+            </div>
+          </div>
+
+          {/* Location 3: Delaware (NEW) */}
+          <div className={styles.locationCard}>
+            <div className={styles.cardContent}>
+              <span className={styles.locationIcon}>US</span>
+              <h3 className={styles.locationCity}>Delaware</h3>
+              <p className={styles.locationCountry}>United States</p>
+              <div className={styles.locationDivider} />
+              <p className={styles.locationDetail}>
+                Consultancy Hub & <br/>Advisory Services
               </p>
             </div>
           </div>
