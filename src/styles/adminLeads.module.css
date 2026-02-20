@@ -1,81 +1,123 @@
-/* CONTAINER & HEADER */
+/* --- LAYOUT & CONTAINER --- */
 .container {
-  max-width: 1400px;
-  margin: 0 auto;
+  background-color: #03121f; /* Darkest Navy */
+  min-height: 100vh;
+  padding: 6rem 1.5rem 4rem 1.5rem;
+  color: #f8f9fa;
+  width: 100%;
 }
 
+@media (min-width: 768px) {
+  .container {
+    padding: 8rem 3rem 6rem 3rem;
+  }
+}
+
+/* --- HEADER --- */
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 }
 
 .title {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 2.5rem;
-  color: #FFFFFF;
-  line-height: 1;
+  color: #ffffff;
   margin-bottom: 0.5rem;
+  line-height: 1.1;
 }
 
 .subtitle {
-  color: #94A3B8;
-  font-size: 0.9rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
 }
 
 .countBadge {
-  background: #1E293B;
-  color: #D4AF37;
+  display: inline-flex;
+  background-color: rgba(194, 163, 104, 0.15); /* Gold Tint */
+  border: 1px solid rgba(194, 163, 104, 0.3);
+  color: #c2a368;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
-/* TABLE CARD */
+/* --- DATA GRID CARD (Responsive Scroll Wrapper) --- */
 .card {
-  background: #151B25;
+  background-color: #051b2c; /* Lighter Navy Card */
+  border-radius: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  overflow-x: auto; /* Handles scroll on small screens */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto; /* Enables horizontal scroll on small screens */
+
+  /* Custom scrollbar for webkit browsers */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(194, 163, 104, 0.5) rgba(0, 0, 0, 0.2);
 }
 
+.card::-webkit-scrollbar {
+  height: 8px;
+}
+.card::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+.card::-webkit-scrollbar-thumb {
+  background-color: rgba(194, 163, 104, 0.5);
+  border-radius: 4px;
+}
+
+/* --- TABLE STYLES --- */
 .table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 900px; /* Forces scroll if too squeezed */
-}
-
-/* HEADERS */
-.table th {
   text-align: left;
-  padding: 1.25rem 1.5rem;
-  background: #1E293B;
-  color: #94A3B8;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  min-width: 900px; /* Forces scrolling on screens smaller than 900px */
 }
 
-.thStatus { width: 120px; }
-.thSender { width: 250px; }
-.thMessage { width: 35%; }
-.thAction { width: 100px; text-align: right; }
+.table th {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #c2a368;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
 
-/* ROW STYLES */
 .table td {
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-  vertical-align: top;
-  color: #E2E8F0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
   font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.row {
+  transition: background-color 0.2s ease;
 }
 
 .row:hover {
@@ -83,83 +125,124 @@
 }
 
 .row:last-child td {
-  border-bottom: none;
+  border-bottom: none; /* Removes double border at bottom of card */
 }
 
-/* COLUMN SPECIFICS */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  width: fit-content;
-}
-.new { background: rgba(212, 175, 55, 0.1); color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.3); }
-.contacted { background: rgba(56, 189, 248, 0.1); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.3); }
-.closed { background: rgba(148, 163, 184, 0.1); color: #94A3B8; border: 1px solid rgba(148, 163, 184, 0.3); }
+/* --- COLUMN SIZING --- */
+.thStatus { width: 120px; }
+.thSender { min-width: 200px; }
+.thMessage { width: 35%; max-width: 300px; }
+.thAction { width: 80px; text-align: right; }
 
+/* --- SPECIFIC CELL STYLES --- */
 .senderInfo {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.25rem;
 }
-.senderName { font-weight: 600; color: #fff; }
-.senderEmail { font-size: 0.85rem; color: #94A3B8; }
-.senderPhone { font-size: 0.8rem; color: #64748B; margin-top: 2px; }
+
+.senderName {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.senderEmail, .senderPhone {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
 
 .clientType {
-  color: #CBD5E1;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .messagePreview {
-  color: #94A3B8;
+  color: #94a3b8;
   font-size: 0.9rem;
   line-height: 1.5;
+  margin: 0;
   
-  /* Text Truncation Logic */
+  /* CSS Truncation Magic */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* Shows exactly 2 lines before adding ... */
   -webkit-box-orient: vertical;
   overflow: hidden;
-  max-width: 400px;
+  text-overflow: ellipsis;
 }
 
 .dateCell {
-  color: #64748B;
-  font-size: 0.85rem;
+  color: #64748b !important;
+  font-size: 0.85rem !important;
   white-space: nowrap;
 }
 
-.actionButton {
+/* --- STATUS BADGES --- */
+.badge {
   display: inline-block;
-  color: #D4AF37;
-  font-size: 0.8rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  min-width: 90px;
+}
+
+/* You map these in your component using lead.internal_status?.toLowerCase() */
+.new {
+  background-color: rgba(16, 185, 129, 0.15); /* Green Tint */
+  color: #34d399; /* Green Text */
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.contacted, .in_progress, .progress {
+  background-color: rgba(194, 163, 104, 0.15); /* Gold Tint */
+  color: #c2a368; /* Gold Text */
+  border: 1px solid rgba(194, 163, 104, 0.3);
+}
+
+.closed, .archived {
+  background-color: rgba(148, 163, 184, 0.15); /* Slate Tint */
+  color: #94a3b8; /* Slate Text */
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* --- ACTION BUTTON --- */
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #c2a368;
+  border: 1px solid rgba(194, 163, 104, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.85rem;
   text-decoration: none;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  padding: 6px 12px;
-  border-radius: 2px;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .actionButton:hover {
-  background: #D4AF37;
-  color: #0F172A;
+  background-color: rgba(194, 163, 104, 0.1);
+  border-color: #c2a368;
 }
 
-/* EMPTY STATE */
+/* --- EMPTY STATE --- */
 .emptyState {
-  padding: 4rem;
   text-align: center;
-  color: #64748B;
+  padding: 4rem 1.5rem !important;
+}
+
+.emptyContent {
+  color: #64748b;
+  font-style: italic;
+  font-size: 1.1rem;
 }

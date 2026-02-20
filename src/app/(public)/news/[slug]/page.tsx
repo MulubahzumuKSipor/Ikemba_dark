@@ -9,11 +9,10 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// 1. DYNAMIC SEO
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const supabase = await createClient();
-  
+
   const { data: article } = await supabase
     .from('news')
     .select('title, excerpt')
@@ -32,7 +31,6 @@ export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const supabase = await createClient();
 
-  // 2. SECURE FETCH
   const { data } = await supabase
     .from('news')
     .select('*')
@@ -42,14 +40,21 @@ export default async function ArticlePage({ params }: PageProps) {
 
   if (!data) return notFound();
 
-  // 3. TYPE SAFE CASTING
   const article = data as unknown as Article;
+
+  // --- THE SANITIZER ---
+  // 1. Converts &nbsp; back to standard spaces so text wraps naturally.
+  // 2. Removes hardcoded inline styles injected by the admin editor.
+  const cleanContent = article.content
+    ? article.content
+        .replace(/&nbsp;/g, ' ')
+        .replace(/style="[^"]*"/gi, '')
+    : '';
 
   return (
     <main className={styles.main}>
       <article className={styles.articleContainer}>
-        
-        {/* EDITORIAL HEADER */}
+
         <header className={styles.header}>
           <div className={styles.metaRow}>
             <span className={styles.category}>{article.category}</span>
@@ -62,16 +67,15 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
 
           <h1 className={styles.headline}>{article.title}</h1>
-          
+
           {article.excerpt && (
             <p className={styles.leadParagraph}>{article.excerpt}</p>
           )}
         </header>
 
-        {/* CINEMATIC HERO IMAGE */}
         <div className={styles.heroImageWrapper}>
-          <Image 
-            src={article.image_url || '/images/placeholder.jpg'} 
+          <Image
+            src={article.image_url || '/images/placeholder.jpg'}
             alt={article.title}
             fill
             className={styles.heroImage}
@@ -79,14 +83,12 @@ export default async function ArticlePage({ params }: PageProps) {
           />
         </div>
 
-        {/* THE READING COLUMN */}
-        {/* FIX: Render HTML correctly using dangerouslySetInnerHTML */}
+        {/* THE READING COLUMN: Sanitized and Protected */}
         <div
           className={styles.contentBody}
-          dangerouslySetInnerHTML={{ __html: article.content || '' }}
+          dangerouslySetInnerHTML={{ __html: cleanContent }}
         />
 
-        {/* FOOTER NAVIGATION */}
         <footer className={styles.footer}>
           <Link href="/news" className={styles.backLink}>
             ← Return to Market Intelligence
