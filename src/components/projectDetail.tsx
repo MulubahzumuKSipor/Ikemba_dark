@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image"; // Needed for the high-res modal image
 import { Project } from "@/lib/supabase";
 import styles from "@/styles/projectDetail.module.css";
 
@@ -15,11 +16,44 @@ export default function ProjectDetail({
   relatedProjects,
 }: ProjectDetailProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false); // NEW: Modal State
 
-  // Fallback if no images exist
   const images = project.image_urls?.length > 0 
     ? project.image_urls 
     : ["/images/placeholder-project.jpg"];
+
+  // --- MODAL NAVIGATION LOGIC ---
+  const handleNextImage = useCallback(() => {
+    setActiveImageIndex((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  const handlePrevImage = useCallback(() => {
+    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  }, [images.length]);
+
+  // Handle keyboard events (Escape to close, Arrows to navigate)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isModalOpen) return;
+      if (e.key === "Escape") setIsModalOpen(false);
+      if (e.key === "ArrowRight") handleNextImage();
+      if (e.key === "ArrowLeft") handlePrevImage();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Prevent background scrolling when modal is open
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen, handleNextImage, handlePrevImage]);
 
   // Helper for Status Badge Colors
   const getStatusStyle = (status: string) => {
@@ -31,20 +65,23 @@ export default function ProjectDetail({
     }
   };
 
+  const openModal = (index: number) => {
+    setActiveImageIndex(index);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className={styles.pageWrapper}>
 
-      {/* --- 1. HERO HEADER (Now dynamic!) --- */}
+      {/* --- 1. HERO HEADER --- */}
       <header className={styles.header}>
         <div
           className={styles.headerBackground}
-          // FIX: This now responds to thumbnail clicks instead of being hardcoded to [0]
           style={{ backgroundImage: `url(${images[activeImageIndex]})` }}
         />
         <div className={styles.headerOverlay} />
 
         <div className={`container ${styles.headerContainer}`}>
-          {/* Breadcrumbs */}
           <nav className={styles.breadcrumbs}>
             <Link href="/portfolio">Portfolio</Link>
             <span className={styles.separator}>/</span>
@@ -62,9 +99,7 @@ export default function ProjectDetail({
                 </span>
               )}
             </div>
-
             <h1 className={styles.title}>{project.title}</h1>
-
             {project.location && (
               <p className={styles.location}>
                 <span className={styles.icon}>📍</span> {project.location}
@@ -78,21 +113,16 @@ export default function ProjectDetail({
       <section className={styles.contentSection}>
         <div className={`container ${styles.gridContainer}`}>
 
-          {/* LEFT COLUMN: Narrative & Features */}
           <div className={styles.mainColumn}>
-
-            {/* Tagline / Intro */}
             {project.tagline && (
               <h2 className={styles.tagline}>{project.tagline}</h2>
             )}
 
-            {/* Description */}
             <div className={styles.description}>
               <h3 className={styles.sectionLabel}>The Project</h3>
-              <p>{project.description || "Project details regarding this development are currently being updated. Please contact our team for specific inquiries."}</p>
+              <p>{project.description || "Project details regarding this development are currently being updated."}</p>
             </div>
 
-            {/* Features List */}
             {project.features && project.features.length > 0 && (
               <div className={styles.features}>
                 <h3 className={styles.sectionLabel}>Key Features</h3>
@@ -104,24 +134,23 @@ export default function ProjectDetail({
               </div>
             )}
 
-            {/* --- VISUAL GALLERY (Interactive Thumbnails) --- */}
-            {/* Only show the gallery grid if there is more than 1 image */}
-            {images.length > 1 && (
+            {/* --- VISUAL GALLERY (Triggers Modal) --- */}
+            {images.length > 0 && (
               <div className={styles.gallery}>
                 <h3 className={styles.sectionLabel}>Visual Gallery</h3>
                 <div className={styles.galleryGrid}>
                   {images.map((img, index) => (
                     <button
                       key={index}
-                      // FIX: Highlights the thumbnail that is currently displayed in the hero
                       className={`${styles.galleryItem} ${activeImageIndex === index ? styles.activeGalleryItem : ''}`}
-                      onClick={() => setActiveImageIndex(index)}
-                      aria-label={`View image ${index + 1}`}
+                      onClick={() => openModal(index)} // Opens modal instead of just swapping background
+                      aria-label={`View full image ${index + 1}`}
                     >
                       <div
                         className={styles.galleryImage}
                         style={{ backgroundImage: `url(${img})` }}
                       />
+                      {/* Optional UI hint: A little magnify icon on hover could go here */}
                     </button>
                   ))}
                 </div>
@@ -129,40 +158,27 @@ export default function ProjectDetail({
             )}
           </div>
 
-          {/* RIGHT COLUMN: Sticky Sidebar */}
           <aside className={styles.sidebarColumn}>
             <div className={styles.stickyCard}>
               <h3 className={styles.cardTitle}>Project Data</h3>
-
               <div className={styles.dataRow}>
                 <span className={styles.dataLabel}>Type</span>
                 <span className={styles.dataValue}>{project.category}</span>
               </div>
-
               <div className={styles.dataRow}>
                 <span className={styles.dataLabel}>Status</span>
                 <span className={styles.dataValue}>{project.construction_status}</span>
               </div>
-
-              {/* Dynamic Stats */}
               {project.stats && Object.entries(project.stats).map(([key, value]) => (
                 <div key={key} className={styles.dataRow}>
                   <span className={styles.dataLabel}>{key}</span>
                   <span className={styles.dataValue}>{String(value)}</span>
                 </div>
               ))}
-
               <div className={styles.divider} />
-
-              {/* CTA */}
               <div className={styles.inquirySection}>
-                <p className={styles.inquiryText}>
-                  Interested in this development?
-                </p>
-                <Link
-                  href={`/contact?project=${encodeURIComponent(project.title)}`}
-                  className={styles.inquiryButton}
-                >
+                <p className={styles.inquiryText}>Interested in this development?</p>
+                <Link href={`/contact?project=${encodeURIComponent(project.title)}`} className={styles.inquiryButton}>
                   Request Information
                 </Link>
               </div>
@@ -194,6 +210,57 @@ export default function ProjectDetail({
           </div>
         </section>
       )}
+
+      {/* --- 4. FULLSCREEN LIGHTBOX MODAL --- */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+
+          <button className={styles.closeModalBtn} onClick={() => setIsModalOpen(false)} aria-label="Close modal">
+            ✕
+          </button>
+
+          {/* Left Arrow (Only show if multiple images) */}
+          {images.length > 1 && (
+            <button
+              className={`${styles.modalNavBtn} ${styles.prevBtn}`}
+              onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
+              aria-label="Previous image"
+            >
+              &#10094;
+            </button>
+          )}
+
+          {/* Image Container */}
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={images[activeImageIndex]}
+              alt={`${project.title} - Image ${activeImageIndex + 1}`}
+              fill
+              className={styles.modalImage}
+              unoptimized // Recommended for external Supabase URLs
+              priority
+            />
+          </div>
+
+          {/* Right Arrow */}
+          {images.length > 1 && (
+            <button
+              className={`${styles.modalNavBtn} ${styles.nextBtn}`}
+              onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
+              aria-label="Next image"
+            >
+              &#10095;
+            </button>
+          )}
+
+          {/* Image Counter */}
+          <div className={styles.modalCounter}>
+            {activeImageIndex + 1} / {images.length}
+          </div>
+
+        </div>
+      )}
+
     </div>
   );
 }
