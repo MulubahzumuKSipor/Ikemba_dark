@@ -43,22 +43,22 @@ export default function Identity() {
         {/* RIGHT: CARDS */}
         <div className={styles.cards}>
 
-          <Link href="/portfolio?filter=Living" className={styles.card}>
+          <Link href="/portfolio?filter=Residential" className={styles.card}>
             <div className={styles.cardBg} style={{ backgroundImage: "url('/images/projects/atlantic.png')" }} />
             <div className={styles.cardContent}>
               <span className={styles.cardTag}>For Homeowners</span>
-              <h3 className={styles.cardTitle}>Ikemba Living</h3>
+              <h3 className={styles.cardTitle}>Ikemba Residential</h3>
               <p className={styles.cardDesc}>
                 Luxury homes, gated communities, and automated residences.
               </p>
             </div>
           </Link>
 
-          <Link href="/portfolio?filter=Landmarks" className={styles.card}>
+          <Link href="/portfolio?filter=Commercial" className={styles.card}>
             <div className={styles.cardBg} style={{ backgroundImage: "url('/tower.avif')" }} />
             <div className={styles.cardContent}>
               <span className={styles.cardTag}>For Investors</span>
-              <h3 className={styles.cardTitle}>Major Landmarks</h3>
+              <h3 className={styles.cardTitle}>Major Commercial</h3>
               <p className={styles.cardDesc}>
                 High-rise towers, institutional campuses, and commercial infrastructure.
               </p>

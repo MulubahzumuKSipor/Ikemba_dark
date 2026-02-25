@@ -1,8 +1,8 @@
 // --- 1. DOMAIN TYPES (Use these in your Components) ---
 
-export type ConstructionStatus = 'Planned' | 'In Progress' | 'Completed';
+export type ConstructionStatus = 'Planned' | 'Under Construction' | 'Completed';
 export type MarketStatus = 'Available' | 'Sold' | 'Leased' | 'Not Applicable';
-export type ProjectCategory = 'Living' | 'Landmarks';
+export type ProjectCategory = 'Residential' | 'Commercial';
 export type ClientType = 'Investor' | 'Homeowner' | 'Institution' | 'General Inquiry';
 export type NewsCategory = 'Press Release' | 'Project Update' | 'Milestone' | 'Industry Insight' | 'Events';
 export type JobType = 'Full-time' | 'Part-time' | 'Contract' | 'Internship';

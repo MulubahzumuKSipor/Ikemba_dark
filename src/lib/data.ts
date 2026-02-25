@@ -44,7 +44,7 @@ export async function getProjectBySlug(slug: string) {
 }
 
 /**
- * Fetch specific categories ("Living" vs "Landmarks").
+ * Fetch specific categories ("Residential" vs "Commercial").
  * Best for: Homepage Tabs
  */
 export async function getProjectsByCategory(category: ProjectCategory) {

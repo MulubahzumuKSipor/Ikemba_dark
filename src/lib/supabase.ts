@@ -13,9 +13,9 @@ export interface Project {
   slug: string;
   tagline: string | null;
   description: string | null;
-  construction_status: 'Planned' | 'In Progress' | 'Completed';
+  construction_status: 'Planned' | 'Under Construction' | 'Completed';
   market_status: 'Available' | 'Sold' | 'Leased' | 'Not Applicable';
-  category: 'Living' | 'Landmarks';
+  category: 'Residential' | 'Commercial';
   location: string | null;
   image_urls: string[];
   stats: {
