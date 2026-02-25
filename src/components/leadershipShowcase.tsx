@@ -53,7 +53,7 @@ const leaders: Leader[] = [
     name: "Imari Sekajipo",
     role: "Managing Partner & Chief Operating Officer",
     shortRole: "COO",
-    image: "/COO1.avif",
+    image: "/COO1.png",
     linkedinUrl: "https://www.linkedin.com/in/imari-sekajipo-a1564722b/",
     bio: [
       "Imari Sekajipo is a Managing Partner and Chief Operating Officer of Ikemba Investment Group, where he oversees the operational planning and execution of the firm’s real estate development activities.",

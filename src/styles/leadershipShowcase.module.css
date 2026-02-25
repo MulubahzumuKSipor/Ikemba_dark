@@ -191,7 +191,7 @@
 
 .selectionCard:hover .selectionImage,
 .selectionCard.active .selectionImage {
-  filter: grayscale(0%);
+  filter: grayscale(100%);
 }
 
 /* Selection Info */
@@ -268,7 +268,8 @@
   height: 100%;
   background-size: cover;
   background-position: center top;
-  filter: contrast(1.1);
+  /* filter: contrast(1.1); */
+  filter: grayscale(100%);
 }
 
 .profileImageOverlay {
