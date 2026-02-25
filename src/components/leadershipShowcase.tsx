@@ -83,9 +83,9 @@ const leaders: Leader[] = [
     image: "/CCO.avif",
     linkedinUrl: "https://www.linkedin.com/in/samuel-adabie-1705387/",
     bio: [
-      "Samuel Kofi Adabie is a Managing Partner and the Chief Creative Officer of Ikemba Investment Group, where he leads the firm's architectural vision, creative direction, and master planning initiatives.",
-      "Drawing on nearly two decades of industry experience, Samuel bridges the gap between conceptual design and built reality. As an established Architect with Mobius Architecture and Build Form Ltd. in Ghana since 2006, his deep expertise in Computer-Aided Design (CAD) and spatial planning allows him to push the boundaries of contemporary African architecture—moving away from traditional boxy aesthetics toward majestic, context-driven forms.",
-      "His work emphasizes the integration of sustainable elements, such as solar power backup and rainwater harvesting, into modern luxury. Samuel's creative portfolio includes shaping the 'Architecture of a New Africa' through landmark developments like the Beauty Queen Hotel, the SOS Centre for Arts, and high-end, automated smart homes like the SG Residence."
+      "Samuel Kofi Adabie is a Managing Partner and Chief Creative Officer of Ikemba Investment Group, where he leads the firm’s architectural design vision across residential, commercial, and mixed-use developments.",
+      "In his role, Samuel oversees the conceptualization and technical development of project designs — working closely with development and construction teams to ensure architectural plans align with project feasibility, functionality, and long-term sustainability goals.",
+      "His work emphasizes the integration of modern building systems, including solar backup and rainwater harvesting, into contemporary African design. He has contributed to the design and execution of projects such as the Beauty Queen Hotel, the SOS Centre for Arts, and a range of high-end residential developments."
     ],
     achievements: [
       "Brings over 19 years of executive architectural and design experience",
@@ -95,10 +95,11 @@ const leaders: Leader[] = [
     ],
     expertise: [
       "Architectural Design",
-      "Creative Direction",
-      "Computer-Aided Design (CAD)",
-      "Sustainable Architecture",
-      "Master Planning",
+      "Concept Development",
+      "Technical Design Coordination",
+      "Sustainable Building Systems",
+      "Design Implementation",
+      "Project Visualization",
     ],
     quote:
       "Great architecture tells the story of its people. Every structure we design carries forward the legacy of African craftsmanship while embracing the possibilities of tomorrow.",

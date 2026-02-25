@@ -30,13 +30,16 @@ export default function AboutStory() {
 
           <div className={styles.prose}>
             <p>
-              <span className={styles.dropCap}>I</span>t began with a single conviction: that the future of Africa would be built by those willing to return and reinvest. Founded in 2011 by Bleejay Innis, Ikemba Investment Group emerged from a desire to bridge the gap between international capital markets and the on-the-ground realities of West African infrastructure.
+              <span className={styles.dropCap}>I</span>kemba Investment Group was founded by a partnership of African professionals committed to contributing meaningfully to the long-term development of the continent’s emerging economies.
             </p>
             <p>
-              What started as a boutique consultancy has evolved into a full-scale development powerhouse. We realized early on that to change the skyline, we had to control the process—from the first sketch to the final brick.
+              As investment interest in Liberia and West Africa continued to grow, it became increasingly clear that the challenge was not access to capital alone — but the ability to plan, coordinate, and deliver development projects locally in a way that aligns with international standards while remaining grounded in the realities of African markets.
             </p>
             <p>
-              Today, we stand at the intersection of <strong>vision and execution</strong>. We don&apos;t just build structures; we build ecosystems that empower communities, creating tangible wealth that lasts for generations.
+              What began as a collaborative effort to identify and advance real estate opportunities through public and private partnerships has evolved into a development platform focused on strengthening local execution across the project lifecycle — from early-stage planning and capital coordination to design support and construction oversight.
+            </p>
+            <p>
+              Today, Ikemba works across both sponsored developments and client-led projects, supporting the delivery of real estate initiatives that contribute to workforce development, local capacity building, and long-term asset creation within the communities they serve.
             </p>
           </div>
         </div>
