@@ -28,8 +28,9 @@ const leaders: Leader[] = [
     image: "/CEO.avif",
     linkedinUrl: "https://www.linkedin.com/in/bleejay-innis",
     bio: [
-      "Bleejay Innis serves as the Chief Executive Officer and a Managing Partner of Ikemba Investment Group, LLC. He is a primary visionary behind the group's mission to contribute meaningfully to the development of Africa's vast economies through long-lasting infrastructure projects.",
-      "Under his leadership, the firm strategically focuses on real estate development, architecture, construction management, and consulting within Africa's emerging economies. He oversees operations across the company's international offices in Monrovia (Liberia), Accra (Ghana), and the USA.",
+      "Bleejay Innis is the Chief Executive Officer and a Managing Partner of Ikemba Investment Group, where he leads the firm’s strategic direction and development initiatives across residential, commercial, and mixed-use real estate projects.",
+      "In his role, Bleejay is responsible for guiding project origination, investment planning, and long-term development strategy — working to align private capital with locally executed projects across emerging markets. He plays a key role in identifying and advancing opportunities that support sustainable urban growth through real estate and infrastructure development.",
+      "He also oversees the firm’s regional operations and partnerships, supporting the expansion of Ikemba’s development footprint across West Africa through collaborative public and private sector initiatives.",
     ],
     achievements: [
       "Founded Ikemba Investment Group",
@@ -38,10 +39,11 @@ const leaders: Leader[] = [
       "Pioneered a Pan-African firm model for emerging economies",
     ],
     expertise: [
-      "Real Estate Development",
-      "Strategic Planning",
-      "Infrastructure Investment",
-      "International Business",
+      "Development Strategy",
+      "Project Origination",
+      "Investment Planning",
+      "Market Analysis",
+      "Public–Private Partnerships",
     ],
     quote:
       "Africa's urban future will be built by Africans. Our role is to channel global expertise and diaspora capital into developments that serve our communities for generations.",
@@ -52,10 +54,11 @@ const leaders: Leader[] = [
     role: "Managing Partner & Chief Operating Officer",
     shortRole: "COO",
     image: "/COO1.avif",
-    linkedinUrl: "https://www.linkedin.com/in/imari-sekajipo",
+    linkedinUrl: "https://www.linkedin.com/in/imari-sekajipo-a1564722b/",
     bio: [
-      "Imari Sekajipo is a Managing Partner and the Chief Operating Officer for the group. He plays a critical role in the partnership of African professionals that founded the firm, bringing together over 50 years of collective industry experience.",
-      "As COO, he is responsible for the operational execution of the company's diverse services, which include turnkey 'Design & Build' solutions and comprehensive construction management. He ensures that project concept-to-completion workflows maintain strict standards of quality, timeline, and budget.",
+      "Imari Sekajipo is a Managing Partner and Chief Operating Officer of Ikemba Investment Group, where he oversees the operational planning and execution of the firm’s real estate development activities.",
+      "In his role, Imari is responsible for coordinating project workflows across Ikemba’s principal developments and client-led engagements — working closely with investors, consultants, and construction teams to move projects from feasibility through delivery in alignment with defined timelines, budgets, and performance standards.",
+      "He also supports the structuring of project capital through creative financing strategies, helping align private investment, credit-based funding, and development financing solutions to advance both sponsored developments and private client builds."
     ],
     achievements: [
       "Implemented turnkey 'Design & Build' operational frameworks",
@@ -78,22 +81,24 @@ const leaders: Leader[] = [
     role: "Managing Partner & Chief Creative Officer",
     shortRole: "CCO",
     image: "/CCO.avif",
-    linkedinUrl: "https://www.linkedin.com/in/samuel-adabie",
+    linkedinUrl: "https://www.linkedin.com/in/samuel-adabie-1705387/",
     bio: [
-      "Samuel Kofi Adabie is a Managing Partner and the Chief Creative Officer, leading the firm's architectural design vision. He has been instrumental in defining the 'Architecture of a New Africa' by moving away from traditional boxy aesthetics toward contemporary, majestic designs.",
-      "His work emphasizes the integration of sustainable elements, such as solar power backup and rainwater harvesting, into modern African architecture. His creative portfolio includes landmark projects such as the Beauty Queen Hotel, the SOS Centre for Arts, and high-end smart homes like the SG Residence.",
+      "Samuel Kofi Adabie is a Managing Partner and the Chief Creative Officer of Ikemba Investment Group, where he leads the firm's architectural vision, creative direction, and master planning initiatives.",
+      "Drawing on nearly two decades of industry experience, Samuel bridges the gap between conceptual design and built reality. As an established Architect with Mobius Architecture and Build Form Ltd. in Ghana since 2006, his deep expertise in Computer-Aided Design (CAD) and spatial planning allows him to push the boundaries of contemporary African architecture—moving away from traditional boxy aesthetics toward majestic, context-driven forms.",
+      "His work emphasizes the integration of sustainable elements, such as solar power backup and rainwater harvesting, into modern luxury. Samuel's creative portfolio includes shaping the 'Architecture of a New Africa' through landmark developments like the Beauty Queen Hotel, the SOS Centre for Arts, and high-end, automated smart homes like the SG Residence."
     ],
     achievements: [
-      "Defined the 'Architecture of a New Africa' design language",
-      "Lead designer for the $6M Beauty Queen Hotel",
-      "Architect for the bespoke automated $2.5M SG Residence",
-      "Integrated sustainable solar and water systems into luxury living",
+      "Brings over 19 years of executive architectural and design experience",
+      "Defined the 'Architecture of a New Africa' contemporary design language",
+      "Lead designer for landmark projects including the bespoke $2.5M SG Residence",
+      "Pioneered the integration of sustainable green tech into West African luxury living",
     ],
     expertise: [
       "Architectural Design",
-      "Contemporary Aesthetics",
-      "Sustainable Design",
-      "Smart Home Integration",
+      "Creative Direction",
+      "Computer-Aided Design (CAD)",
+      "Sustainable Architecture",
+      "Master Planning",
     ],
     quote:
       "Great architecture tells the story of its people. Every structure we design carries forward the legacy of African craftsmanship while embracing the possibilities of tomorrow.",

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import styles from "@/styles/servicesShowcase.module.css";
 
+// --- INTERFACES ---
 interface ProcessStep {
   number: string;
   title: string;
@@ -37,247 +38,121 @@ interface Service {
   project: Project;
 }
 
+// --- 1. UNIFIED 8-STEP PROCESS ---
+const eightStepProcess: ProcessStep[] = [
+  { number: "01", title: "Initial Consultation", description: "We begin with a discovery call to understand project goals, land status, intended use, and investment parameters." },
+  { number: "02", title: "Site Assessment", description: "Our team conducts a preliminary review of site conditions, access to infrastructure, and development feasibility." },
+  { number: "03", title: "Budgeting & Feasibility", description: "We evaluate project scope, estimated costs, development timelines, and regulatory considerations to determine overall project viability." },
+  { number: "04", title: "Scope Approval & Agreement", description: "Project scope, budget, and timelines are finalized and documented through a formal development or project management agreement." },
+  { number: "05", title: "Design Coordination", description: "Architectural concepts and technical plans are developed in alignment with project objectives and approved budget." },
+  { number: "06", title: "Pre-Construction Setup", description: "Permitting, contractor procurement, and scheduling are finalized ahead of project launch." },
+  { number: "07", title: "Construction Oversight", description: "Ikemba manages on-site execution to ensure adherence to approved plans, timelines, and quality standards." },
+  { number: "08", title: "Project Delivery", description: "Final inspections and handover are completed to ensure a smooth transition to ownership or operations." },
+];
+
+// --- 2. SERVICES DATA ---
 const services: Service[] = [
   {
     id: "development",
     number: "01",
     title: "Real Estate Development",
     tagline: "Building Sustainable Projects",
-    description:
-      "From land acquisition to project completion, we develop high-quality, sustainable projects that drive economic growth across Africa.",
-    longDescription:
-      "Our development arm transforms underutilized land into thriving communities and commercial centers. We manage every aspect of the development lifecycle—site selection, feasibility analysis, financing, design coordination, and construction oversight—ensuring projects deliver lasting value to investors and communities alike.",
+    description: "From land acquisition to project completion, we develop high-quality, sustainable projects that drive economic growth across Africa.",
+    longDescription: "Our development arm transforms underutilized land into thriving communities and commercial centers. We manage every aspect of the development lifecycle—site selection, feasibility analysis, financing, design coordination, and construction oversight—ensuring projects deliver lasting value to investors and communities alike.",
     image: "/construct.avif",
-    process: [
-      {
-        number: "01",
-        title: "Site Analysis",
-        description:
-          "Comprehensive evaluation of land potential, zoning, and market demand.",
-      },
-      {
-        number: "02",
-        title: "Feasibility & Finance",
-        description:
-          "Detailed pro formas, investor structuring, and capital stack optimization.",
-      },
-      {
-        number: "03",
-        title: "Design & Permits",
-        description:
-          "Architectural coordination and regulatory approval management.",
-      },
-      {
-        number: "04",
-        title: "Construction",
-        description:
-          "End-to-end project management through Tri Buchanan Development Corp.",
-      },
-      {
-        number: "05",
-        title: "Delivery & Sales",
-        description:
-          "Asset handover, sales execution via Gateway Realty, and portfolio management.",
-      },
-    ],
+    process: eightStepProcess,
     features: [
-      {
-        icon: "◆",
-        title: "Mixed-Use Developments",
-        description:
-          "Integrated residential, commercial, and retail spaces that create vibrant urban centers.",
-      },
-      {
-        icon: "■",
-        title: "Residential Communities",
-        description:
-          "From luxury estates to affordable housing, designed for African families.",
-      },
-      {
-        icon: "●",
-        title: "Commercial Projects",
-        description:
-          "Office complexes, retail centers, and industrial facilities built to international standards.",
-      },
-      {
-        icon: "◇",
-        title: "Public-Private Partnerships",
-        description:
-          "Collaborative developments with government agencies for infrastructure and housing.",
-      },
+      { icon: "◆", title: "Mixed-Use Developments", description: "Integrated residential, commercial, and retail spaces that create vibrant urban centers." },
+      { icon: "■", title: "Residential Communities", description: "From luxury estates to affordable housing, designed for African families." },
+      { icon: "●", title: "Commercial Projects", description: "Office complexes, retail centers, and industrial facilities built to international standards." },
+      { icon: "◇", title: "Public-Private Partnerships", description: "Collaborative developments with government agencies for infrastructure and housing." },
     ],
-    project: {
-      title: "Atlantic View Residence",
-      location: "Marshall, Liberia",
-      image: "/avr.avif",
-      stat: "Luxury",
-      statLabel: "Oceanfront",
-    },
+    project: { title: "Atlantic View Residence", location: "Marshall, Liberia", image: "/avr.avif", stat: "Luxury", statLabel: "Oceanfront" },
   },
   {
     id: "architecture",
     number: "02",
     title: "Architecture & Design",
     tagline: "Shaping Africa's Urban Future",
-    description:
-      "Innovative, functional designs that honor African heritage while embracing contemporary innovation and sustainable practices.",
-    longDescription:
-      "Our design studio creates architecture that tells the story of modern Africa—bold, contextual, and built to last. We blend local materials and craftsmanship with cutting-edge technology, producing buildings that are environmentally responsible, culturally resonant, and functionally superior.",
+    description: "Innovative, functional designs that honor African heritage while embracing contemporary innovation and sustainable practices.",
+    longDescription: "Our design studio creates architecture that tells the story of modern Africa—bold, contextual, and built to last. We blend local materials and craftsmanship with cutting-edge technology, producing buildings that are environmentally responsible, culturally resonant, and functionally superior.",
     image: "/architect.avif",
-    process: [
-      {
-        number: "01",
-        title: "Discovery",
-        description:
-          "Deep dive into client vision, site context, and functional requirements.",
-      },
-      {
-        number: "02",
-        title: "Concept Design",
-        description:
-          "Initial sketches, massing studies, and design direction development.",
-      },
-      {
-        number: "03",
-        title: "Schematic Design",
-        description:
-          "Detailed floor plans, elevations, and 3D visualizations for approval.",
-      },
-      {
-        number: "04",
-        title: "Documentation",
-        description:
-          "Construction drawings, specifications, and permit-ready packages.",
-      },
-      {
-        number: "05",
-        title: "Construction Admin",
-        description:
-          "On-site oversight ensuring design intent is faithfully executed.",
-      },
-    ],
+    process: eightStepProcess,
     features: [
-      {
-        icon: "◆",
-        title: "Concept & Schematic Design",
-        description:
-          "From initial vision to detailed plans that capture your architectural ambition.",
-      },
-      {
-        icon: "■",
-        title: "3D Visualization & VR",
-        description:
-          "Photorealistic renderings and virtual walkthroughs before construction begins.",
-      },
-      {
-        icon: "●",
-        title: "Sustainable Design",
-        description:
-          "Climate-responsive architecture optimized for African environments.",
-      },
-      {
-        icon: "◇",
-        title: "Interior Architecture",
-        description:
-          "Complete interior design services from space planning to finishes selection.",
-      },
+      { icon: "◆", title: "Concept & Schematic Design", description: "From initial vision to detailed plans that capture your architectural ambition." },
+      { icon: "■", title: "3D Visualization & VR", description: "Photorealistic renderings and virtual walkthroughs before construction begins." },
+      { icon: "●", title: "Sustainable Design", description: "Climate-responsive architecture optimized for African environments." },
+      { icon: "◇", title: "Interior Architecture", description: "Complete interior design services from space planning to finishes selection." },
     ],
-    project: {
-      title: "SG Residence",
-      location: "Monrovia, Liberia",
-      image: "/images/projects/sg_residence.png",
-      stat: "$2.5M",
-      statLabel: "Value",
-    },
+    project: { title: "SG Residence", location: "Monrovia, Liberia", image: "/images/projects/sg_residence.png", stat: "$2.5M", statLabel: "Value" },
   },
   {
     id: "consulting",
     number: "03",
     title: "Investment Consulting",
     tagline: "Data-Driven Advisory",
-    description:
-      "Expert advisory services helping investors and institutions make informed decisions in African real estate markets.",
-    longDescription:
-      "Our consulting practice bridges the information gap in African real estate. We provide institutional-grade market research, feasibility analysis, and strategic advisory to help clients navigate complex markets, structure deals, and manage risk. Whether you're entering a new market or optimizing an existing portfolio, we deliver the insights you need.",
+    description: "Expert advisory services helping investors and institutions make informed decisions in African real estate markets.",
+    longDescription: "Our consulting practice bridges the information gap in African real estate. We provide institutional-grade market research, feasibility analysis, and strategic advisory to help clients navigate complex markets, structure deals, and manage risk. Whether you're entering a new market or optimizing an existing portfolio, we deliver the insights you need.",
     image: "/workers.avif",
-    process: [
-      {
-        number: "01",
-        title: "Market Research",
-        description:
-          "Comprehensive analysis of market dynamics, demand drivers, and competitive landscape.",
-      },
-      {
-        number: "02",
-        title: "Feasibility Study",
-        description:
-          "Detailed financial modeling, risk assessment, and return projections.",
-      },
-      {
-        number: "03",
-        title: "Deal Structuring",
-        description:
-          "Optimal capital stack design, JV structures, and investor terms.",
-      },
-      {
-        number: "04",
-        title: "Due Diligence",
-        description:
-          "Technical, legal, and financial review of acquisition targets.",
-      },
-      {
-        number: "05",
-        title: "Asset Management",
-        description:
-          "Ongoing portfolio optimization, reporting, and exit strategy execution.",
-      },
-    ],
+    process: eightStepProcess,
     features: [
-      {
-        icon: "◆",
-        title: "Market Analytics",
-        description:
-          "Proprietary data on pricing, absorption, and demographic trends across West Africa.",
-      },
-      {
-        icon: "■",
-        title: "Feasibility Studies",
-        description:
-          "Rigorous financial analysis to validate project viability before capital commitment.",
-      },
-      {
-        icon: "●",
-        title: "Property Valuation",
-        description:
-          "Institutionally-accepted appraisals for acquisitions, dispositions, and financing.",
-      },
-      {
-        icon: "◇",
-        title: "Project Supervision",
-        description:
-          "Third-party oversight ensuring projects meet scope, schedule, and budget targets.",
-      },
+      { icon: "◆", title: "Market Analytics", description: "Proprietary data on pricing, absorption, and demographic trends across West Africa." },
+      { icon: "■", title: "Feasibility Studies", description: "Rigorous financial analysis to validate project viability before capital commitment." },
+      { icon: "●", title: "Property Valuation", description: "Institutionally-accepted appraisals for acquisitions, dispositions, and financing." },
+      { icon: "◇", title: "Project Supervision", description: "Third-party oversight ensuring projects meet scope, schedule, and budget targets." },
     ],
-    project: {
-      title: "Ghana Insurance College",
-      location: "Accra, Ghana",
-      image: "/ghana_ins_campus.avif",
-      stat: "61",
-      statLabel: "Acres",
-    },
+    project: { title: "Ghana Insurance College", location: "Accra, Ghana", image: "/ghana_ins_campus.avif", stat: "61", statLabel: "Acres" },
   },
 ];
 
 export default function ServicesShowcase() {
   const [activeService, setActiveService] = useState<Service>(services[0]);
 
+  // --- 3. SCROLL & AUTOSCROLL LOGIC ---
+  const processScrollRef = useRef<HTMLDivElement>(null);
+  const [isAutoScrollPaused, setIsAutoScrollPaused] = useState(false);
+
+  // Manual scroll function (for arrows)
+  const scrollProcess = (direction: 'left' | 'right') => {
+    if (processScrollRef.current) {
+      const { scrollLeft, clientWidth } = processScrollRef.current;
+      const scrollAmount = clientWidth * 0.8;
+      processScrollRef.current.scrollTo({
+        left: direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Autoscroll Effect
+  useEffect(() => {
+    if (isAutoScrollPaused) return;
+
+    const autoScrollInterval = setInterval(() => {
+      if (processScrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = processScrollRef.current;
+
+        // Check if we hit the end of the scroll container
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          // Rewind smoothly back to step 1
+          processScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Slide to the next step
+          scrollProcess('right');
+        }
+      }
+    }, 4000); // 4 seconds per slide
+
+    return () => clearInterval(autoScrollInterval);
+  }, [isAutoScrollPaused, activeService]);
+
   return (
     <section className={styles.section}>
-      {/* HERO: Service Pillars */}
+      {/* --- HERO SECTION --- */}
       <div className={styles.hero}>
         <div className={styles.heroOverlay} />
         <div className={styles.heroBg} style={{ backgroundImage: `url(/service.avif)` }} />
-        
+
         <div className={`container ${styles.heroContainer}`}>
           <div className={styles.heroContent}>
             <span className={styles.label}>Our Services</span>
@@ -285,20 +160,24 @@ export default function ServicesShowcase() {
               End-to-End <span className={styles.accent}>Real Estate</span> Excellence
             </h1>
             <p className={styles.heroSubtitle}>
-              From concept to completion, we deliver comprehensive solutions across 
+              From concept to completion, we deliver comprehensive solutions across
               development, design, and investment advisory.
             </p>
           </div>
 
-          {/* Service Pillars */}
           <div className={styles.pillars}>
             {services.map((service) => (
               <button
                 key={service.id}
-                className={`${styles.pillar} ${
-                  activeService.id === service.id ? styles.pillarActive : ""
-                }`}
-                onClick={() => setActiveService(service)}
+                className={`${styles.pillar} ${activeService.id === service.id ? styles.pillarActive : ""}`}
+                onClick={() => {
+                  setActiveService(service);
+                  // Reset scroll position and pause state when switching tabs
+                  setIsAutoScrollPaused(false);
+                  if (processScrollRef.current) {
+                    processScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+                  }
+                }}
               >
                 <span className={styles.pillarNumber}>{service.number}</span>
                 <h3 className={styles.pillarTitle}>{service.title}</h3>
@@ -310,9 +189,10 @@ export default function ServicesShowcase() {
         </div>
       </div>
 
-      {/* SERVICE DETAIL */}
+      {/* --- SERVICE DETAIL --- */}
       <div className={styles.detail} key={activeService.id}>
         <div className={`container ${styles.detailContainer}`}>
+
           {/* Overview Section */}
           <div className={styles.overview}>
             <div className={styles.overviewContent}>
@@ -321,25 +201,32 @@ export default function ServicesShowcase() {
               <p className={styles.overviewText}>{activeService.longDescription}</p>
             </div>
             <div className={styles.overviewImage}>
-              <div
-                className={styles.overviewImageInner}
-                style={{ backgroundImage: `url(${activeService.image})` }}
-              />
+              <div className={styles.overviewImageInner} style={{ backgroundImage: `url(${activeService.image})` }} />
             </div>
           </div>
 
           {/* Process Section */}
           <div className={styles.process}>
             <div className={styles.processHeader}>
-              <span className={styles.sectionLabel}>Our Process</span>
-              <h3 className={styles.sectionTitle}>
-                How We <span className={styles.accent}>Deliver</span>
-              </h3>
+              <div>
+                <span className={styles.sectionLabel}>Our Process</span>
+                <h3 className={styles.sectionTitle}>
+                  How We <span className={styles.accent}>Deliver</span>
+                </h3>
+              </div>
             </div>
 
-            <div className={styles.processTimeline}>
-              <div className={styles.processLine} />
-              {activeService.process.map((step, index) => (
+            {/* CRITICAL: Pause autoscroll on hover or touch */}
+            <div
+              className={styles.processTimeline}
+              ref={processScrollRef}
+              onMouseEnter={() => setIsAutoScrollPaused(true)}
+              onMouseLeave={() => setIsAutoScrollPaused(false)}
+              onTouchStart={() => setIsAutoScrollPaused(true)}
+              onTouchEnd={() => setIsAutoScrollPaused(false)}
+            >
+              <div className={styles.processTrackLine} />
+              {activeService.process.map((step) => (
                 <div key={step.number} className={styles.processStep}>
                   <div className={styles.processMarker}>
                     <span className={styles.processNumber}>{step.number}</span>
@@ -419,10 +306,11 @@ export default function ServicesShowcase() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* CTA Section */}
+      {/* --- CTA SECTION --- */}
       <div className={styles.cta}>
         <div className={`container ${styles.ctaContainer}`}>
           <div className={styles.ctaContent}>
@@ -430,7 +318,7 @@ export default function ServicesShowcase() {
               Ready to Start Your <span className={styles.accent}>Project?</span>
             </h3>
             <p className={styles.ctaText}>
-              Whether you&apos;re developing land, designing a landmark, or seeking investment 
+              Whether you&apos;re developing land, designing a landmark, or seeking investment
               advisory—our team is ready to deliver.
             </p>
             <div className={styles.ctaButtons}>

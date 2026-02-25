@@ -44,6 +44,7 @@ export default function ContactPage() {
                <div className={styles.officeCard}>
                 <span className={styles.officeCity}>Delaware, USA</span>
                 <span className={styles.officeAddress}>International HQ</span>
+                <OfficeTime timezone="America/New_York" />
               </div>
             </div>
           </div>

@@ -258,75 +258,189 @@
   color: #FFFFFF;
 }
 
-.processTimeline {
+/* --- PROCESS HEADER & NAV ---
+.processHeader {
   display: flex;
   justify-content: space-between;
-  position: relative;
-  padding: 2rem 0;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+} */
+
+.processNav {
+  display: flex;
+  gap: 1rem;
 }
 
-/* The Horizontal Gold Line */
-.processLine {
+.navBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navBtn:hover {
+  border-color: #c2a368; /* Ikemba Gold */
+  color: #c2a368;
+}
+
+/* =========================================
+   AUTO-SLIDING PROCESS CAROUSEL
+========================================= */
+
+/* --- HEADER & NAVIGATION ARROWS --- */
+.processHeader {
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.processNav {
+  display: flex;
+  gap: 1rem;
+}
+
+.navBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navBtn:hover {
+  border-color: #c2a368; /* Ikemba Gold */
+  color: #c2a368;
+}
+
+/* --- THE HORIZONTAL SCROLL TRACK --- */
+.processTimeline {
+  padding-top: 2rem; /* Creates space for the connecting line */
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 2rem; /* Adds padding so box-shadows aren't cut off */
+
+  /* CRITICAL: Forces items into a single horizontal line */
+  flex-wrap: nowrap;
+
+  /* CRITICAL: Enables horizontal scrolling */
+  overflow-x: auto;
+
+  /* CRITICAL: Enables native CSS scroll snapping */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  /* Hide messy scrollbars for a clean, app-like feel */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.processTimeline::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* --- THE CONNECTING BACKGROUND LINE --- */
+.processTrackLine {
   position: absolute;
-  top: 40px; /* Aligns with center of marker circle */
+  top: 24px; /* Centers the line behind the 48px markers */
   left: 0;
-  width: 100%;
-  height: 1px;
+  height: 2px;
   background: rgba(255, 255, 255, 0.1);
   z-index: 0;
+
+  /* CRITICAL: Forces the line to stretch the entire length of the hidden scroll area */
+  min-width: max-content;
 }
 
+/* --- INDIVIDUAL SLIDE / CARD --- */
 .processStep {
   position: relative;
+
+  /* CRITICAL: Forbids the card from shrinking to fit the screen */
+  flex: 0 0 auto;
+
+  /* Set width: Fills most of a mobile screen, but caps out on desktop */
+  width: 85vw;
+  max-width: 320px;
+
+  /* CRITICAL: Tells the browser to snap this card to the left edge of the container */
+  scroll-snap-align: start;
   z-index: 1;
-  width: 18%; /* 5 steps approx */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  group: true;
 }
 
+/* --- CARD UI ELEMENT STYLING --- */
 .processMarker {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: #151B25;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #03121f; /* MUST match your section background color to hide the track line */
+  border: 2px solid #c2a368;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-}
+  position: relative;
+  z-index: 2;
 
-.processStep:hover .processMarker {
-  border-color: #D4AF37;
-  background: #D4AF37;
-  transform: scale(1.2);
+  /* Creates a gap between the circle and the background line */
+  box-shadow: 0 0 0 10px #03121f;
 }
 
 .processNumber {
-  font-size: 0.75rem;
+  color: #c2a368;
   font-weight: 700;
-  color: #94A3B8;
+  font-family: var(--font-heading);
 }
 
-.processStep:hover .processNumber {
-  color: #0F172A;
+.processCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  height: calc(100% - 72px); /* Ensures all cards stretch to equal height */
 }
 
 .processStepTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .processStepText {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #94A3B8;
+  color: #94a3b8;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+  /* Hide desktop arrows on mobile, users will naturally swipe */
+  .processNav {
+    display: none;
+  }
+
+  /* Add a little padding so the first card doesn't touch the exact edge of the screen */
+  .processTimeline {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /* --- FEATURES --- */
@@ -565,6 +679,7 @@
 
   /* Stack Process Vertically on Mobile */
   .processTimeline {
+    padding-top: 1rem;
     flex-direction: column;
     gap: 2rem;
     padding-left: 2rem;
