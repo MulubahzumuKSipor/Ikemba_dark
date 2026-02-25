@@ -108,7 +108,7 @@ export default function NewsGrid({ articles, variant = 'full' }: NewsGridProps) 
                     {article.excerpt || ''}
                   </p>
 
-                  <span className={styles.readMore}>Read Analysis &rarr;</span>
+                  <span className={styles.readMore}>Read More &rarr;</span>
                 </div>
               </Link>
             );

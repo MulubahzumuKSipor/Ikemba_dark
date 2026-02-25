@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image"; // Needed for the high-res modal image
+import Image from "next/image";
 import { Project } from "@/lib/supabase";
 import styles from "@/styles/projectDetail.module.css";
 
@@ -16,7 +16,7 @@ export default function ProjectDetail({
   relatedProjects,
 }: ProjectDetailProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false); // NEW: Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const images = project.image_urls?.length > 0 
     ? project.image_urls 
@@ -31,7 +31,6 @@ export default function ProjectDetail({
     setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   }, [images.length]);
 
-  // Handle keyboard events (Escape to close, Arrows to navigate)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isModalOpen) return;
@@ -42,7 +41,6 @@ export default function ProjectDetail({
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // Prevent background scrolling when modal is open
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -55,11 +53,11 @@ export default function ProjectDetail({
     };
   }, [isModalOpen, handleNextImage, handlePrevImage]);
 
-  // Helper for Status Badge Colors
+  // FIX 1: Updated to match strict SQL constraints
   const getStatusStyle = (status: string) => {
     switch (status) {
       case "Completed": return styles.statusCompleted;
-      case "In Progress": return styles.statusInProgress;
+      case "Under Construction": return styles.statusInProgress;
       case "Planned": return styles.statusPlanned;
       default: return styles.statusDefault;
     }
@@ -69,6 +67,11 @@ export default function ProjectDetail({
     setActiveImageIndex(index);
     setIsModalOpen(true);
   };
+
+  // FIX 2: Sanitize description to prevent layout blowouts and render HTML properly
+  const cleanDescription = project.description
+    ? project.description.replace(/&nbsp;/g, ' ').replace(/style="[^"]*"/gi, '')
+    : '';
 
   return (
     <div className={styles.pageWrapper}>
@@ -120,7 +123,16 @@ export default function ProjectDetail({
 
             <div className={styles.description}>
               <h3 className={styles.sectionLabel}>The Project</h3>
-              <p>{project.description || "Project details regarding this development are currently being updated."}</p>
+
+              {/* FIX 2 Applied: Safe HTML Injection */}
+              {cleanDescription ? (
+                 <div
+                   className={styles.richText}
+                   dangerouslySetInnerHTML={{ __html: cleanDescription }}
+                 />
+              ) : (
+                <p>Project details regarding this development are currently being updated.</p>
+              )}
             </div>
 
             {project.features && project.features.length > 0 && (
@@ -143,14 +155,13 @@ export default function ProjectDetail({
                     <button
                       key={index}
                       className={`${styles.galleryItem} ${activeImageIndex === index ? styles.activeGalleryItem : ''}`}
-                      onClick={() => openModal(index)} // Opens modal instead of just swapping background
+                      onClick={() => openModal(index)}
                       aria-label={`View full image ${index + 1}`}
                     >
                       <div
                         className={styles.galleryImage}
                         style={{ backgroundImage: `url(${img})` }}
                       />
-                      {/* Optional UI hint: A little magnify icon on hover could go here */}
                     </button>
                   ))}
                 </div>
@@ -169,12 +180,15 @@ export default function ProjectDetail({
                 <span className={styles.dataLabel}>Status</span>
                 <span className={styles.dataValue}>{project.construction_status}</span>
               </div>
-              {project.stats && Object.entries(project.stats).map(([key, value]) => (
+
+              {/* Added safe check for object entries */}
+              {project.stats && typeof project.stats === 'object' && Object.entries(project.stats).map(([key, value]) => (
                 <div key={key} className={styles.dataRow}>
                   <span className={styles.dataLabel}>{key}</span>
                   <span className={styles.dataValue}>{String(value)}</span>
                 </div>
               ))}
+
               <div className={styles.divider} />
               <div className={styles.inquirySection}>
                 <p className={styles.inquiryText}>Interested in this development?</p>
@@ -214,12 +228,10 @@ export default function ProjectDetail({
       {/* --- 4. FULLSCREEN LIGHTBOX MODAL --- */}
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
-
           <button className={styles.closeModalBtn} onClick={() => setIsModalOpen(false)} aria-label="Close modal">
             ✕
           </button>
 
-          {/* Left Arrow (Only show if multiple images) */}
           {images.length > 1 && (
             <button
               className={`${styles.modalNavBtn} ${styles.prevBtn}`}
@@ -230,19 +242,17 @@ export default function ProjectDetail({
             </button>
           )}
 
-          {/* Image Container */}
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <Image
               src={images[activeImageIndex]}
               alt={`${project.title} - Image ${activeImageIndex + 1}`}
               fill
               className={styles.modalImage}
-              unoptimized // Recommended for external Supabase URLs
+              unoptimized
               priority
             />
           </div>
 
-          {/* Right Arrow */}
           {images.length > 1 && (
             <button
               className={`${styles.modalNavBtn} ${styles.nextBtn}`}
@@ -253,11 +263,9 @@ export default function ProjectDetail({
             </button>
           )}
 
-          {/* Image Counter */}
           <div className={styles.modalCounter}>
             {activeImageIndex + 1} / {images.length}
           </div>
-
         </div>
       )}
 

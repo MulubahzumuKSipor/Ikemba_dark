@@ -388,14 +388,6 @@ export default function ServicesShowcase() {
                 style={{ backgroundImage: `url(${activeService.project.image})` }}
               >
                 <div className={styles.projectOverlay} />
-                <div className={styles.projectStat}>
-                  <span className={styles.projectStatNumber}>
-                    {activeService.project.stat}
-                  </span>
-                  <span className={styles.projectStatLabel}>
-                    {activeService.project.statLabel}
-                  </span>
-                </div>
               </div>
               <div className={styles.projectContent}>
                 <h4 className={styles.projectTitle}>{activeService.project.title}</h4>
@@ -413,7 +405,7 @@ export default function ServicesShowcase() {
                   {activeService.project.location}
                 </span>
                 <Link href="/portfolio" className={styles.projectLink}>
-                  View Full Case Study
+                  Find out more
                   <svg
                     className={styles.arrowIcon}
                     viewBox="0 0 24 24"

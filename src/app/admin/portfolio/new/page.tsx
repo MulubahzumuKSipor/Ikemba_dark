@@ -6,9 +6,9 @@ import Image from "next/image";
 import { createClient } from "@/lib/client";
 import styles from "@/styles/adminPortfolio.module.css";
 
-// --- STRICT TYPES ---
-type ProjectCategory = "Living" | "Commercial" | "Infrastructure" | "Hospitality" | "Landmarks";
-type ConstructionStatus = "Proposed" | "Planned" | "In Progress" | "Completed";
+// --- STRICT TYPES UPDATED TO MATCH SQL CONSTRAINTS ---
+type ProjectCategory = "Residential" | "Commercial";
+type ConstructionStatus = "Planned" | "Under Construction" | "Completed";
 
 interface ProjectFormData {
   title: string;
@@ -28,11 +28,12 @@ export default function NewProjectAdmin() {
   const [error, setError] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
 
+  // --- DEFAULT STATE UPDATED ---
   const [formData, setFormData] = useState<ProjectFormData>({
     title: "",
     slug: "",
-    category: "Living",
-    construction_status: "Proposed",
+    category: "Residential",
+    construction_status: "Planned",
     location: "",
     tagline: "",
     description: "",
@@ -62,7 +63,6 @@ export default function NewProjectAdmin() {
         .from('project-images')
         .getPublicUrl(uniqueFileName);
 
-      // Append the new URL directly to the array
       setImageUrls((prev) => [...prev, publicUrl]);
 
     } catch (err: any) {
@@ -87,7 +87,7 @@ export default function NewProjectAdmin() {
       .insert([{
         ...formData,
         image_urls: imageUrls
-      } as any]); // <-- Add "as any" right here
+      } as any]);
 
     if (dbError) {
       setError(dbError.message);
@@ -125,23 +125,22 @@ export default function NewProjectAdmin() {
               <label>URL Slug *</label>
               <input type="text" required value={formData.slug} onChange={(e) => setFormData({...formData, slug: e.target.value})} placeholder="e.g., tri-buchanan" />
             </div>
+
             <div className={styles.row}>
               <div className={styles.inputGroup}>
                 <label>Category</label>
                 <select value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value as ProjectCategory})}>
-                  <option value="Living">Living</option>
+                  {/* --- SELECT OPTIONS UPDATED --- */}
+                  <option value="Residential">Residential</option>
                   <option value="Commercial">Commercial</option>
-                  <option value="Infrastructure">Infrastructure</option>
-                  <option value="Hospitality">Hospitality</option>
-                  <option value="Landmarks">Landmarks</option>
                 </select>
               </div>
               <div className={styles.inputGroup}>
                 <label>Construction Status</label>
                 <select value={formData.construction_status} onChange={(e) => setFormData({...formData, construction_status: e.target.value as ConstructionStatus})}>
-                  <option value="Proposed">Proposed</option>
+                  {/* --- SELECT OPTIONS UPDATED --- */}
                   <option value="Planned">Planned</option>
-                  <option value="In Progress">In Progress</option>
+                  <option value="Under Construction">Under Construction</option>
                   <option value="Completed">Completed</option>
                 </select>
               </div>
@@ -152,7 +151,7 @@ export default function NewProjectAdmin() {
             </div>
           </div>
 
-          {/* PROJECT IMAGES (CLEAN UPLOAD UI) */}
+          {/* PROJECT IMAGES */}
           <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Project Images</h3>
             <p className={styles.helpText}>The first image uploaded will serve as the Hero background.</p>

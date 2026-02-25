@@ -42,7 +42,7 @@ export default function ContactPage() {
               </div>
               
                <div className={styles.officeCard}>
-                <span className={styles.officeCity}>Philadelphia, USA</span>
+                <span className={styles.officeCity}>Delaware, USA</span>
                 <span className={styles.officeAddress}>International HQ</span>
               </div>
             </div>

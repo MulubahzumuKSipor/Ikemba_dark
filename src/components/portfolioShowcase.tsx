@@ -9,41 +9,53 @@ interface PortfolioShowcaseProps {
   projects: Project[];
 }
 
-type CategoryFilter = "All" | "Living" | "Landmarks";
-// UPDATE: Removed "In Progress", Added "Proposed"
-type StatusFilter = "All" | "Proposed" | "Planned" | "Completed";
+// STRICT TYPES ENFORCED
+type CategoryFilter = "All" | "Residential" | "Commercial";
+type StatusFilter = "All" | "Planned" | "Under Construction" | "Completed";
 
 export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) {
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("All");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
 
-  // Filter projects based on selected filters
+  // --- FILTER & SORT LOGIC ---
   const filteredProjects = useMemo(() => {
-    return projects.filter((project) => {
+    // 1. Filter by Category and Status
+    const filtered = projects.filter((project) => {
       const categoryMatch =
         categoryFilter === "All" || project.category === categoryFilter;
       const statusMatch =
         statusFilter === "All" || project.construction_status === statusFilter;
       return categoryMatch && statusMatch;
     });
+
+    // 2. Sort to force "avr" to the top
+    return filtered.sort((a, b) => {
+      // NOTE: Ensure "avr" is the exact URL slug of the project in your database.
+      // If the slug is "african-village-resort", change this variable to match it.
+      const featuredSlug = "avr";
+
+      if (a.slug === featuredSlug) return -1; // Move 'a' up
+      if (b.slug === featuredSlug) return 1;  // Move 'b' up
+      return 0; // Keep the rest in their original chronological database order
+    });
   }, [projects, categoryFilter, statusFilter]);
 
-  // Count projects by category for tab badges
+  // UPDATED COUNTS FOR TABS
   const categoryCounts = useMemo(() => {
     return {
       All: projects.length,
-      Living: projects.filter((p) => p.category === "Living").length,
-      Landmarks: projects.filter((p) => p.category === "Landmarks").length,
+      Residential: projects.filter((p) => p.category === "Residential").length,
+      Commercial: projects.filter((p) => p.category === "Commercial").length,
     };
   }, [projects]);
 
-  // Get status badge styling
+  // BADGE STYLING
   const getStatusClass = (status: string) => {
     switch (status) {
       case "Completed":
         return styles.statusCompleted;
-      // UPDATE: Mapped Proposed to the Planned style (usually yellow/gold)
-      case "Proposed":
+      case "Under Construction":
+        return styles.statusInProgress;
       case "Planned":
         return styles.statusPlanned;
       default:
@@ -78,37 +90,16 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
             From luxury residences to landmark developments, explore our portfolio 
             of transformative projects across West Africa.
           </p>
-
-          {/* Stats Row */}
-          <div className={styles.heroStats}>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>{projects.length}</span>
-              <span className={styles.heroStatLabel}>Total Projects</span>
-            </div>
-            <div className={styles.heroStatDivider} />
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>
-                {projects.filter((p) => p.construction_status === "Completed").length}
-              </span>
-              <span className={styles.heroStatLabel}>Completed</span>
-            </div>
-            <div className={styles.heroStatDivider} />
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>
-                {projects.filter((p) => p.market_status === "Available").length}
-              </span>
-              <span className={styles.heroStatLabel}>Available</span>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* FILTERS */}
       <div className={styles.filters}>
         <div className={`container ${styles.filtersContainer}`}>
-          {/* Category Tabs */}
+
+          {/* CATEGORY TABS */}
           <div className={styles.categoryTabs}>
-            {(["All", "Living", "Landmarks"] as CategoryFilter[]).map((category) => (
+            {(["All", "Residential", "Commercial"] as CategoryFilter[]).map((category) => (
               <button
                 key={category}
                 className={`${styles.categoryTab} ${
@@ -124,12 +115,11 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
             ))}
           </div>
 
-          {/* Status Filter */}
+          {/* STATUS FILTERS */}
           <div className={styles.statusFilters}>
             <span className={styles.statusLabel}>Status:</span>
             <div className={styles.statusTags}>
-              {/* UPDATE: Replaced "In Progress" with "Proposed" */}
-              {(["All", "Proposed", "Planned", "Completed"] as StatusFilter[]).map(
+              {(["All", "Planned", "Under Construction", "Completed"] as StatusFilter[]).map(
                 (status) => (
                   <button
                     key={status}
@@ -228,7 +218,7 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
                           .slice(0, 3)
                           .map(([key, value]) => (
                             <div key={key} className={styles.cardStat}>
-                              <span className={styles.cardStatValue}>{value}</span>
+                              <span className={styles.cardStatValue}>{String(value)}</span>
                               <span className={styles.cardStatKey}>{key}</span>
                             </div>
                           ))}

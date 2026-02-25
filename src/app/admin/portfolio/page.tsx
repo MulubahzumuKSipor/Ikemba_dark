@@ -44,9 +44,10 @@ export default async function AdminProjectsPage() {
                     <td className={styles.tdTitle}>{project.title}</td>
                     <td>{project.category}</td>
                     <td>
+                      {/* FIX: Updated badge styling to match new SQL constraints */}
                       <span className={`${styles.statusBadge} ${
                         project.construction_status === 'Completed' ? styles.statusGreen : 
-                        project.construction_status === 'In Progress' ? styles.statusGold : styles.statusGray
+                        project.construction_status === 'Under Construction' ? styles.statusGold : styles.statusGray
                       }`}>
                         {project.construction_status}
                       </span>

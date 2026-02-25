@@ -60,6 +60,10 @@ export default function Footer() {
               <strong>Accra, Ghana</strong>
               <p>East Legon</p>
             </div>
+            <div className={styles.officeItem}>
+              <strong>Delaware, USA</strong>
+              <p>Wilmington</p>
+            </div>
           </div>
         </div>
 

@@ -6,9 +6,9 @@ import Image from "next/image";
 import { createClient } from "@/lib/client";
 import styles from "@/styles/adminPortfolio.module.css";
 
-// --- STRICT TYPES ---
-type ProjectCategory = "Living" | "Commercial" | "Infrastructure" | "Hospitality" | "Landmarks";
-type ConstructionStatus = "Proposed" | "Planned" | "In Progress" | "Completed";
+// --- STRICT TYPES UPDATED TO MATCH SQL CONSTRAINTS ---
+type ProjectCategory = "Residential" | "Commercial";
+type ConstructionStatus = "Planned" | "Under Construction" | "Completed";
 
 interface ProjectFormData {
   title: string;
@@ -33,11 +33,12 @@ export default function EditProjectAdmin({ params }: { params: Promise<{ slug: s
   const [projectId, setProjectId] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
 
+  // --- DEFAULT STATE UPDATED ---
   const [formData, setFormData] = useState<ProjectFormData>({
     title: "",
     slug: "",
-    category: "Living",
-    construction_status: "Proposed",
+    category: "Residential",
+    construction_status: "Planned",
     location: "",
     tagline: "",
     description: "",
@@ -61,8 +62,9 @@ export default function EditProjectAdmin({ params }: { params: Promise<{ slug: s
         setFormData({
           title: data.title || "",
           slug: data.slug || "",
-          category: (data.category as ProjectCategory) || "Living",
-          construction_status: (data.construction_status as ConstructionStatus) || "Proposed",
+          // FIX: Updated fallbacks to prevent invalid state on load
+          category: (data.category as ProjectCategory) || "Residential",
+          construction_status: (data.construction_status as ConstructionStatus) || "Planned",
           location: data.location || "",
           tagline: data.tagline || "",
           description: data.description || "",
@@ -114,7 +116,6 @@ export default function EditProjectAdmin({ params }: { params: Promise<{ slug: s
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. TYPE GUARD: Prove to TypeScript that projectId is definitely a string
     if (!projectId) {
       setError("Fatal Error: Missing Project ID. Cannot update.");
       return;
@@ -123,7 +124,6 @@ export default function EditProjectAdmin({ params }: { params: Promise<{ slug: s
     setIsSubmitting(true);
     setError(null);
 
-    // 2. ESLINT BYPASS: Use unknown/Record instead of 'any' to satisfy strict linting
     const payload = {
       ...formData,
       image_urls: imageUrls,
@@ -132,7 +132,7 @@ export default function EditProjectAdmin({ params }: { params: Promise<{ slug: s
     const { error: dbError } = await supabase
       .from("projects")
       .update(payload)
-      .eq("id", projectId); // projectId is now safely inferred as 'string'
+      .eq("id", projectId);
 
     if (dbError) {
       setError(dbError.message);
@@ -172,34 +172,34 @@ export default function EditProjectAdmin({ params }: { params: Promise<{ slug: s
               <label>URL Slug *</label>
               <input type="text" required value={formData.slug} onChange={(e) => setFormData({...formData, slug: e.target.value})} />
             </div>
+
             <div className={styles.row}>
               <div className={styles.inputGroup}>
                 <label>Category</label>
                 <select value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value as ProjectCategory})}>
-                  <option value="Living">Living</option>
+                  {/* --- SELECT OPTIONS UPDATED --- */}
+                  <option value="Residential">Residential</option>
                   <option value="Commercial">Commercial</option>
-                  <option value="Infrastructure">Infrastructure</option>
-                  <option value="Hospitality">Hospitality</option>
-                  <option value="Landmarks">Landmarks</option>
                 </select>
               </div>
               <div className={styles.inputGroup}>
                 <label>Construction Status</label>
                 <select value={formData.construction_status} onChange={(e) => setFormData({...formData, construction_status: e.target.value as ConstructionStatus})}>
-                  <option value="Proposed">Proposed</option>
+                  {/* --- SELECT OPTIONS UPDATED --- */}
                   <option value="Planned">Planned</option>
-                  <option value="In Progress">In Progress</option>
+                  <option value="Under Construction">Under Construction</option>
                   <option value="Completed">Completed</option>
                 </select>
               </div>
             </div>
+
             <div className={styles.inputGroup}>
               <label>Location</label>
               <input type="text" value={formData.location} onChange={(e) => setFormData({...formData, location: e.target.value})} />
             </div>
           </div>
 
-          {/* PROJECT IMAGES (CLEAN UPLOAD UI) */}
+          {/* PROJECT IMAGES */}
           <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Project Images</h3>
             <p className={styles.helpText}>The first image uploaded will serve as the Hero background.</p>
