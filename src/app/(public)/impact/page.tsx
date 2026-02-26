@@ -41,7 +41,7 @@ export default function ImpactPage() {
 
           <div className={styles.spotlightImageWrapper}>
             <Image
-              src="/llc-hero.webp"
+              src="/llc-hero.jpeg"
               alt="Liberian Learning Center"
               fill
               className={styles.spotlightImage}
@@ -50,12 +50,12 @@ export default function ImpactPage() {
           </div>
 
           <div className={styles.spotlightContent}>
-            <span className={styles.sectionLabel}>Flagship Initiative</span>
+            <span className={styles.sectionLabel}>Impact Partnership</span>
             <h2 className={styles.sectionTitle}>The Liberian Learning Center</h2>
             <p className={styles.text}>
-              As part of our commitment to the future, Ikemba is the lead technical partner
-              for the Liberian Learning Center (LLC). This state-of-the-art facility is more
-              than a library—it is a hub for innovation, technology, and entrepreneurship.
+              As part of our commitment to capacity-building and inclusive development, Ikemba team members served as the design and construction leads for the Liberian Learning Center — a community-based facility created to expand access to digital literacy, entrepreneurship training, and collaborative workspaces. <br />
+
+              The project supports workforce readiness and small business development by providing students, professionals, and emerging entrepreneurs with access to internet connectivity, learning programs, and shared innovation space.
             </p>
             <ul className={styles.checkList}>
               <li>Free access to digital resources and internet.</li>
@@ -63,7 +63,7 @@ export default function ImpactPage() {
               <li>Co-working spaces for emerging startups.</li>
             </ul>
             <Link href="/contact" className={styles.textLink}>
-              Partner on this Project &rarr;
+              Read more &rarr;
             </Link>
           </div>
 

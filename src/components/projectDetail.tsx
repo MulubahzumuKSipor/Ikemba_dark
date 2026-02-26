@@ -134,6 +134,8 @@ export default function ProjectDetail({
                 <p>Project details regarding this development are currently being updated.</p>
               )}
             </div>
+            <br />
+            <br />
 
             {project.features && project.features.length > 0 && (
               <div className={styles.features}>

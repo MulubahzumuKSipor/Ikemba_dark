@@ -28,16 +28,11 @@ export default function Philosophy() {
 
           <div className={styles.bodyText}>
             <p className={styles.paragraph}>
-              Ikemba Investment Group was founded by a partnership of African professionals with over
-              <strong> 50 years of industry experience</strong>. We are impassioned with the
-              responsibility to provide meaningful contributions to developing Africa’s vast
-              economies.
+              Ikemba Investment Group was founded by a partnership of African professionals with experience across <strong> real estate development, design, and project management.</strong> We are in passing with the responsibility to provide meaningful contributions to developing Africa.
             </p>
 
             <p className={styles.paragraph}>
-              With offices in <strong>Monrovia and Accra</strong>, our core approach involves
-              working with public and private partners to identify, plan, and execute unique
-              real estate investment opportunities.
+              With offices in <strong>Monrovia, Accra, and the United States,</strong> our approach centers on collaborating with public and private partners to plan, coordinate, and deliver real estate developments that align global investment with locally led execution across Africa’s emerging markets.
             </p>
 
             <div className={styles.quoteBox}>

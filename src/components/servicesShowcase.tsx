@@ -160,8 +160,7 @@ export default function ServicesShowcase() {
               End-to-End <span className={styles.accent}>Real Estate</span> Excellence
             </h1>
             <p className={styles.heroSubtitle}>
-              From concept to completion, we deliver comprehensive solutions across
-              development, design, and investment advisory.
+              From concept to completion, we plan, structure, and execute real estate developments across Africa’s emerging markets.
             </p>
           </div>
 
@@ -205,6 +204,26 @@ export default function ServicesShowcase() {
             </div>
           </div>
 
+          {/* Features Grid */}
+          <div className={styles.features}>
+            <div className={styles.featuresHeader}>
+              <span className={styles.sectionLabel}>Capabilities</span>
+              <h3 className={styles.sectionTitle}>
+                What We <span className={styles.accent}>Offer</span>
+              </h3>
+            </div>
+
+            <div className={styles.featuresGrid}>
+              {activeService.features.map((feature, index) => (
+                <div key={index} className={styles.featureCard}>
+                  <span className={styles.featureIcon}>{feature.icon}</span>
+                  <h4 className={styles.featureTitle}>{feature.title}</h4>
+                  <p className={styles.featureText}>{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Process Section */}
           <div className={styles.process}>
             <div className={styles.processHeader}>
@@ -235,26 +254,6 @@ export default function ServicesShowcase() {
                     <h4 className={styles.processStepTitle}>{step.title}</h4>
                     <p className={styles.processStepText}>{step.description}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Features Grid */}
-          <div className={styles.features}>
-            <div className={styles.featuresHeader}>
-              <span className={styles.sectionLabel}>Capabilities</span>
-              <h3 className={styles.sectionTitle}>
-                What We <span className={styles.accent}>Offer</span>
-              </h3>
-            </div>
-
-            <div className={styles.featuresGrid}>
-              {activeService.features.map((feature, index) => (
-                <div key={index} className={styles.featureCard}>
-                  <span className={styles.featureIcon}>{feature.icon}</span>
-                  <h4 className={styles.featureTitle}>{feature.title}</h4>
-                  <p className={styles.featureText}>{feature.description}</p>
                 </div>
               ))}
             </div>
