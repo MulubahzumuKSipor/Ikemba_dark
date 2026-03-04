@@ -31,7 +31,7 @@ export default function Hero() {
 
           <p className={styles.subheadline}>
             We bridge the gap between global capital and West African infrastructure.
-            From the Liberian Learning Center to mixed-use urban landmarks,
+            From institutional and residential developments,
             we develop spaces that inspire.
           </p>
 
