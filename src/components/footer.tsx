@@ -58,7 +58,7 @@ export default function Footer() {
             </div>
             <div className={styles.officeItem}>
               <strong>Accra, Ghana</strong>
-              <p>East Legon</p>
+              <p>East Legion</p>
             </div>
             <div className={styles.officeItem}>
               <strong>Delaware, USA</strong>
@@ -108,6 +108,7 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM BAR: LEGAL */}
+      {/* BOTTOM BAR: LEGAL */}
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomContainer}`}>
           <Link href={'/admin'} style={{ textDecoration: 'none' }}>
@@ -115,6 +116,19 @@ export default function Footer() {
               &copy; {currentYear} Ikemba Investment Group. All Rights Reserved.
             </p>
           </Link>
+
+          {/* DEVELOPER CREDIT WITH LINK */}
+          <p className={styles.devCredit}>
+            Built by{' '}
+            <Link
+              href="https://www.linkedin.com/in/mulubahzumu-kemmeh-sipor-526a74197/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.devLink}
+            >
+              Mulubahzumu Kemmeh Sipor
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
