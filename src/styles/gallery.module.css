@@ -1,0 +1,232 @@
+/* --- HERO & BASE STYLES (Matches Portfolio) --- */
+.section { position: relative; width: 100%; background-color: #0F172A; color: #fff; min-height: 100vh; }
+.hero { background-image: url('/ghana_ins_campus.avif'); position: relative; padding: 6rem 0 4rem;}
+.heroOverlay { position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 40%), linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)); pointer-events: none; }
+.heroContainer { padding-top: 100px; position: relative; z-index: 1; }
+.label { display: inline-block; color: #D4AF37; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+.heroTitle { font-family: var(--font-serif); font-size: 3.5rem; line-height: 1.1; font-weight: 400; margin-bottom: 1.5rem; }
+.accent { color: #D4AF37; font-style: italic; }
+.heroSubtitle { font-size: 1.125rem; color: #94A3B8; max-width: 600px; line-height: 1.7; }
+
+/* --- FILTERS --- */
+.filters { position: sticky; top: 0; z-index: 30; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 1rem 0; }
+.filtersContainer { display: flex; justify-content: center; } /* Centered for gallery */
+.categoryTabs { display: flex; gap: 0.5rem; background: rgba(255, 255, 255, 0.05); padding: 0.25rem; border-radius: 99px; }
+.categoryTab { background: transparent; border: none; color: #94A3B8; padding: 0.5rem 1.5rem; border-radius: 99px; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+.categoryTabActive { background: #D4AF37; color: #0F172A; font-weight: 600; }
+
+/* --- PURE CSS MASONRY GRID --- */
+.gallery { padding: 4rem 0; }
+.masonryGrid {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+.masonryItem {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: #151B25;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.masonryItem:hover .image {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+
+.masonryItem:hover .imageOverlay {
+  opacity: 1;
+}
+
+.imageCaption {
+  color: #fff;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.masonryItem:hover .imageCaption {
+  transform: translateY(0);
+}
+
+/* --- LIGHTBOX MODAL --- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 4px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.closeBtn {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover { color: #D4AF37; }
+
+.lightboxCaption {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.lightboxCaption h3 { font-family: var(--font-serif); font-size: 1.5rem; color: #fff; margin-bottom: 0.25rem; }
+.lightboxCaption span { color: #D4AF37; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 1024px) {
+  .masonryGrid { column-count: 2; }
+  .closeBtn { top: -3rem; right: 0; }
+}
+
+@media (max-width: 768px) {
+  .masonryGrid { column-count: 1; }
+  .heroTitle { font-size: 2.5rem; }
+  .categoryTabs { overflow-x: auto; white-space: nowrap; width: 100%; border-radius: 0; }
+  .lightboxContent { width: 100%; }
+}
+
+/* --- LIGHTBOX CAROUSEL ADDITIONS --- */
+.lightbox {
+  /* Ensure the close button is fixed relative to the screen, not the image */
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+
+.closeBtn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 110;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.closeBtn:hover {
+  background: #D4AF37;
+  color: #0F172A;
+  transform: scale(1.05);
+}
+
+.navBtn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 110;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px; /* Adjusts arrow vertical alignment */
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.navBtn:hover {
+  background: #D4AF37;
+  color: #0F172A;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevBtn { left: 2rem; }
+.nextBtn { right: 2rem; }
+
+.lightboxMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.imageCounter {
+  color: #94A3B8 !important; /* Overrides the gold from category span */
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-family: monospace; /* Gives numbers a clean, fixed-width look */
+  font-size: 0.8rem !important;
+  letter-spacing: 0;
+}
+
+@media (max-width: 768px) {
+  .closeBtn { top: 1rem; right: 1rem; width: 40px; height: 40px; font-size: 1.2rem; }
+  .navBtn { width: 45px; height: 45px; font-size: 2rem; }
+  .prevBtn { left: 0.5rem; }
+  .nextBtn { right: 0.5rem; }
+  /* Ensure image leaves room for arrows on small screens */
+  .lightboxContent { padding: 0 3rem; }
+}

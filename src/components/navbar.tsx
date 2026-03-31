@@ -9,7 +9,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // State for mobile sub-menu toggle
+  // State for mobile sub-menu toggles
+  const [isMobilePortfolioOpen, setIsMobilePortfolioOpen] = useState(false);
   const [isMobileImpactOpen, setIsMobileImpactOpen] = useState(false);
 
   useEffect(() => {
@@ -23,7 +24,8 @@ export default function Navbar() {
 
   const closeMenu = () => {
     setIsOpen(false);
-    setIsMobileImpactOpen(false); // Reset mobile sub-menu
+    setIsMobilePortfolioOpen(false); // Reset mobile sub-menus
+    setIsMobileImpactOpen(false);
   };
 
   return (
@@ -48,7 +50,38 @@ export default function Navbar() {
           <Link href="/about" className={styles.link}>About</Link>
           <Link href="/leadership" className={styles.link}>Leadership</Link>
           <Link href="/services" className={styles.link}>Services</Link>
-          <Link href="/portfolio" className={styles.link}>Portfolio</Link>
+
+          {/* MEGA MENU: PORTFOLIO */}
+          <div className={styles.megaMenuWrapper}>
+            <button className={`${styles.link} ${styles.megaMenuTrigger}`}>
+              Portfolio
+              <svg className={styles.chevron} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+
+            <div className={styles.megaMenuDropdown}>
+              <div className={styles.megaMenuContent}>
+                <span className={styles.megaMenuLabel}>Our Work</span>
+
+                <Link href="/portfolio" className={styles.megaMenuItem}>
+                  <div>
+                    <span className={styles.menuTitle}>Portfolio Projects</span>
+                    {/* FIXED WORDING */}
+                    <span className={styles.menuDesc}>Explore our flagship developments and case studies.</span>
+                  </div>
+                </Link>
+
+                <Link href="/gallery" className={styles.megaMenuItem}>
+                  <div>
+                    <span className={styles.menuTitle}>Projects Gallery</span>
+                    {/* FIXED WORDING */}
+                    <span className={styles.menuDesc}>A curated visual showcase of our architecture.</span>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
 
           {/* MEGA MENU: CSR */}
           <div className={styles.megaMenuWrapper}>
@@ -108,12 +141,34 @@ export default function Navbar() {
             <Link href="/about" className={styles.mobileLink} onClick={closeMenu}>About</Link>
             <Link href="/leadership" className={styles.mobileLink} onClick={closeMenu}>Leadership</Link>
             <Link href="/services" className={styles.mobileLink} onClick={closeMenu}>Services</Link>
-            <Link href="/portfolio" className={styles.mobileLink} onClick={closeMenu}>Portfolio</Link>
 
-            {/* MOBILE DROPDOWN */}
+            {/* FIXED: MOBILE DROPDOWN FOR PORTFOLIO */}
             <div className={styles.mobileSubGroup}>
               <button
                 className={styles.mobileLink} 
+                onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
+                style={{ display: 'flex', justifyContent: 'space-between', width: '100%', border: 'none', background: 'none' }}
+              >
+                Portfolio
+                <span style={{ transform: isMobilePortfolioOpen ? 'rotate(180deg)' : 'rotate(0)' }}>▼</span>
+              </button>
+
+              {isMobilePortfolioOpen && (
+                <div className={styles.mobileSubLinks}>
+                  <Link href="/portfolio" className={styles.mobileSubLink} onClick={closeMenu}>
+                    Portfolio Projects
+                  </Link>
+                  <Link href="/gallery" className={styles.mobileSubLink} onClick={closeMenu}>
+                    Projects Gallery
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* MOBILE DROPDOWN FOR CSR */}
+            <div className={styles.mobileSubGroup}>
+              <button
+                className={styles.mobileLink}
                 onClick={() => setIsMobileImpactOpen(!isMobileImpactOpen)}
                 style={{ display: 'flex', justifyContent: 'space-between', width: '100%', border: 'none', background: 'none' }}
               >
