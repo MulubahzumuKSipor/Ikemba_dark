@@ -59,7 +59,7 @@ const services: Service[] = [
     tagline: "Building Sustainable Projects",
     description: "From land acquisition to project completion, we develop high-quality, sustainable projects that drive economic growth across Africa.",
     longDescription: "Our development arm transforms underutilized land into thriving communities and commercial centers. We manage every aspect of the development lifecycle—site selection, feasibility analysis, financing, design coordination, and construction oversight—ensuring projects deliver lasting value to investors and communities alike.",
-    image: "/construction.jpeg",
+    image: "/construction.png",
     process: eightStepProcess,
     features: [
       { icon: "◆", title: "Mixed-Use Developments", description: "Integrated residential, commercial, and retail spaces that create vibrant urban centers." },

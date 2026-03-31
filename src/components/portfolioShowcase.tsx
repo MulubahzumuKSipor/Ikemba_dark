@@ -87,7 +87,7 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
             Project <span className={styles.accent}>Portfolio</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            From luxury residences to landmark developments, explore our portfolio 
+            From luxury residences to landmark developments, explore our portfolio
             of transformative projects across West Africa.
           </p>
         </div>
@@ -270,7 +270,7 @@ export default function PortfolioShowcase({ projects }: PortfolioShowcaseProps) 
               Interested in <span className={styles.accent}>Partnering?</span>
             </h3>
             <p className={styles.ctaText}>
-              Whether you&apos;re an investor, developer, or institution—we&apos;re 
+              Whether you&apos;re an investor, developer, or institution—we&apos;re
               always looking for partners who share our vision for Africa&apos;s future.
             </p>
             <Link href="/contact" className={`btn btn-primary ${styles.ctaBtn}`}>

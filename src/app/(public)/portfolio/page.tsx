@@ -1,6 +1,7 @@
-// import { notFound } from 'next/navigation';
 import { supabase, Project } from "@/lib/supabase";
 import PortfolioShowcase from "@/components/portfolioShowcase";
+
+export const revalidate = 3600;
 
 async function getProjects(): Promise<Project[]> {
   const { data, error } = await supabase
@@ -9,14 +10,23 @@ async function getProjects(): Promise<Project[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error fetching projects:", error.message);
     return [];
   }
 
-  return data || [];
-}
+  const projects = data || [];
 
-export const revalidate = 60; // Revalidate every 60 seconds
+  // --- FORCE ATLANTIC VIEW RESIDENCES TO THE TOP ---
+  // Use the exact slug from your URL
+  const avrIndex = projects.findIndex((p) => p.slug === "atlantic-view-residences");
+
+  if (avrIndex > -1) {
+    const [avrProject] = projects.splice(avrIndex, 1);
+    projects.unshift(avrProject);
+  }
+
+  return projects;
+}
 
 export default async function PortfolioPage() {
   const projects = await getProjects();

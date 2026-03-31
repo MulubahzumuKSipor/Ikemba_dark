@@ -195,7 +195,7 @@ function ShowcaseContent() {
             The Minds Behind <span className={styles.accent}>Ikemba</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Three leaders. Fifty years of combined expertise. One shared vision for Africa&apos;s future.
+            Leadership focused on delivering impactful real estate development across Africa.
           </p>
         </div>
       </div>

@@ -19,8 +19,8 @@
   top: 0; left: 0; width: 100%; height: 100%;
 
   /* STACKED BACKGROUNDS:
-     1. Top: Your Gold Accent (unchanged)
-     2. Bottom: Dark Tint (adjust 0.6 to 0.8 to make it darker)
+     1. Top: Your Gold Accent
+     2. Bottom: Dark Tint
   */
   background:
     radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 40%),
@@ -46,7 +46,7 @@
 }
 
 .heroTitle {
-  font-family: var(--font-serif); /* Ensure you have this var set globally */
+  font-family: var(--font-serif);
   font-size: 3.5rem;
   line-height: 1.1;
   font-weight: 400;
@@ -101,12 +101,116 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* =========================================
+   SPOTLIGHT SECTION (PREMIUM FLAGSHIP)
+   ========================================= */
+.spotlightSection {
+  padding: 4rem 0 2rem;
+  background-color: transparent;
+}
+
+.spotlightHeader {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.spotlightLabel {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #D4AF37;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.spotlightHeader h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.spotlightCard {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* 60/40 Split for premium look */
+  background: #151B25;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.spotlightCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.spotlightCard:hover .spotlightImage {
+  transform: scale(1.03);
+}
+
+.spotlightImage {
+  position: relative;
+  min-height: 450px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.spotlightOverlay {
+  position: absolute;
+  inset: 0;
+  /* Fades image smoothly into the dark right-side content panel */
+  background: linear-gradient(to right, transparent 50%, #151B25 100%);
+}
+
+.spotlightContent {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #151B25;
+  z-index: 1;
+}
+
+.spotlightTitle {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.spotlightTagline {
+  font-size: 1.05rem;
+  color: #CBD5E1;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+.spotlightLinkBtn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+}
+
 /* --- FILTERS --- */
 .filters {
   position: sticky;
-  top: 0; /* Sticky filters for better UX */
+  top: 0;
   z-index: 40;
-  background: rgba(15, 23, 42, 0.95); /* blurred background */
+  background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1rem 0;
@@ -216,7 +320,6 @@
 }
 
 .cardFeatured {
-  /* Featured card spans 2 columns on large screens */
   grid-column: span 2;
 }
 
@@ -330,7 +433,7 @@
   margin-bottom: 1.5rem;
   line-height: 1.6;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -339,7 +442,7 @@
 .cardStats {
   display: flex;
   gap: 1.5rem;
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 1.25rem;
@@ -435,16 +538,29 @@
   .cardFeatured { grid-column: span 2; }
 }
 
+@media (max-width: 992px) {
+  /* Stack the premium spotlight card on tablets */
+  .spotlightCard { grid-template-columns: 1fr; }
+  /* Change the overlay gradient to fade bottom-to-top so it blends cleanly into the stacked text */
+  .spotlightOverlay { background: linear-gradient(to top, #151B25 0%, transparent 50%); }
+}
+
 @media (max-width: 768px) {
   /* Adjust Hero */
   .hero { padding: 4rem 0 3rem; }
   .heroTitle { font-size: 2.5rem; }
   .heroStats {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2x2 Grid for stats */
+    grid-template-columns: 1fr 1fr;
     gap: 2rem 1rem;
   }
-  .heroStatDivider { display: none; } /* Remove vertical lines on mobile */
+  .heroStatDivider { display: none; }
+
+  /* Spotlight Mobile Layout */
+  .spotlightHeader h2 { font-size: 2rem; }
+  .spotlightContent { padding: 2rem; }
+  .spotlightImage { min-height: 300px; }
+  .spotlightTitle { font-size: 1.8rem; }
 
   /* Stack Filters */
   .filtersContainer {
@@ -458,8 +574,8 @@
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch; /* Smooth scroll iOS */
-    padding-bottom: 0.5rem; /* Space for scrollbar */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
     border-radius: 0;
     background: transparent;
   }
@@ -471,7 +587,7 @@
     padding-bottom: 0.5rem;
   }
 
-  .statusLabel { display: none; } /* Hide label to save space */
+  .statusLabel { display: none; }
 
   .statusTags {
     flex-wrap: nowrap;
@@ -480,11 +596,11 @@
 
   /* Adjust Grid */
   .grid {
-    grid-template-columns: 1fr; /* Single column */
+    grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  .cardFeatured { grid-column: span 1; } /* Featured becomes normal width */
+  .cardFeatured { grid-column: span 1; }
 
   /* Adjust Card */
   .cardImageWrapper { aspect-ratio: 16/9; }
